@@ -13,7 +13,7 @@ const Icon = ({ name, className }: IconProps) => {
     case 'l-shape':
       return (
         <svg {...props} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 15.9999H18V17.9999H0V0L2 8.74224e-08V15.9999Z" fill="currentColor"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M2 15.9999H18V17.9999H0V0L2 8.74224e-08V15.9999Z" fill="currentColor"/>
         </svg>
       );
     case 'chevron':
