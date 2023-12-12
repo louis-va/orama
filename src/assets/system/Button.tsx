@@ -12,14 +12,16 @@ interface ButtonProps {
 const Button = ({ type, href, external, children, className }: ButtonProps) => {
   
   const props = {
-    className: `${className} block text-base uppercase`
+    className: `${className} inline-block text-base uppercase`
   };
   
   if (type==='button') {
     return (
-      <button {...props}>
-        {children}
-      </button>
+      <div>
+        <button {...props}>
+          {children}
+        </button>
+      </div>
     );
   } 
   
@@ -38,10 +40,12 @@ const Button = ({ type, href, external, children, className }: ButtonProps) => {
     }
 
     return (
-      <a {...linkProps}>
-        {children}
-        {external && <Icon name='chevron' className='inline-block ml-2 mb-1 w-2 h-2' />}
-      </a>
+      <div>
+        <a {...linkProps}>
+          {children}
+          {external && <Icon name='chevron' className='inline-block ml-2 mb-1 w-2 h-2' />}
+        </a>
+      </div>
     );
   }
 };

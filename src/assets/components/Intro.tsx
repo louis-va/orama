@@ -2,14 +2,11 @@ import Title from '../system/Title';
 import Paragraph from '../system/Paragraph';
 import Icon from '../system/Icon';
 import Button from '../system/Button';
-import Line from '../system/Line';
 
 const Intro = () => {
   return (
-    <section className='pt-1'>
-      <Line />
-
-      <div className='layout-grid pt-8'>
+    <section>
+      <div className='layout-grid pt-12'>
         <Title heading='h1' className='col-span-4 md:col-span-1'>Intro</Title>
         <Paragraph className='col-span-4 sm:col-span-3'>
           Nous sommes <em className='font-bold italic'>Orama</em>, 
@@ -17,7 +14,7 @@ const Intro = () => {
         </Paragraph>
       </div>
 
-      <div className='layout-grid pt-12'>
+      <div className='layout-grid pt-16'>
         <div className='flex items-end col-span-2 lg:col-span-4'>
           <Icon name='l-shape' className='w-4 h-4' />
         </div>
