@@ -1,13 +1,14 @@
-import Container from "../components/Container"
+import Container from "../system/Container"
 import Background from "../components/Background"
-import Line from "../components/Line"
+import Header from "../components/Header"
+import Intro from "../components/Intro"
 
 const Home = () => {
   return (
     <Container>
       <Background />
-      <p className="text-2xl">Orama Production</p>
-      <Line />
+      <Header />
+      <Intro />
     </Container>
   )
 }
