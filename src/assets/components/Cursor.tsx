@@ -27,7 +27,7 @@ const Cursor = () => {
     }
   };
 
-  const handleMouseMove = _debounce(updateMousePosition, 20);
+  const handleMouseMove = _debounce(updateMousePosition, 10);
 
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
