@@ -34,6 +34,7 @@
   * { @apply box-border }
   :root { @apply font-mono text-black bg-white }
   ::selection { @apply text-white bg-black }
+  #root { @apply relative }
 }
 
 @layer components {

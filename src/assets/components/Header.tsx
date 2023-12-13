@@ -1,6 +1,6 @@
-import Line from "../system/Line";
-import Logo from "../system/Logo";
-import Button from "../system/Button";
+import Line from "./Line";
+import Logo from "./Logo";
+import Button from "./Button";
 
 const Header = () => {
   return (
