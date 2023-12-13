@@ -33,7 +33,7 @@ const Home = () => {
             <div className='col-span-2 lg:col-span-2'>
               <Button className='mb-1' type='link' href='https://www.myspace.com' external={true}>MySpace</Button>
               <Button className='my-1' type='link' href='https://www.instagram.com' external={true}>Instagram</Button>
-              <Button className='mt-1' type='link' href='https://www.vimeo.com' external={true}>Vimeo</Button>
+              <Button className='mt-1' type='link' href='mailto:contact@orama-prod.be' external={true}>Contact</Button>
             </div>
           </div>
         </section>

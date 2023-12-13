@@ -12,8 +12,8 @@ const Cursor = () => {
     if (hoveredElement && hoveredElement.getAttribute('cursor-focus') === 'true') {
       const info = hoveredElement.getBoundingClientRect();
       setCursor({
-        size: { w: info.width + 6, h: info.height },
-        position: { x: info.x - 3, y: info.y },
+        size: { w: info.width + 4, h: info.height },
+        position: { x: info.x - 2, y: info.y },
       });
     } else {
       setCursor({
