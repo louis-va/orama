@@ -12,6 +12,7 @@ interface ButtonProps {
 const Button = ({ type, href, external, children, className }: ButtonProps) => {
   
   const props = {
+    'cursor-focus': 'true',
     className: `${className} inline-block text-base uppercase`
   };
   
@@ -43,7 +44,7 @@ const Button = ({ type, href, external, children, className }: ButtonProps) => {
       <div>
         <a {...linkProps}>
           {children}
-          {external && <Icon name='chevron' className='inline-block ml-2 mb-1 w-2 h-2' />}
+          {external && <Icon name='chevron' className='pointer-events-none inline-block ml-2 mb-1 w-2 h-2' />}
         </a>
       </div>
     );

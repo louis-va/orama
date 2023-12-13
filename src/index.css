@@ -33,6 +33,7 @@
 @layer base {
   * { @apply box-border }
   :root { @apply font-mono text-black bg-white }
+  ::selection { @apply text-white bg-black }
 }
 
 @layer components {

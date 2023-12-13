@@ -9,7 +9,7 @@ const Intro = () => {
       <div className='layout-grid pt-12'>
         <Title heading='h1' className='col-span-4 md:col-span-1'>Intro</Title>
         <Paragraph className='col-span-4 sm:col-span-3'>
-          Nous sommes <em className='font-bold italic'>Orama</em>, 
+          Nous sommes <em className='font-bold italic' cursor-focus='true'>Orama</em>, 
           un studio de production multi-disciplinaire spécialisé dans la création d'histoires visuelles captivantes.
         </Paragraph>
       </div>
