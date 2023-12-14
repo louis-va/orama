@@ -13,7 +13,7 @@ const Button = ({ type, href, external, children, className }: ButtonProps) => {
   
   const props = {
     'cursor-focus': 'true',
-    className: `${className} inline-block text-base uppercase`
+    className: `${className} inline-block text-sm uppercase`
   };
   
   if (type==='button') {

@@ -7,9 +7,19 @@ import Paragraph from '../components/Paragraph';
 import Line from '../components/Line';
 import Icon from '../components/Icon';
 import Button from '../components/Button';
-import ProjectCard from '../components/ProjectCard';
+import Showreel from '../components/Showreel';
+import ProjectCard from "../components/ProjectCard";
 
 const Home = () => {
+  const projects = [
+    { id: 'jumpers', title: 'Jumpers', thumbnail: '', cta: 'Infos' },
+    { id: 'street-photo', title: 'Street photo', thumbnail: '', cta: 'Infos' },
+    { id: 'interstellar', title: 'Interstellar', thumbnail: '', cta: 'Infos' },
+    { id: 'darkroom', title: 'Darkroom', thumbnail: '', cta: 'Infos' },
+    { id: 'forest', title: 'Forest', thumbnail: '', cta: 'Infos' },
+    { id: 'eclipse', title: 'Eclipse', thumbnail: '', cta: 'Infos' }
+  ];
+
   return (
     <>
       <Cursor />
@@ -26,14 +36,15 @@ const Home = () => {
             </Paragraph>
           </div>
 
-          <div className='layout-grid pt-40'>
-            <div className='flex items-end col-span-2 lg:col-span-4'>
+          <div className='layout-grid pt-32'>
+            <div className='flex items-end col-span-1'>
               <Icon name='l-shape' className='w-4 h-4' />
             </div>
-            <div className='col-span-2 lg:col-span-2'>
+            <div className="col-span-1 lg:col-span-4"></div>
+            <div className='col-span-2 lg:col-span-1'>
               <Button className='mb-1' type='link' href='https://www.myspace.com' external={true}>MySpace</Button>
               <Button className='my-1' type='link' href='https://www.instagram.com' external={true}>Instagram</Button>
-              <Button className='mt-1' type='link' href='mailto:contact@orama-prod.be' external={true}>Contact</Button>
+              <Button className='mt-1' type='link' href='mailto:contact@orama-prod.be' external={true}>Email</Button>
             </div>
           </div>
         </section>
@@ -45,12 +56,23 @@ const Home = () => {
           </div>
           
           <div className='layout-grid pt-12'>
-            <ProjectCard 
-              className='col-span-6 md:col-span-4'
-              project={{'id': 'jumpers', 'title': 'Jumpers', 'thumbnail': ''}} 
-              number='01' 
+            <Showreel 
+              className='col-span-4'
+              title='Showreel'
+              thumbnail=''
               cta='lire'
             />
+          </div>
+
+          <div className='layout-grid pt-12'>
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={index}
+                className='col-span-4 md:col-span-2'
+                project={project}
+                index={`0${index + 2}`}
+              />
+            ))}
           </div>
         </section>
 
