@@ -12,12 +12,12 @@ import ProjectCard from "../components/ProjectCard";
 
 const Home = () => {
   const projects = [
-    { id: 'jumpers', title: 'Jumpers', thumbnail: '', cta: 'Infos' },
-    { id: 'street-photo', title: 'Street photo', thumbnail: '', cta: 'Infos' },
-    { id: 'interstellar', title: 'Interstellar', thumbnail: '', cta: 'Infos' },
-    { id: 'darkroom', title: 'Darkroom', thumbnail: '', cta: 'Infos' },
-    { id: 'forest', title: 'Forest', thumbnail: '', cta: 'Infos' },
-    { id: 'eclipse', title: 'Eclipse', thumbnail: '', cta: 'Infos' }
+    { id: 'jumpers', title: 'Jumpers', thumbnail: '', type: 'Long métrage' },
+    { id: 'street-photo', title: 'Street photo', thumbnail: '', type: 'Photos' },
+    { id: 'interstellar', title: 'Interstellar', thumbnail: '', type: 'Musique' },
+    { id: 'darkroom', title: 'Darkroom', thumbnail: '', type: 'Photos' },
+    { id: 'forest', title: 'Forest', thumbnail: '', type: 'Court métrage' },
+    { id: 'eclipse', title: 'Eclipse', thumbnail: '', type: 'Clip' }
   ];
 
   return (
@@ -60,7 +60,7 @@ const Home = () => {
               className='col-span-4'
               title='Showreel'
               thumbnail=''
-              cta='lire'
+              type='Vidéo'
             />
           </div>
 

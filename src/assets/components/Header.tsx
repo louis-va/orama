@@ -5,7 +5,14 @@ import Logo from "./Logo";
 import Button from "./Button";
 
 const Header = () => {
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris' }));
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString('fr-FR', {
+      timeZone: 'Europe/Paris',  
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
