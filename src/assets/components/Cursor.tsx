@@ -10,8 +10,8 @@ const Cursor = () => {
     const hoveredElement = document.elementFromPoint(x, y);
 
     if (hoveredElement && hoveredElement.hasAttribute('cursor-focus')) {
-      const element = hoveredElement.querySelector('[cursor-target]');
-      const target = (element) ? element : hoveredElement;
+      const targetElement = hoveredElement.querySelector('[cursor-target]');
+      const target = (targetElement) ? targetElement : hoveredElement;
       const info = target.getBoundingClientRect();
 
       setCursor({
@@ -65,7 +65,7 @@ const Cursor = () => {
   return (
     <div className='fixed w-screen h-screen z-50 pointer-events-none overflow-x-hidden'>
       <div
-        className='absolute bg-black/0 backdrop-invert pointer-events-none transition-all ease-out duration-150'
+        className='absolute bg-black/0 backdrop-invert pointer-events-none transition-all ease-out duration-[150ms]'
         style={{
           width: `${cursor.size.w}px`,
           height: `${cursor.size.h}px`,
