@@ -1,0 +1,92 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" transition:animate='none'>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Portfolio showcasing my personal work." />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	/* GLOBAL */
+	@font-face {
+		font-family: 'Manrope';
+		src: url('/fonts/Manrope-Regular.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Red Hat Mono';
+		src: url('/fonts/RedHatMono-Regular.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+	:root {
+		--font-sans-serif: 'Manrope', sans-serif;
+		--font-monospace: 'Red Hat Mono', monospace;
+		--color-bg: #FFFFFF;
+		--color-text: #020226;
+		--color-text-muted: #808092;
+		--color-border: #E1E1E5;
+		--color-accent: #FF4444;
+	}
+	html {
+		font-family: var(--font-sans-serif);
+		background: var(--color-bg);
+		color: var(--color-text);
+	}
+
+	/* RESET */
+	*, *::before, *::after {
+    box-sizing: border-box;
+	}
+	* {
+			margin: 0;
+	}
+	html, body {
+			height: 100%;
+	}
+	body {
+			line-height: 1.5;
+			-webkit-font-smoothing: antialiased;
+	}
+	img, picture, video, canvas, svg {
+			display: block;
+			max-width: 100%;
+	}
+	input, button, textarea, select {
+			font: inherit;
+	}
+	p, h1, h2, h3, h4, h5, h6 {
+			overflow-wrap: break-word;
+	}
+	button {
+		background: none;
+		color: inherit;
+		border: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		outline: inherit;
+	}
+	a {
+		text-decoration: none;
+		color: var(--color-text);
+	}
+</style>
