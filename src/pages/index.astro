@@ -1,7 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro'
+import ProjectGrid from '../components/home/ProjectGrid.astro'
 ---
 
-<Layout title="Orama Prod">
-	Orama Prod
+<Layout 
+	title="Orama Prod"
+	description="Nous sommes un studio de production multi-disciplinaire spécialisé dans la création d'histoires visuelles captivantes."
+>
+	<Hero />
+	<ProjectGrid />
 </Layout>
