@@ -1,0 +1,70 @@
+---
+import Wrapper from "../../layouts/Wrapper.astro"
+import Card from "../common/Card.astro"
+---
+
+<section>
+  <Wrapper background="white">
+    <div class="padding">
+      <Card padding="none">
+        <div class="grid">
+  
+        </div>
+      </Card>
+    </div>
+  </Wrapper>
+</section>
+
+<style>
+  section {
+    margin-top: 3rem;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .padding {
+    padding: 2rem 0;
+  }
+  .grid {
+    --n: 3;
+    aspect-ratio: calc(5 / var(--n))/1;
+    background-size: calc(2% - 0.02px) calc(calc(10%/var(--n)) - calc(1px/(10 * var(--n))));
+    background-image:
+      linear-gradient(to right, #EEE 1px, transparent 1px),
+      linear-gradient(to bottom, #EEE 1px, transparent 1px);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .grid {
+      aspect-ratio: calc(4 / var(--n))/1;
+      background-size: calc(2.5% - 0.025px) calc(calc(10%/var(--n)) - calc(1px/(10 * var(--n))));
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .grid {
+      aspect-ratio: calc(2 / var(--n))/1;
+      background-size: calc(5% - 0.05px) calc(calc(10%/var(--n)) - calc(1px/(10 * var(--n))));
+    }
+    section {
+      margin-top: 2.5rem;
+      border-radius: .75rem;
+    }
+    .padding {
+      padding: 1.5rem 0;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .grid {
+      aspect-ratio: calc(1 / var(--n))/1;
+      background-size: calc(10% - 0.1px) calc(calc(10%/var(--n)) - calc(1px/(10 * var(--n))));
+    }
+    section {
+      margin-top: 2rem;
+      border-radius: .75rem;
+    }
+    .padding {
+      padding: 1.5rem 0;
+    }
+  }
+</style>
