@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import logo from "../assets/logo.svg";
+import Wrapper from "./Wrapper.astro"
+---
+<Wrapper>
+  <header>
+    <div class="top">
+      <div>
+        Bruxelles
+      </div>
+      <div>
+        10:05
+      </div>
+    </div>
+    <nav>
+      <div>
+        <a href="/">
+          <Image src={logo} alt="Logo Orama" class="logo" />
+        </a>
+      </div>
+      <ul>
+        <li><a href="/">Projets</a></li>
+        <li><a href="/">Infos</a></li>
+        <li><a href="/">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+</Wrapper>
+
+<style>
+  header {
+    position: relative;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+    font-family: var(--monospace);
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    color: var(--black-40);
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--black);
+  }
+  nav .logo {
+    width: 1.5rem;
+    height: auto;
+  }
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style-type: none;
+  }
+  nav ul a {
+    font-family: var(--monospace);
+    font-size: var(--text-small);
+    line-height: 100%;
+    text-transform: uppercase;
+  }
+</style>
