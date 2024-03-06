@@ -1,0 +1,85 @@
+---
+interface Props {
+	padding?: 'large' | 'small' | 'none';
+}
+
+const { padding='large' } = Astro.props;
+---
+
+<div class="card">
+  <div class={`p-${padding}`}>
+    <slot />
+  </div>
+  <div class="corners">
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    width: 100%;
+  }
+  .p-large {
+    padding: 2rem;
+  }
+  .p-small {
+    padding: 1rem;
+  }
+  .p-none {
+    padding: 0;
+  }
+  .corners {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: .75rem;
+    height: .75rem;
+  }
+  .top-left {
+    border-top: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+    top: 0;
+    left: 0;
+  }
+  .top-right {
+    border-top: 1px solid var(--black);
+    border-right: 1px solid var(--black);
+    top: 0;
+    right: 0;
+  }
+  .bottom-left {
+    border-bottom: 1px solid var(--black);
+    border-left: 1px solid var(--black);
+    bottom: 0;
+    left: 0;
+  }
+  .bottom-right {
+    border-bottom: 1px solid var(--black);
+    border-right: 1px solid var(--black);
+    bottom: 0;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .p-large {
+      padding: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .p-large {
+      padding: 1rem;
+    }
+  }
+</style>

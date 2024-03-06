@@ -1,0 +1,79 @@
+---
+import Wrapper from "../../layouts/Wrapper.astro"
+import Card from "../common/Card.astro"
+---
+<section>
+  <Wrapper>
+    <Card>
+      <div class="cols-2">
+        <div class="left">
+          <h1>Orama, studio de production audiovisuel</h1>
+          <p>Nous sommes un studio de production multi-disciplinaire spécialisé dans la création d'histoires visuelles captivantes.</p>
+        </div>
+        <div class="right">
+          <a href="/" class="button">
+            Nos projets
+            <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 6.52069L10.2624 5.78371L6.01312 10.0294L6.01312 4.48201e-08L4.98688 0L4.98688 10.0294L0.737609 5.78371L0 6.52069L5.1312 11.6475L5.5 12L5.8688 11.6475L11 6.52069Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </Card>
+  </Wrapper>
+</section>
+
+<style>
+  section {
+    margin-top: 1.5rem;
+  }
+  .cols-2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .left {
+    max-width: 35rem;
+  }
+  .right {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
+  h1 {
+    font-size: var(--text-xxl);
+    font-weight: 400;
+    line-height: 125%;
+    margin-bottom: 5rem;
+  }
+  p {
+    font-size: var(--text-medium);
+    color: var(--black-60);
+  }
+  .button {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-family: var(--monospace);
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .cols-2 {
+      gap: 2rem;
+      flex-direction: column;
+    }
+    .right {
+      justify-content: start;
+      align-items: start;
+    }
+    .left {
+      max-width: 100%;
+    }
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+</style>
