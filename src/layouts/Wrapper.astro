@@ -1,12 +1,4 @@
----
-interface Props {
-	background?: 'white' | 'none';
-}
-
-const { background="none" } = Astro.props;
----
-
-<div class={`wrapper bg-${background}`}>
+<div class='wrapper'>
   <slot />
 </div>
 
@@ -14,17 +6,8 @@ const { background="none" } = Astro.props;
   .wrapper {
     padding: 0 2rem;
   }
-  .bg-white {
-    background-color: var(--white);
-  }
 
   @media screen and (max-width: 768px) {
-    .wrapper {
-      padding: 0 1.25rem;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
     .wrapper {
       padding: 0 1.25rem;
     }
