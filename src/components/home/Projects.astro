@@ -1,6 +1,5 @@
 ---
 import ProjectCard from './ProjectCard.astro'
-import Wrapper from '../../layouts/Wrapper.astro'
 import Title from '../common/Title.astro'
 
 // TEST
@@ -10,13 +9,16 @@ import preview from '../../content/projects/cleone/preview.gif'
 const n = 3;
 ---
 
-<Wrapper>
-  <Title id={1}>Nos projets</Title>
-</Wrapper>
 <section>
+  <Title>Nos projets</Title>
+
   <div class="grid-container">
-    <div class="dotted-grid"></div>
+    <!--
+      <div class="dotted-grid"></div>
+    -->
     <div class="overlay"></div>
+    <div class="stripes-pattern"></div>
+    
     <div class="projects" id="projects">
       <ProjectCard
         slug="cleone"
@@ -51,9 +53,7 @@ const n = 3;
 
 <style define:vars={{ projectsNumber: n }}>
   section {
-    margin-top: 2rem;
-    border-radius: .5rem;
-    overflow: hidden;
+    margin-top: 5rem;
   }
   .grid-container {
     position: relative;
@@ -63,7 +63,31 @@ const n = 3;
     height: calc(var(--card-w)*var(--projectsNumber) + 2rem + 2rem*var(--projectsNumber));
     background: #FFFFFF;
     padding: 2rem;
+    overflow: hidden;
+    border-left: 1px solid var(--dark-gray);
+    border-right: 1px solid var(--dark-gray);
+    border-bottom: 1px solid var(--dark-gray);
   }
+  @media screen and (max-width: 768px) {
+    .grid-container {
+      padding: 1rem;
+    }
+  }
+
+  .stripes-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 1rem 1rem;
+    background-image:
+      linear-gradient(to right, var(--light-gray) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--light-gray) 1px, transparent 1px);
+    background-position: center;
+    ;
+  }
+
   .dotted-grid {
     position: absolute;
     z-index: 1;
@@ -91,9 +115,39 @@ const n = 3;
     height: 100%;
   }
 
-  @media screen and (max-width: 768px) {
-    .grid-container {
-      padding: 1.25rem;
-    }
+  .lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .line {
+    position: absolute;
+    background-color: var(--dark-gray);
+  }
+  .lines .line.top {
+    width: 100%;
+    height: 1px;
+    top: 1rem;
+    left: 0;
+  }
+  .lines .line.bottom {
+    width: 100%;
+    height: 1px;
+    bottom: 1rem;
+    left: 0;
+  }
+  .lines .line.left {
+    height: 100%;
+    width: 1px;
+    left: 1rem;
+    top: 0;
+  }
+  .lines .line.right {
+    height: 100%;
+    width: 1px;
+    right: 1rem;
+    top: 0;
   }
 </style>

@@ -1,26 +1,22 @@
 ---
 import { Image } from 'astro:assets';
 import logo from "../assets/logo.svg";
-import Wrapper from "./Wrapper.astro"
-import Container from './Container.astro';
 ---
 
 <header>
   <div class="container">
-    <Wrapper>
-      <nav>
-        <div>
-          <a href="/">
-            <Image src={logo} alt="Logo Orama" class="logo" />
-          </a>
-        </div>
-        <ul>
-          <li><a href="/"><span class="dot"></span>Projets</a></li>
-          <li><a href="/"><span class="dot"></span>Infos</a></li>
-          <li><a href="/"><span class="dot"></span>Contact</a></li>
-        </ul>
-      </nav>
-    </Wrapper>
+    <nav>
+      <div>
+        <a href="/">
+          <Image src={logo} alt="Logo Orama" class="logo" />
+        </a>
+      </div>
+      <ul>
+        <li><a href="/"><span class="dot"></span>Projets</a></li>
+        <li><a href="/"><span class="dot"></span>Infos</a></li>
+        <li><a href="/"><span class="dot"></span>Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -37,26 +33,20 @@ import Container from './Container.astro';
     width: 100%;
     max-width: 1440px;
     margin: auto;
-    padding: 0rem 2rem;
+    padding: 0rem 3rem;
     border-bottom: 1px solid var(--dark-gray);
     border-right: 1px solid var(--dark-gray);
     border-left: 1px solid var(--dark-gray);
   }
   @media screen and (max-width: 1440px) {
     .container {
-      padding: 0rem 1rem;
       border-right: none;
       border-left: none;
     }
   }
   @media screen and (max-width: 768px) {
     .container {
-      padding: 0rem 1rem;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    .container {
-      padding: 0rem 0rem;
+      padding: 0rem 1.5rem;
     }
   }
   nav {
