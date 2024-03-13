@@ -18,21 +18,21 @@ const { padding='large' } = Astro.props;
   </div>
 </div>
 
-<style>
+<style is:global>
   .card {
     position: relative;
     width: 100%;
   }
-  .p-large {
+  .card .p-large {
     padding: 2rem;
   }
-  .p-small {
+  .card .p-small {
     padding: 1rem;
   }
-  .p-none {
+  .card .p-none {
     padding: 0;
   }
-  .corners {
+  .card .corners {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -41,44 +41,78 @@ const { padding='large' } = Astro.props;
     z-index: 20;
     pointer-events: none;
   }
-  .corner {
+  .card .corner {
     position: absolute;
     width: .75rem;
     height: .75rem;
+    transition: all ease-out .15s;
   }
-  .top-left {
+  .card .top-left {
     border-top: 1px solid var(--black);
     border-left: 1px solid var(--black);
     top: 0;
     left: 0;
   }
-  .top-right {
+  .card .top-right {
     border-top: 1px solid var(--black);
     border-right: 1px solid var(--black);
     top: 0;
     right: 0;
   }
-  .bottom-left {
+  .card .bottom-left {
     border-bottom: 1px solid var(--black);
     border-left: 1px solid var(--black);
     bottom: 0;
     left: 0;
   }
-  .bottom-right {
+  .card .bottom-right {
     border-bottom: 1px solid var(--black);
     border-right: 1px solid var(--black);
+    bottom: 0;
+    right: 0;
+  }
+
+  .card:hover .top-left {
+    top: .25rem;
+    left: .25rem;
+  }
+  .card:hover .top-right {
+    top: .25rem;
+    right: .25rem;
+  }
+  .card:hover .bottom-left {
+    bottom: .25rem;
+    left: .25rem;
+  }
+  .card:hover .bottom-right {
+    bottom: .25rem;
+    right: .25rem;
+  }
+  .card-active .card .top-left, .card:active .top-left {
+    top: 0;
+    left: 0;
+  }
+  .card-active .card .top-right, .card:active .top-right {
+    top: 0;
+    right: 0;
+  }
+  .card-active .card .bottom-left, .card:active .bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+  .card-active .card .bottom-right, .card:active .bottom-right {
     bottom: 0;
     right: 0;
   }
 
   @media screen and (max-width: 768px) {
-    .p-large {
+    .card .p-large {
       padding: 1.5rem;
     }
   }
 
   @media screen and (max-width: 480px) {
-    .p-large {
+    .card .p-large {
       padding: 1rem;
     }
   }

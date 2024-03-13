@@ -1,0 +1,29 @@
+<div class="bg-grid">
+  <div class="overlay"></div>
+</div>
+
+<style>
+  .bg-grid {
+    position: absolute;
+    height: 50rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-size: 4.75rem 4.75rem;
+    background-image:
+      linear-gradient(to right, var(--dark-gray) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--dark-gray) 1px, transparent 1px);
+    background-position: top center;
+    border-left: 1px solid var(--dark-gray);
+    border-right: 1px solid var(--dark-gray);
+  }
+  .overlay {
+    position: absolute;
+    height: 200%;
+    width: calc(200% + 1px);
+    top: -100%;
+    left: -100%;
+    background: linear-gradient(180deg, var(--light-gray-0) 50%, var(--light-gray) 100%);
+  }
+</style>
