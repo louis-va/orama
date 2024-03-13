@@ -2,54 +2,71 @@
 import { Image } from 'astro:assets';
 import logo from "../assets/logo.svg";
 import Wrapper from "./Wrapper.astro"
+import Container from './Container.astro';
 ---
-<Wrapper>
-  <header>
-    <div class="top">
-      <div>
-        Bruxelles
-      </div>
-      <div>
-        10:05
-      </div>
-    </div>
-    <nav>
-      <div>
-        <a href="/">
-          <Image src={logo} alt="Logo Orama" class="logo" />
-        </a>
-      </div>
-      <ul>
-        <li><a href="/">Projets</a></li>
-        <li><a href="/">Infos</a></li>
-        <li><a href="/">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-</Wrapper>
+
+<header>
+  <div class="container">
+    <Wrapper>
+      <nav>
+        <div>
+          <a href="/">
+            <Image src={logo} alt="Logo Orama" class="logo" />
+          </a>
+        </div>
+        <ul>
+          <li><a href="/"><span class="dot"></span>Projets</a></li>
+          <li><a href="/"><span class="dot"></span>Infos</a></li>
+          <li><a href="/"><span class="dot"></span>Contact</a></li>
+        </ul>
+      </nav>
+    </Wrapper>
+  </div>
+</header>
 
 <style>
   header {
-    position: relative;
+    position: fixed;
+    width: 100%;
+    background-color: var(--light-gray);
+    z-index: 99;
+    margin: auto;
   }
-  .top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6rem;
-    font-family: var(--monospace);
-    font-size: var(--text-small);
-    text-transform: uppercase;
-    color: var(--black-40);
+  .container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
+    padding: 0rem 2rem;
+    border-bottom: 1px solid var(--dark-gray);
+    border-right: 1px solid var(--dark-gray);
+    border-left: 1px solid var(--dark-gray);
+  }
+  @media screen and (max-width: 1440px) {
+    .container {
+      padding: 0rem 1rem;
+      border-right: none;
+      border-left: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 0rem 1rem;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 0rem 0rem;
+    }
   }
   nav {
     display: flex;
     justify-content: space-between;
-    align-items: end;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--black);
+    align-items: center;
+    padding: 1.5rem 0;
   }
   nav .logo {
-    width: 1.5rem;
+    width: 1.75rem;
     height: auto;
   }
   nav ul {
@@ -62,5 +79,19 @@ import Wrapper from "./Wrapper.astro"
     font-size: var(--text-small);
     line-height: 100%;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+  }
+
+  .dot {
+    width: .35rem;
+    height: .35rem;
+    background-color: var(--dark-gray);
+    border-radius: .35rem;
+  }
+
+  nav ul a:hover .dot {
+    background-color: var(--red);
   }
 </style>

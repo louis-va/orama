@@ -1,6 +1,7 @@
 ---
 import Container from './Container.astro';
 import Header from './Header.astro';
+import Background from './Background.astro'
 
 interface Props {
 	title: string;
@@ -21,8 +22,9 @@ const { title, description } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<Header />
 		<Container>
-			<Header />
+			<Background />
 			<main>
 				<slot />
 			</main>
@@ -51,7 +53,10 @@ const { title, description } = Astro.props;
 		--monospace: 'Space Mono', monospace;
 		--white: rgb(255, 255, 255);
 		--light-gray: rgb(246, 246, 246);
+		--light-gray-0: rgba(246, 246, 246, 0);
+		--light-gray: rgb(246, 246, 246);
 		--gray: rgb(236, 236, 236);
+		--dark-gray: rgb(226, 226, 226);
 		--black: rgb(34, 34, 34);
 		--black-80: rgba(34, 34, 34, .8);
 		--black-60: rgba(34, 34, 34, .6);
@@ -65,15 +70,16 @@ const { title, description } = Astro.props;
 		--text-medium: 1.25rem;
 		--text-large: 1.5rem;
 		--text-xl: 2.25rem;
-		--text-xxl: 3rem;
+		--card-w: 300px;
 	}
 
 	@media screen and (max-width: 768px) {
 		:root {
+			--text-base: .9rem;
 			--text-medium: 1.125rem;
 			--text-large: 1.25rem;
-			--text-xl: 1.875rem;
-			--text-xxl: 2.25rem;
+			--text-xl: 1.5rem;
+			--card-w: 250px;
 		}
   }
 
