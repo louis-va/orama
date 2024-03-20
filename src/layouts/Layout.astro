@@ -37,20 +37,34 @@ const { title, description } = Astro.props;
 	@font-face {
 		font-family: 'Space Grotesk';
 		src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
-		font-weight: normal;
+		font-weight: 400;
 		font-style: normal;
 		font-display: swap;
 	}
 	@font-face {
-		font-family: 'Space Mono';
-		src: url('/fonts/SpaceMono-Regular.ttf') format('truetype');
-		font-weight: normal;
+		font-family: 'Space Grotesk';
+		src: url('/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
+		font-weight: 600;
 		font-style: normal;
 		font-display: swap;
 	}
+
+	@font-face {
+		font-family: 'Nanum Gothic';
+		src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Nanum Gothic';
+		src: url('/fonts/Inconsolata-Bold.ttf') format('truetype');
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+
 	:root {
-		--sans-serif: 'Space Grotesk', sans-serif;
-		--monospace: 'Space Mono', monospace;
 		--white: rgb(255, 255, 255);
 		--white-50: rgba(255, 255, 255, .5);
 		--light-gray: rgb(248, 246, 243);
@@ -85,7 +99,7 @@ const { title, description } = Astro.props;
   }
 
 	html {
-		font-family: var(--sans-serif);
+		font-family: 'Nanum Gothic', 'Helvetica', 'Arial', sans-serif;
 		background: var(--light-gray);
 		color: var(--black);
 		font-size: var(--text-base);

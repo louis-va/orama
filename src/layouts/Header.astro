@@ -1,20 +1,20 @@
 ---
-import { Image } from 'astro:assets';
-import logo from "../assets/logo.svg";
+import Logo from "../components/common/Logo.astro"
 ---
 
 <header>
   <div class="container">
     <nav>
-      <div>
+      <div class="logo">
         <a href="/">
-          <Image src={logo} alt="Logo Orama" class="logo" />
+          <Logo />
         </a>
       </div>
       <ul>
-        <li><a href="/"><span class="dot"></span>Projets</a></li>
-        <li><a href="/"><span class="dot"></span>Infos</a></li>
-        <li><a href="/"><span class="dot"></span>Contact</a></li>
+        <li><a href="/">Projets</a></li>
+        <li><a href="/">Services</a></li>
+        <li><a href="/">À propos</a></li>
+        <li><a href="/">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -24,9 +24,9 @@ import logo from "../assets/logo.svg";
   header {
     position: fixed;
     width: 100%;
-    background-color: var(--light-gray);
     z-index: 99;
     margin: auto;
+    mix-blend-mode: difference;
   }
   .container {
     position: relative;
@@ -34,9 +34,6 @@ import logo from "../assets/logo.svg";
     max-width: 1440px;
     margin: auto;
     padding: 0rem 3rem;
-    border-bottom: 1px solid var(--black-10);
-    border-right: 1px solid var(--black-10);
-    border-left: 1px solid var(--black-10);
   }
   @media screen and (max-width: 1440px) {
     .container {
@@ -57,30 +54,19 @@ import logo from "../assets/logo.svg";
   }
   nav .logo {
     width: 1.75rem;
-    height: auto;
+    height: 1.75rem;
+    filter: invert(1);
   }
   nav ul {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
     list-style-type: none;
   }
   nav ul a {
-    font-size: var(--text-small);
+    font-size: var(--text-base);
     line-height: 100%;
     text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: .35rem;
-  }
-
-  .dot {
-    width: .35rem;
-    height: .35rem;
-    background-color: var(--black-10);
-    border-radius: .35rem;
-  }
-
-  nav ul a:hover .dot {
-    background-color: var(--red);
+    font-weight: 600;
+    filter: invert(1);
   }
 </style>

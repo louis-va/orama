@@ -1,0 +1,117 @@
+---
+import Separator from "../common/Separator.astro"
+import Heading from '../common/Heading.astro'
+---
+
+<section>
+  <Separator />
+  <div class="grid">
+    <div class="col-1">
+      <Heading id="02">Nos services</Heading>
+    </div>
+    <div class="col-2">
+      <p>
+        Nous proposons une gamme complète de services de production vidéo. 
+        De la préproduction, qui comprend le brainstorming, le développement et l'aide à la rédaction, 
+        à la postproduction, qui comprend le montage, l'étalonnage et le titrage.
+      </p>
+
+      <div class="service">
+        <div class="grid">
+          <div class="col-1">
+            <h3>Vidéo</h3>
+          </div>
+          <div class="col-3">
+            <ul>
+              <li>Clip musical</li>
+              <li>Captation théâtre</li>
+              <li>Documentaire et Fiction</li>
+              <li>Aftermovie</li>
+              <li>Contenu Réseaux</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="service">
+        <div class="grid">
+          <div class="col-1">
+            <h3>Photo</h3>
+          </div>
+          <div class="col-3">
+            <ul>
+              <li>Documentaire et reportage photo</li>
+              <li>Photographies de plateau</li>
+              <li>Portraits</li>
+              <li>Réalisation d'affiches de films et d'événements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="service">
+        <div class="grid">
+          <div class="col-1">
+            <h3>Son</h3>
+          </div>
+          <div class="col-3">
+            <ul>
+              <li>Documentaire audio</li>
+              <li>Podcasts (filmé ou non)</li>
+              <li>Composition de musique sur mesure</li>
+              <li>Post–Production cinéma</li>
+              <li>Doublage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 8rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .grid .col-1 {
+    grid-column: span 1 / span 1;
+  }
+  .grid .col-2 {
+    grid-column: span 2 / span 2;
+  }
+  .grid .col-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 135%;
+    margin-bottom: .5rem;
+    max-width: 30rem;
+  }
+
+  .service {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  h3 {
+    text-transform: uppercase;
+    font-size: var(--text-small);
+    font-weight: 600;
+    margin-bottom: .5rem;
+  }
+
+  ul {
+    list-style-type: square;
+  }
+  ul li {
+    text-transform: uppercase;
+    font-size: var(--text-small);
+  }
+</style>
