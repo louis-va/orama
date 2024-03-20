@@ -52,34 +52,35 @@ const { title, description } = Astro.props;
 		--sans-serif: 'Space Grotesk', sans-serif;
 		--monospace: 'Space Mono', monospace;
 		--white: rgb(255, 255, 255);
-		--light-gray: rgb(246, 246, 246);
-		--light-gray-0: rgba(246, 246, 246, 0);
-		--light-gray: rgb(246, 246, 246);
-		--gray: rgb(236, 236, 236);
-		--dark-gray: rgb(226, 226, 226);
+		--white-50: rgba(255, 255, 255, .5);
+		--light-gray: rgb(248, 246, 243);
+		--light-gray-0: rgba(248, 246, 243, 0);
 		--black: rgb(34, 34, 34);
 		--black-80: rgba(34, 34, 34, .8);
 		--black-60: rgba(34, 34, 34, .6);
 		--black-40: rgba(34, 34, 34, .4);
 		--black-20: rgba(34, 34, 34, .2);
 		--black-10: rgba(34, 34, 34, .1);
+		--black-5: rgba(34, 34, 34, .03);
 		--red: rgb(227, 41, 0);
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
 		--text-base: 1rem;
 		--text-medium: 1.25rem;
 		--text-large: 1.5rem;
-		--text-xl: 2.25rem;
+		--text-xl: 3.5rem;
 		--card-w: 300px;
 	}
 
 	@media screen and (max-width: 768px) {
 		:root {
-			--text-base: .9rem;
-			--text-medium: 1.125rem;
-			--text-large: 1.25rem;
-			--text-xl: 1.5rem;
 			--card-w: 250px;
+		}
+  }
+
+	@media screen and (max-width: 480px) {
+		:root {
+			--card-w: 200px;
 		}
   }
 

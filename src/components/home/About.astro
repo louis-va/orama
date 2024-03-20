@@ -1,0 +1,95 @@
+---
+import { Picture } from 'astro:assets';
+
+import Separator from "../common/Separator.astro"
+import Heading from '../common/Heading.astro'
+import imageAbout1 from "../../assets/about_1.jpg"
+import imageAbout2 from "../../assets/about_2.jpg"
+import imageAbout3 from "../../assets/about_3.jpg"
+---
+
+<section>
+  <Separator />
+  <div class="grid">
+    <div class="col-1">
+      <Heading id="03">À propos</Heading>
+    </div>
+    <div class="col-3">
+      <p>
+        Nous sommes une équipe d'amis qui se sont rencontrés pendant nos études universitaires, 
+        formant un lien enraciné dans l'amitié et la passion partagée.
+      </p>
+      <p>
+        Nous nous épanouissons lorsque nous travaillons sur des projets qui nécessitent 
+        une bonne narration et une identité visuelle forte.
+      </p>
+      <figure>
+        <Picture src={imageAbout1} formats={['jpg', 'webp']} alt="Tournage du documentaire MMA" class="img" />
+        <figcaption>FIG. 1: Tournage du documentaire MMA</figcaption>
+      </figure>
+      <p>
+        Nous nous épanouissons lorsque nous travaillons sur des projets qui nécessitent 
+        une bonne narration et une identité visuelle forte.
+      </p>
+      <div class="grid pictures">
+        <figure class="col-2">
+          <Picture src={imageAbout2} formats={['jpg', 'webp']} alt="Orama production take 1" class="img" />
+          <figcaption>FIG. 2: Orama production take 1</figcaption>
+        </figure>
+        <figure class="col-2">
+          <Picture src={imageAbout3} formats={['jpg', 'webp']} alt="Tournage du clip Cœur" class="img img-3" />
+          <figcaption>FIG. 3: Tournage du clip Cœur</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 8rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .grid .col-1 {
+    grid-column: span 1 / span 1;
+  }
+  .grid .col-2 {
+    grid-column: span 2 / span 2;
+  }
+  .grid .col-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 135%;
+    margin-bottom: .5rem;
+    max-width: 30rem;
+  }
+  .img {
+    width: 100%;
+    max-width: 40rem;
+    height: auto;
+  }
+  .img-3 {
+    margin-top: 2rem;
+  }
+  figure {
+    margin: 4rem 0;
+  }
+  figcaption {
+    margin-top: .25rem;
+    text-transform: uppercase;
+    font-size: var(--text-xs);
+    color: var(--black-60);
+  }
+
+  .pictures {
+    max-width: 60rem;
+  }
+</style>
