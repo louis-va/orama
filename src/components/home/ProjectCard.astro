@@ -26,10 +26,10 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
 >
   <Card padding="small">
     <div class="layout">
-      <a href=`/projects/${slug}`>
+      <a href=`/projects/${slug}` cursor-focus>
         <div class="top">
           <div class="title">{title}</div>
-          <div class="empty"></div>
+          <div class="empty" cursor-target></div>
         </div>
         <div class="bottom">
           <div class="image">
@@ -42,7 +42,7 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
           </div>
         </div>
       </a>
-      <div class="draggable">
+      <div class="draggable" cursor-focus>
         <div class="icon">
           <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"/>
@@ -137,16 +137,13 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
   .layout {
     position: relative;
   }
-  .layout:hover .icon {
-    color: var(--red);
-  }
 
   .layout .top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
     height: 20px;
+    pointer-events: none;
   }
   .layout .top .title {
     background-color: var(--black);
@@ -166,6 +163,7 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
 
   .layout .bottom {
     display: flex;
+    pointer-events: none;
   }
   .layout .bottom .infos {
     display: flex;
@@ -224,6 +222,7 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
     width: 20px;
     height: 20px;
     z-index: 10;
+    pointer-events: none;
   }
   .layout .draggable .icon svg {
     width: 40%;

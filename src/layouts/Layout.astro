@@ -1,7 +1,8 @@
 ---
 import Container from './Container.astro';
 import Header from './Header.astro';
-import Background from './Background.astro'
+import Background from './Background.astro';
+import Cursor from '../components/common/Cursor.astro';
 
 interface Props {
 	title: string;
@@ -22,6 +23,7 @@ const { title, description } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<Cursor />
 		<Header />
 		<Container>
 			<Background />
@@ -69,20 +71,20 @@ const { title, description } = Astro.props;
 		--white-50: rgba(255, 255, 255, .5);
 		--light-gray: rgb(248, 246, 243);
 		--light-gray-0: rgba(248, 246, 243, 0);
-		--black: rgb(34, 34, 34);
-		--black-80: rgba(34, 34, 34, .8);
-		--black-60: rgba(34, 34, 34, .6);
-		--black-40: rgba(34, 34, 34, .4);
-		--black-20: rgba(34, 34, 34, .2);
-		--black-10: rgba(34, 34, 34, .1);
-		--black-5: rgba(34, 34, 34, .03);
+		--black: rgb(7, 9, 12);
+		--black-80: rgba(7, 9, 12, .8);
+		--black-60: rgba(7, 9, 12, .6);
+		--black-40: rgba(7, 9, 12, .4);
+		--black-20: rgba(7, 9, 12, .2);
+		--black-10: rgba(7, 9, 12, .1);
+		--black-5: rgba(7, 9, 12, .03);
 		--red: rgb(227, 41, 0);
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
 		--text-base: 1rem;
 		--text-medium: 1.25rem;
 		--text-large: 1.5rem;
-		--text-xl: 3.5rem;
+		--text-xl: 1.75rem;
 		--card-w: 300px;
 	}
 
@@ -103,6 +105,10 @@ const { title, description } = Astro.props;
 		background: var(--light-gray);
 		color: var(--black);
 		font-size: var(--text-base);
+	}
+	::selection {
+		background-color: var(--black);
+		color: var(--white);
 	}
 
 	/* RESET */
