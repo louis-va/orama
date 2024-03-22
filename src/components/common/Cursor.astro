@@ -1,0 +1,78 @@
+<div class="cursor-overlay">
+  <div id="cursor" class="cursor"></div>
+</div>
+
+<script>
+  import debounce from 'lodash.debounce';
+
+  const CURSOR = document.getElementById('cursor')!;
+
+  let cursor = {
+    size: { w: 10, h: 10 },
+    position: { x: 0, y: 0 }
+  };
+  let mouseRef = { x: 0, y: 0 };
+
+  const updateCursorPosition = (x: number, y: number) => {
+    const hoveredElement = document.elementFromPoint(x, y);
+
+    if (hoveredElement && hoveredElement.hasAttribute('cursor-focus')) {
+      const targetElement = hoveredElement.querySelector('[cursor-target]');
+      const target = (targetElement) ? targetElement : hoveredElement;
+      const info = target.getBoundingClientRect();
+
+      cursor = {
+        size: { w: info.width, h: info.height },
+        position: { x: info.x, y: info.y },
+      };
+    } else {
+      cursor = {
+        size: { w: 10, h: 10 },
+        position: { x: x - 5, y: y - 5 },
+      };
+    }
+
+    CURSOR.style.width = cursor.size.w.toString() + 'px';
+    CURSOR.style.height = cursor.size.h.toString() + 'px';
+    CURSOR.style.top = cursor.position.y.toString() + 'px';
+    CURSOR.style.left = cursor.position.x.toString() + 'px';
+  };
+
+  const handleMouseMove = debounce((event: any) => {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    mouseRef = { x: mouseX, y: mouseY };
+    updateCursorPosition(mouseX, mouseY);
+  }, 10);
+
+  const handleScroll = debounce(() => {
+    const { x, y } = mouseRef;
+    updateCursorPosition(x, y);
+  }, 10);
+
+  // if not on a touch device
+  if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {    
+    document.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+  };
+</script>
+
+<style>
+  .cursor-overlay {
+    overflow-x: hidden; 
+    position: fixed; 
+    z-index: 999; 
+    width: 100vw; 
+    height: 100vh; 
+    pointer-events: none;
+  }
+  .cursor {
+    position: absolute;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 150ms;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: invert(100%);
+  }
+</style>
