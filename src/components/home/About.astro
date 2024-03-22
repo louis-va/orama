@@ -1,83 +1,75 @@
 ---
 import { Picture } from 'astro:assets';
-
-import Separator from "../common/Separator.astro"
-import Heading from '../common/Heading.astro'
 import imageAbout1 from "../../assets/about_1.jpg"
 import imageAbout2 from "../../assets/about_2.jpg"
-import imageAbout3 from "../../assets/about_3.jpg"
+
+import TwoCols from '../../layouts/TwoCols.astro';
 ---
 
-<section>
-  <Separator />
-  <div class="grid">
-    <div class="col-1">
-      <Heading id="03">À propos</Heading>
+<TwoCols title='À propos' id='03'>
+  <p>
+    <b>Orama</b> – Du grec ancien <i>hórama</i>. Élément qui signifie «vision».
+  </p>
+
+  <figure>
+    <Picture src={imageAbout1} formats={['jpg', 'webp']} alt="Tournage du documentaire MMA" class="img" />
+    <figcaption>FIG. 1: Tournage du documentaire MMA</figcaption>
+  </figure>
+
+  <p>
+    Nous sommes une équipe d'amis dont les chemins se sont croisés à l'université, forgeant un lien enraciné dans l'amitié et la passion partagée.
+  </p>
+  <p>
+    Ce qui nous distingue, c'est notre mélange unique de personnalités et de talents, qui nous permet de nous attaquer à un large éventail de projets créatifs.
+  </p>
+
+  <div class="grid team">
+    <div class="member">
+      <div class="name">Django Schrevens</div>
+      <div class="role">Réalisateur, cadreur</div>
     </div>
-    <div class="col-3">
-      <p>
-        Nous sommes une équipe d'amis qui se sont rencontrés pendant nos études universitaires, 
-        formant un lien enraciné dans l'amitié et la passion partagée.
-      </p>
-      <p>
-        Nous nous épanouissons lorsque nous travaillons sur des projets qui nécessitent 
-        une bonne narration et une identité visuelle forte.
-      </p>
-      <figure>
-        <Picture src={imageAbout1} formats={['jpg', 'webp']} alt="Tournage du documentaire MMA" class="img" />
-        <figcaption>FIG. 1: Tournage du documentaire MMA</figcaption>
-      </figure>
-      <p>
-        Nous nous épanouissons lorsque nous travaillons sur des projets qui nécessitent 
-        une bonne narration et une identité visuelle forte.
-      </p>
-      <div class="grid pictures">
-        <figure class="col-2">
-          <Picture src={imageAbout2} formats={['jpg', 'webp']} alt="Orama production take 1" class="img" />
-          <figcaption>FIG. 2: Orama production take 1</figcaption>
-        </figure>
-        <figure class="col-2">
-          <Picture src={imageAbout3} formats={['jpg', 'webp']} alt="Tournage du clip Cœur" class="img img-3" />
-          <figcaption>FIG. 3: Tournage du clip Cœur</figcaption>
-        </figure>
-      </div>
+    <div class="member">
+      <div class="name">Pierre Terranova</div>
+      <div class="role">Réalisateur, monteur</div>
+    </div>
+    <div class="member">
+      <div class="name">Emmanuel Zamora</div>
+      <div class="role">Réalisateur, chargé de production</div>
+    </div>
+    <div class="member">
+      <div class="name">Mathieu Soille</div>
+      <div class="role">Chef-opérateur, cadreur</div>
+    </div>
+    <div class="member">
+      <div class="name">Guerric Verougstraete</div>
+      <div class="role">Ingénieur du son, compositeur</div>
+    </div>
+    <div class="member">
+      <div class="name">Jonathan Pourchet</div>
+      <div class="role">Photographe, technicien</div>
+    </div>
+    <div class="member">
+      <div class="name">Julien Vanbelle</div>
+      <div class="role">Informaticien, Cadreur</div>
     </div>
   </div>
-</section>
+
+  <figure>
+    <Picture src={imageAbout2} formats={['jpg', 'webp']} alt="Orama production take 1" class="img" />
+    <figcaption>FIG. 2: Orama production take 1</figcaption>
+  </figure>
+</TwoCols>
 
 <style>
-  section {
-    margin-top: 8rem;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-  .grid .col-1 {
-    grid-column: span 1 / span 1;
-  }
-  .grid .col-2 {
-    grid-column: span 2 / span 2;
-  }
-  .grid .col-3 {
-    grid-column: span 3 / span 3;
-  }
-
   p {
     font-size: 1rem;
     line-height: 135%;
     margin-bottom: .5rem;
     max-width: 30rem;
   }
-  .img {
+  img {
     width: 100%;
-    max-width: 40rem;
     height: auto;
-  }
-  .img-3 {
-    margin-top: 2rem;
   }
   figure {
     margin: 4rem 0;
@@ -89,7 +81,35 @@ import imageAbout3 from "../../assets/about_3.jpg"
     color: var(--black-40);
   }
 
-  .pictures {
-    max-width: 60rem;
+  .team {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  .member .name {
+    text-transform: uppercase;
+    font-size: var(--text-small);
+    font-weight: 600;
+  }
+  .member .role {
+    font-size: var(--text-small);
+  }
+
+  @media screen and (max-width: 960px) {
+    .team {
+      margin-top: 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    figure {
+      margin: 3rem 0;
+    }
+    .team {
+      margin-top: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 </style>
