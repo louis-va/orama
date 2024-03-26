@@ -3,13 +3,14 @@ import Logo from "../components/common/Logo.astro"
 ---
 
 <header>
-  <div class="container">
+  <div class="container" id="mobile-nav-container">
     <nav>
       <div class="logo">
         <a href="/">
           <Logo />
         </a>
       </div>
+      <button id="mobile-nav-btn" cursor-focus aria-hidden="true">Menu</button>
       <ul>
         <li><a href="/" cursor-focus>Projets</a></li>
         <li><a href="/" cursor-focus>Services</a></li>
@@ -17,8 +18,40 @@ import Logo from "../components/common/Logo.astro"
         <li><a href="/" cursor-focus>Contact</a></li>
       </ul>
     </nav>
+
+    <div class="mobile-nav" aria-hidden="true">
+      <div class="cols-3">
+        <div class="id">01</div>
+        <a href="/" cursor-focus>Projets</a>
+      </div>
+      <div class="cols-3">
+        <div class="id">02</div>
+        <a href="/" cursor-focus>Services</a>
+      </div>
+      <div class="cols-3">
+        <div class="id">03</div>
+        <a href="/" cursor-focus>À Propos</a>
+      </div>
+      <div class="cols-3">
+        <div class="id">04</div>
+        <a href="/" cursor-focus>Contact</a>
+      </div>
+      <div class="cols-3 socials">
+        <a href="/" cursor-focus>Instagram</a>
+        <a href="/" cursor-focus>Facebook</a>
+        <a href="/" cursor-focus>Linkedin</a>
+      </div>
+    </div>
+
+    <div class="corners">
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+    </div>
   </div>
 </header>
+<div class="overlay" id="mobile-nav-overlay"></div>
 
 <style>
   header {
@@ -34,17 +67,6 @@ import Logo from "../components/common/Logo.astro"
     max-width: 1440px;
     margin: auto;
     padding: 0rem 3rem;
-  }
-  @media screen and (max-width: 1440px) {
-    .container {
-      border-right: none;
-      border-left: none;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .container {
-      padding: 0rem 1.5rem;
-    }
   }
   nav {
     display: flex;
@@ -69,4 +91,183 @@ import Logo from "../components/common/Logo.astro"
     font-weight: 600;
     filter: invert(1);
   }
+
+  button {
+    display: none;
+    font-size: var(--text-base);
+    line-height: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .corner {
+    position: absolute;
+    width: .75rem;
+    height: .75rem;
+    transition: all ease-out .15s;
+  }
+  .corner.top-left {
+    border-top: 1px solid var(--black-20);
+    border-left: 1px solid var(--black-20);
+    top: 0;
+    left: 0;
+  }
+  .corner.top-right {
+    border-top: 1px solid var(--black-20);
+    border-right: 1px solid var(--black-20);
+    top: 0;
+    right: 0;
+  }
+  .corner.bottom-left {
+    border-bottom: 1px solid var(--black-20);
+    border-left: 1px solid var(--black-20);
+    bottom: 0;
+    left: 0;
+  }
+  .corner.bottom-right {
+    border-bottom: 1px solid var(--black-20);
+    border-right: 1px solid var(--black-20);
+    bottom: 0;
+    right: 0;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+  .mobile-nav .cols-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .mobile-nav .cols-3 .id {
+    grid-column: span 1 / span 1;
+    text-transform: uppercase;
+    color: var(--black-40);
+    font-size: var(--text-medium);
+  }
+  .mobile-nav .cols-3 a {
+    grid-column: span 2 / span 2;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--text-medium);
+  }
+  .mobile-nav .cols-3.socials {
+    border-top: 1px solid var(--black-7);
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+  .mobile-nav .cols-3.socials a {
+    grid-column: span 1 / span 1;
+    font-size: var(--text-small);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 1440px) {
+    .container {
+      border-right: none;
+      border-left: none;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    header {
+      mix-blend-mode: normal;
+      padding: 1.5rem 1.5rem;
+    }
+  
+    nav {
+      padding: 1rem 0;
+    }
+    nav .logo {
+      width: 1.5rem;
+      height: 1.5rem;
+      filter: none;
+    }
+    nav ul {
+      display: none;
+    }
+    button {
+      display: block;
+    }
+
+    .mobile-nav {
+      display: block;
+      margin-top: .25rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1rem;
+      border-top: 1px solid var(--black-7);
+    }
+
+    .container {
+      padding: 0rem 1rem;
+      background-color: rgba(224, 222, 218, .9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      mix-blend-mode: normal;
+
+      max-height: 3.5rem;
+      transition: max-height .25s ease-out;
+      overflow: hidden;
+    }
+    .container.open {
+      max-height: 30rem;
+      transition: max-height .25s ease-in;
+    }
+
+    .overlay {
+      pointer-events: none;
+      position: fixed;
+      z-index: 90;
+      height: 100%;
+      width: 100%;
+      background-color: var(--black-0);
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: backdrop-filter .15s ease-out;
+    }
+    .overlay.open {
+      pointer-events: all;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: backdrop-filter .15s ease-in;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    header {
+      mix-blend-mode: normal;
+      padding: 1rem 1rem;
+    }
+    .container {
+      padding: 0rem .75rem;
+    }
+  }
 </style>
+
+<script>
+  const btn = document.getElementById("mobile-nav-btn")!;
+  const cont = document.getElementById("mobile-nav-container")!;
+  const overlay = document.getElementById("mobile-nav-overlay")!;
+
+  let open = false;
+
+  const toggleNav = () => {
+    if (open) {
+      open = false;
+      cont.classList.toggle('open');
+      overlay.classList.toggle('open');
+      btn.textContent = "Menu"
+    } else {
+      open = true;
+      cont.classList.toggle('open');
+      overlay.classList.toggle('open');
+      btn.textContent = "Close"
+    }
+  }
+
+  btn.addEventListener('click', toggleNav);
+  overlay.addEventListener('click', toggleNav);
+
+  addEventListener("scroll", () => {open&&toggleNav()});
+</script>
