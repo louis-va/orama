@@ -1,0 +1,42 @@
+---
+import TwoCols from '../../layouts/TwoCols.astro';
+import Arrow from '../common/Arrow.astro';
+---
+
+<TwoCols title='Contact' id='contact' num="04">
+  <p>
+    Des idées à mettre en image, une histoire à raconter au son ou des moments à immortaliser en photo ?
+  </p>
+  <p>
+    Prenez contact avec nous dès aujourd'hui, rencontrez l'équipe et voyons si nous sommes en adéquation avec ce que vous voulez faire et où vous voulez aller.
+  </p>
+  <a href="mailto:info@oramaprod.be" class="contact-btn" cursor-focus>
+    <span class="icon">
+      <Arrow />
+    </span>
+    info@oramaprod.be
+  </a>
+</TwoCols>
+
+<style>
+  p {
+    font-size: 1rem;
+    line-height: 135%;
+    margin-bottom: .5rem;
+    max-width: 30rem;
+  }
+  .contact-btn {
+    display: inline-flex;
+    font-size: var(--text-medium);
+    text-transform: uppercase;
+    align-items: center;
+    font-weight: 600;
+    line-height: 100%;
+    margin-top: 1rem;
+    gap: .25rem;
+  }
+  .contact-btn .icon {
+    width: 1rem;
+    height: auto;
+  }
+</style>

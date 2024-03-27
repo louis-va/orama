@@ -1,5 +1,6 @@
 ---
 import Logo from "../components/common/Logo.astro"
+import Arrow from "../components/common/Arrow.astro";
 ---
 
 <header>
@@ -12,34 +13,34 @@ import Logo from "../components/common/Logo.astro"
       </div>
       <button id="mobile-nav-btn" cursor-focus aria-hidden="true">Menu</button>
       <ul>
-        <li><a href="/" cursor-focus>Projets</a></li>
-        <li><a href="/" cursor-focus>Services</a></li>
-        <li><a href="/" cursor-focus>À propos</a></li>
-        <li><a href="/" cursor-focus>Contact</a></li>
+        <li><a href="#projects" cursor-focus>Projets</a></li>
+        <li><a href="#services" cursor-focus>Services</a></li>
+        <li><a href="#about" cursor-focus>À propos</a></li>
+        <li><a href="#contact" cursor-focus>Contact</a></li>
       </ul>
     </nav>
 
     <div class="mobile-nav" aria-hidden="true">
       <div class="cols-3">
         <div class="id">01</div>
-        <a href="/" cursor-focus>Projets</a>
+        <a href="#projects" cursor-focus>Projets <span class="icon"><Arrow /></span></a>
       </div>
       <div class="cols-3">
         <div class="id">02</div>
-        <a href="/" cursor-focus>Services</a>
+        <a href="#services" cursor-focus>Services <span class="icon"><Arrow /></span></a>
       </div>
       <div class="cols-3">
         <div class="id">03</div>
-        <a href="/" cursor-focus>À Propos</a>
+        <a href="#about" cursor-focus>À Propos <span class="icon"><Arrow /></span></a>
       </div>
       <div class="cols-3">
         <div class="id">04</div>
-        <a href="/" cursor-focus>Contact</a>
+        <a href="#contact" cursor-focus>Contact <span class="icon"><Arrow /></span></a>
       </div>
       <div class="cols-3 socials">
-        <a href="/" cursor-focus>Instagram</a>
-        <a href="/" cursor-focus>Facebook</a>
-        <a href="/" cursor-focus>Linkedin</a>
+        <a href="https://www.instagram.com/orama_prod/" target="_blank" cursor-focus><span class="icon"><Arrow angle="d-45" /></span> Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=100090062064406" target="_blank" cursor-focus><span class="icon"><Arrow angle="d-45" /></span> Facebook</a>
+        <a href="https://www.linkedin.com/company/orama-production/" target="_blank" cursor-focus><span class="icon"><Arrow angle="d-45" /></span> Linkedin</a>
       </div>
     </div>
 
@@ -137,7 +138,7 @@ import Logo from "../components/common/Logo.astro"
   .mobile-nav .cols-3 {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
   }
   .mobile-nav .cols-3 .id {
     grid-column: span 1 / span 1;
@@ -197,6 +198,27 @@ import Logo from "../components/common/Logo.astro"
       padding-top: 1.5rem;
       padding-bottom: 1rem;
       border-top: 1px solid var(--black-7);
+    }
+
+    .mobile-nav a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-nav a .icon {
+      width: 1rem;
+      height: auto;
+    }
+
+    .mobile-nav .socials a {
+      display: flex;
+      justify-content: left;
+      gap: .25rem;
+      align-items: center;
+    }
+    .mobile-nav .socials a .icon {
+      width: .75rem;
+      height: auto;
     }
 
     .container {

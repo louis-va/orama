@@ -3,6 +3,7 @@ import Container from './Container.astro';
 import Header from './Header.astro';
 import Background from './Background.astro';
 import Cursor from '../components/common/Cursor.astro';
+import Footer from './Footer.astro';
 
 interface Props {
 	title: string;
@@ -30,6 +31,7 @@ const { title, description } = Astro.props;
 			<main>
 				<slot />
 			</main>
+			<Footer />
 		</Container>
 	</body>
 </html>
@@ -71,6 +73,7 @@ const { title, description } = Astro.props;
 		--white-50: rgba(255, 255, 255, .5);
 		--light-gray: rgb(248, 246, 243);
 		--light-gray-20: rgba(248, 246, 243, .7);
+		--light-gray-5: rgba(248, 246, 243, .05);
 		--light-gray-0: rgba(248, 246, 243, 0);
 		--black: rgb(7, 9, 12);
 		--black-80: rgba(7, 9, 12, .8);
@@ -88,7 +91,7 @@ const { title, description } = Astro.props;
 		--text-base: 1rem;
 		--text-medium: 1.125rem;
 		--text-large: 1.5rem;
-		--text-xl: 2rem;
+		--text-xl: 1.75rem;
 		--card-w: 300px;
 	}
 
@@ -109,6 +112,7 @@ const { title, description } = Astro.props;
 		background: var(--light-gray);
 		color: var(--black);
 		font-size: var(--text-base);
+		scroll-behavior: smooth;
 	}
 	::selection {
 		background-color: var(--black);
