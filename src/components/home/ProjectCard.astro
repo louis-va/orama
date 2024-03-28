@@ -75,8 +75,8 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
         const w = containerSize.width - cardSize.width;
         const h = containerSize.height - cardSize.height;
 
-        const shiftX = 1 + (cardSize.width * (w / w**2))
-        const shiftY = 1 + (cardSize.height * (h / h**2))
+        const shiftX = 1 + (cardSize.width * (w / w**1.98))
+        const shiftY = 1 + (cardSize.height * (h / h**1.92))
 
         position = {
           x: position.x + x * shiftX,

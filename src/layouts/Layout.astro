@@ -39,14 +39,14 @@ const { title, description } = Astro.props;
 <style is:global>
 	/* GLOBAL */
 	@font-face {
-		font-family: 'Nanum Gothic';
+		font-family: 'Basically A Mono';
 		src: url('/fonts/BasicallyAMono-Regular.woff2') format('woff2');
 		font-weight: 400;
 		font-style: normal;
 		font-display: swap;
 	}
 	@font-face {
-		font-family: 'Nanum Gothic';
+		font-family: 'Basically A Mono';
 		src: url('/fonts/BasicallyAMono-SemiBold.woff2') format('woff2');
 		font-weight: 600;
 		font-style: normal;
@@ -56,21 +56,27 @@ const { title, description } = Astro.props;
 	:root {
 		--white: rgb(255, 255, 255);
 		--white-50: rgba(255, 255, 255, .5);
-		--light-gray: rgb(248, 246, 243);
-		--light-gray-20: rgba(248, 246, 243, .7);
-		--light-gray-5: rgba(248, 246, 243, .05);
-		--light-gray-0: rgba(248, 246, 243, 0);
+
+		--light-gray: rgb(248, 246, 246);
+		--light-gray-20: rgba(248, 246, 246, .7);
+		--light-gray-5: rgba(248, 246, 246, .05);
+		--light-gray-0: rgba(248, 246, 246, 0);
+
+		--dark-gray-90: rgba(224, 222, 222, .9);
+
 		--black: rgb(7, 9, 12);
-		--black-80: rgba(7, 9, 12, .8);
-		--black-60: rgba(7, 9, 12, .6);
-		--black-40: rgba(7, 9, 12, .4);
-		--black-30: rgba(7, 9, 12, .3);
-		--black-20: rgba(7, 9, 12, .2);
-		--black-10: rgba(7, 9, 12, .1);
-		--black-7: rgba(7, 9, 12, .075);
-		--black-3: rgba(7, 9, 12, .03);
-		--black-0: rgba(7, 9, 12, 0);
-		--red: rgb(227, 41, 0);
+		--black-80: rgba(7, 9, 9, .8);
+		--black-60: rgba(7, 9, 9, .6);
+		--black-40: rgba(7, 9, 9, .4);
+		--black-30: rgba(7, 9, 9, .3);
+		--black-20: rgba(7, 9, 9, .2);
+		--black-10: rgba(7, 9, 9, .1);
+		--black-7: rgba(7, 9, 9, .075);
+		--black-3: rgba(7, 9, 9, .03);
+		--black-0: rgba(7, 9, 9, 0);
+
+		--red: rgb(255, 40, 30);
+
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
 		--text-base: 1rem;
@@ -96,7 +102,7 @@ const { title, description } = Astro.props;
   }
 
 	html {
-		font-family: 'Nanum Gothic', 'Helvetica', 'Arial', sans-serif;
+		font-family: 'Basically A Mono', monospace;
 		background: var(--light-gray);
 		color: var(--black);
 		font-size: var(--text-base);
