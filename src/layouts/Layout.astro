@@ -155,3 +155,10 @@ const { title, description } = Astro.props;
     pointer-events: none;
   }
 </style>
+
+<script>
+	// check if touch device
+ 	if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {    
+		document.body.classList.add('touch-device');
+	};
+</script>
