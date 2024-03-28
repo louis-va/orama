@@ -1,8 +1,66 @@
+---
+import { Picture } from 'astro:assets';
+import imageGallery1 from "../../assets/gallery_1.jpg"
+import imageGallery2 from "../../assets/gallery_2.jpg"
+import imageGallery3 from "../../assets/gallery_3.jpg"
+import imageGallery4 from "../../assets/gallery_4.jpg"
+import imageGallery5 from "../../assets/gallery_5.jpg"
+import imageGallery6 from "../../assets/gallery_6.jpg"
+import imageGallery7 from "../../assets/gallery_7.jpg"
+import imageGallery8 from "../../assets/gallery_8.jpg"
+import imageGallery9 from "../../assets/gallery_9.jpg"
+import imageGallery10 from "../../assets/gallery_10.jpg"
+---
+
 <section>
   <h1>
     Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux, documentaires et de fiction percutants, axés sur un storytelling de qualité.
   </h1>
-  <div class="block"></div>
+  <div class="gallery">
+    <div class="container">
+      <div class="scan" cursor-focus>
+        RAW
+        <div class="pointer">
+          <div class="top-left"></div>
+          <div class="top-right"></div>
+          <div class="bottom-left"></div>
+          <div class="bottom-right"></div>
+        </div>
+      </div>
+      <div class="slider">
+        <div class="img"><Picture src={imageGallery1} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery2} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery3} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery4} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery5} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery6} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery7} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery8} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery9} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img"><Picture src={imageGallery10} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery1} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery2} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery3} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery4} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery5} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery6} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery7} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery8} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery9} formats={['jpg', 'webp']} alt="" /></div>
+        <div class="img" aria-hidden="true"><Picture src={imageGallery10} formats={['jpg', 'webp']} alt="" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="squares">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+  </div>
 </section>
 
 <style>
@@ -14,14 +72,114 @@
     font-size: var(--text-xl);
     font-weight: 400;
     line-height: 125%;
-    max-width: 45rem;
+    max-width: 50rem;
   }
 
-  .block {
+  .squares {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--black);
+    padding: 0 .5rem 0rem .5rem;
+  }
+  .square {
+    height: .15rem;
+    width: .5rem;
+    background-color: var(--light-gray);
+  }
+
+  .gallery {
+    margin-top: 2rem;
     width: 100%;
     height: 10rem;
-    background-color: var(--black-60);
-    margin-top: 4rem;
+    background-color: var(--black);
+    padding: .5rem .5rem .5rem .5rem;
+  }
+  .gallery .container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+  .gallery .slider {
+    width: max-content;
+    white-space: nowrap;
+    -moz-animation: slider 60s linear infinite;
+    -webkit-animation: slider 60s linear infinite;
+    animation: slider 60s linear infinite;
+  }
+  .gallery .img {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+  }
+  .gallery .img img {
+    height: 9rem;
+    width: auto;
+    pointer-events: none;
+    filter: contrast(90%);
+  }
+  .gallery .scan {
+    position: absolute;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border: 1px solid red;
+    z-index: 10;
+    padding: .5rem;
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    color: red;
+    line-height: 100%;
+  }
+  .pointer {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    left: calc(50% - .5rem);
+    top: calc(50% - .5rem);
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    gap: .5rem;
+  }
+  .pointer .top-left {
+    border-top: 1px solid red;
+    border-left: 1px solid red;
+  }
+  .pointer .top-right {
+    border-top: 1px solid red;
+    border-right: 1px solid red;
+  }
+  .pointer .bottom-left {
+    border-bottom: 1px solid red;
+    border-left: 1px solid red;
+  }
+  .pointer .bottom-right {
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+  }
+
+  /* for Firefox */
+  @-moz-keyframes my-animation {
+    from { -moz-transform: translateX(0%); }
+    to { -moz-transform: translateX(-50%); }
+  }
+
+  /* for Chrome */
+  @-webkit-keyframes my-animation {
+    from { -webkit-transform: translateX(0%); }
+    to { -webkit-transform: translateX(-50%); }
+  }
+
+  @keyframes slider {
+    from {
+      -moz-transform: translateX(0%);
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+    }
+    to {
+      -moz-transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
   }
 
   @media screen and (max-width: 1024px) {
