@@ -1,7 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import Card from '../common/Card.astro';
 
 interface Props {
   slug: string;
@@ -9,123 +8,53 @@ interface Props {
   type: string;
   thumbnail: ImageMetadata;
   preview: ImageMetadata;
-  position: {x: number, y: number};
   id: string;
 }
 
-const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
+const { slug, title, type, thumbnail, preview, id } = Astro.props;
 ---
 
-<project-card
-  style={{
-    left: `calc(${position.x}% - (var(--card-w) * ${position.x}/100))`,
-    top: `calc(${position.y}% - (var(--card-w) * ${position.y}/100))`
-  }}
-  data-position-x={position.x}
-  data-position-y={position.y}
->
-  <Card padding="small">
-    <div class="layout">
-      <a href=`/projects/${slug}` cursor-focus>
-        <div class="top">
-          <div class="title">{title}</div>
-          <div class="empty" cursor-target></div>
-        </div>
-        <div class="bottom">
-          <div class="image">
-            <Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail"/>
-            <Image src={preview} alt={`Aperçu vidéo de notre projet ${title}.`} class="preview"/>
+<project-card>
+  <div class="card">
+    <div class="p-small">
+      <div class="layout">
+        <a href=`/projects/${slug}` cursor-focus>
+          <div class="top">
+            <div class="title">{title}</div>
+            <div class="empty" cursor-target></div>
           </div>
-          <div class="infos">
-            <div class="id">{id}</div>
-            <div class="type">{type}</div>
+          <div class="bottom">
+            <div class="image">
+              <Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail"/>
+              <Image src={preview} alt={`Aperçu vidéo de notre projet ${title}.`} class="preview"/>
+            </div>
+            <div class="infos">
+              <div class="id">{id}</div>
+              <div class="type">{type}</div>
+            </div>
           </div>
-        </div>
-      </a>
-      <div class="draggable" cursor-focus>
-        <div class="icon">
-          <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"/>
-          </svg>            
+        </a>
+        <div class="play-btn" cursor-focus>
+          <div class="icon">
+            <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"/>
+            </svg>            
+          </div>
         </div>
       </div>
     </div>
-  </Card>
+    <div class="corners">
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+    </div>
+  </div>
 </project-card>
-
-<script>
-  class ProjectCard extends HTMLElement {
-    constructor() {
-      super();
-
-      const card = this as HTMLElement;
-      const draggable = this.querySelector('.draggable')! as HTMLElement;
-      const projectContainer = document.querySelector('#projects')! as HTMLElement;
-      const root = document.querySelector('html')! as HTMLElement;
-
-      let position = {x: Number(this.dataset.positionX!), y: Number(this.dataset.positionY!)}
-
-      let isDragging = false;
-      let previousDragPosition: null | {x: number, y: number} = null;
-
-      const moveCard = (x: number, y: number) => {
-        const containerSize = projectContainer.getBoundingClientRect();
-        const cardSize = card.getBoundingClientRect();
-
-        const w = containerSize.width - cardSize.width;
-        const h = containerSize.height - cardSize.height;
-
-        const shiftX = 1 + (cardSize.width * (w / w**1.98))
-        const shiftY = 1 + (cardSize.height * (h / h**1.92))
-
-        position = {
-          x: position.x + x * shiftX,
-          y: position.y + y * shiftY,
-        }
-
-        if(position.x >=0 && position.x <= 100) card.style.left = `calc(${position.x}% - (var(--card-w) * ${position.x}/100))`
-        if(position.y >=0 && position.y <= 100) card.style.top = `calc(${position.y}% - (var(--card-w) * ${position.y}/100))`
-      }
-
-      draggable.addEventListener('mousedown', () => {
-        isDragging = true;
-        card.classList.add('card-active');
-      });
-
-      root.addEventListener('mouseup', () => {
-        isDragging = false;
-        card.classList.remove('card-active');
-      });
-
-      projectContainer.addEventListener('mousemove', (event) => {
-        if (isDragging) {
-          const e = event as MouseEvent;
-
-          const rect = projectContainer.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const containerWidth = rect.width;
-          const containerHeight = rect.height;
-
-          let dragPosition = {x: (x / containerWidth) * 100, y: (y / containerHeight) * 100}
-
-          if (previousDragPosition !== null) {
-            moveCard(dragPosition.x - previousDragPosition.x, dragPosition.y - previousDragPosition.y)
-          }
-
-          previousDragPosition = dragPosition;
-        }
-      });
-    }
-  }
-
-  customElements.define('project-card', ProjectCard);
-</script>
 
 <style>
   project-card {
-    position: absolute;
-    width: var(--card-w);
+    width: 100%;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -155,6 +84,10 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
     padding: 0 .3rem;
     width: 100%;
     flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   .layout .top .empty {
     display: flex;
@@ -168,6 +101,7 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
     pointer-events: none;
   }
   .layout .bottom .infos {
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -214,12 +148,12 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
     opacity: 1;
   }
 
-  .layout .draggable {
+  .layout .play-btn {
     position: absolute;
     top: 0;
     right: 0;
   }
-  .layout .draggable .icon {
+  .layout .play-btn .icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,14 +162,118 @@ const { slug, title, type, thumbnail, preview, position, id } = Astro.props;
     z-index: 10;
     pointer-events: none;
   }
-  .layout .draggable .icon svg {
+  .layout .play-btn .icon svg {
     width: 40%;
     height: auto;
   }
-  .layout .draggable:hover {
-    cursor: grab;
+
+  .card {
+    position: relative;
+    width: 100%;
   }
-  .layout .draggable:active {
-    cursor: grabbing;
+  .card .p-small {
+    padding: 1rem;
+  }
+  .card .corners {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .card .corner {
+    position: absolute;
+    width: .75rem;
+    height: .75rem;
+    transition: all ease-out .15s;
+  }
+  .card .top-left {
+    border-top: 1px solid var(--black-60);
+    border-left: 1px solid var(--black-60);
+    top: 0;
+    left: 0;
+  }
+  .card .top-right {
+    border-top: 1px solid var(--black-60);
+    border-right: 1px solid var(--black-60);
+    top: 0;
+    right: 0;
+  }
+  .card .bottom-left {
+    border-bottom: 1px solid var(--black-60);
+    border-left: 1px solid var(--black-60);
+    bottom: 0;
+    left: 0;
+  }
+  .card .bottom-right {
+    border-bottom: 1px solid var(--black-60);
+    border-right: 1px solid var(--black-60);
+    bottom: 0;
+    right: 0;
+  }
+
+  .card:hover .top-left {
+    top: .25rem;
+    left: .25rem;
+  }
+  .card:hover .top-right {
+    top: .25rem;
+    right: .25rem;
+  }
+  .card:hover .bottom-left {
+    bottom: .25rem;
+    left: .25rem;
+  }
+  .card:hover .bottom-right {
+    bottom: .25rem;
+    right: .25rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    .card .p-small {
+      padding: .5rem;
+    }
+    .layout .top {
+      height: 16px;
+    }
+    .layout .top .title {
+      font-size: var(--text-xs);
+    }
+    .layout .top .empty {
+      width: 16px;
+    }
+    .layout .bottom .infos {
+      width: 16px;
+      font-size: var(--text-xs);
+    }
+    .layout .bottom .infos .id {
+      width: 16px;
+    }
+    .layout .bottom .infos .type {
+      width: 16px;
+    }
+    .layout .play-btn .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .card:hover .top-left {
+      top: 0;
+      left: 0;
+    }
+    .card:hover .top-right {
+      top: 0;
+      right: 0;
+    }
+    .card:hover .bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+    .card:hover .bottom-right {
+      bottom: 0;
+      right: 0;
+    }
   }
 </style>

@@ -16,7 +16,6 @@ video: [
 thumbnail: "./thumbnail.jpg"
 preview: "./preview.gif"
 cover: "./cover.jpg"
-x_axis: 10
 ---
 
 Sur la régie, les techniciens scrutent leurs écrans avec attention, réglant les niveaux sonores, ajustant les angles des caméras, anticipant chaque mouvement pour ne rien rater de l'action qui se déroule sur scène.

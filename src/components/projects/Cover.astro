@@ -1,0 +1,77 @@
+---
+import { Picture } from 'astro:assets';
+
+interface Props {
+  title: string;
+  overview: string;
+  type: string;
+  id: string;
+	cover: ImageMetadata;
+}
+
+const { title, overview, cover, type, id } = Astro.props;
+---
+
+<section>
+  <div class="title">
+    <div class="id">Projet / {id}</div>
+    <h1>{title}</h1>
+    <p>{overview}</p>
+  </div>
+  <div class="cover">
+    <Picture src={cover} formats={['jpg', 'webp']} alt={title} class="img" />
+  </div>
+</section>
+
+<style>
+  section {
+    padding-top: 25rem;
+    padding-bottom: 5rem;
+  }
+  .title {
+    max-width: 40rem;
+    margin: auto;
+    text-align: center;
+  }
+  .id {
+    font-size: var(--text-small);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--black-40);
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: var(--text-xl);
+    font-weight: 400;
+    line-height: 125%;
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+  }
+  p {
+    font-size: var(--text-large);
+    font-weight: 400;
+    line-height: 125%;
+  }
+
+  .cover {
+    margin-top: 4rem;
+    width: 100%;
+  }
+  .cover img {
+    width: 100%;
+    height: auto;
+    border-radius: .25rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    section {
+      padding-top: 15rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: var(--text-large);
+    }
+  }
+</style>

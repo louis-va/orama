@@ -2,10 +2,16 @@
 import Arrow from "../components/common/Arrow.astro"
 import Separator from "../components/common/Separator.astro"
 import Gallery from "../components/home/Gallery.astro"
+
+interface Props {
+  gallery?: boolean;
+}
+
+const { gallery=false } = Astro.props;
 ---
 
 <footer>
-  <Gallery />
+  {gallery && <Gallery />}
   <Separator />
   <div class="content">
     <div class="col infos">
@@ -16,10 +22,10 @@ import Gallery from "../components/home/Gallery.astro"
     </div>
     <div class="col">
       <h2>Site</h2>
-      <a href="#projects" cursor-focus><span class="icon"><Arrow /></span> Projets</a> <br/>
-      <a href="#services" cursor-focus><span class="icon"><Arrow /></span> Services</a> <br/>
-      <a href="#about" cursor-focus><span class="icon"><Arrow /></span> À propos</a> <br/>
-      <a href="#contact" cursor-focus><span class="icon"><Arrow /></span> Contact</a>
+      <a href="/#projects" cursor-focus><span class="icon"><Arrow /></span> Projets</a> <br/>
+      <a href="/#services" cursor-focus><span class="icon"><Arrow /></span> Services</a> <br/>
+      <a href="/#about" cursor-focus><span class="icon"><Arrow /></span> À propos</a> <br/>
+      <a href="/#contact" cursor-focus><span class="icon"><Arrow /></span> Contact</a>
     </div>
     <div class="col">
       <h2>Nous suivre</h2>

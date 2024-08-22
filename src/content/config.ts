@@ -17,8 +17,7 @@ const projectCollection = defineCollection({
     })).optional(),
     thumbnail: image(),
     preview: image(),
-    cover: image(),
-    x_axis: z.number()
+    cover: image()
   }),
 });
 
