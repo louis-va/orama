@@ -1,21 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import Hero from '../components/home/Hero.astro'
-import Projects from '../components/home/ProjectGrid.astro'
-import Services from '../components/home/Services.astro'
-import About from '../components/home/About.astro'
-import Contact from '../components/home/Contact.astro'
-import Footer from '../layouts/Footer.astro'
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/home/Hero.astro";
+import Projects from "../components/home/ProjectGrid.astro";
+import Services from "../components/home/Services.astro";
+import About from "../components/home/About.astro";
+import Contact from "../components/home/Contact.astro";
 ---
 
-<Layout 
+<Layout
 	title="Orama Prod"
-	description="Nous sommes un studio de production multi-disciplinaire spécialisé dans la création d'histoires visuelles captivantes."
->
+	description="Nous sommes un studio de production multi-disciplinaire spécialisé dans la création d'histoires visuelles captivantes.">
 	<Hero />
 	<Projects />
 	<Services />
 	<About />
 	<Contact />
-	<Footer gallery={true} />
 </Layout>

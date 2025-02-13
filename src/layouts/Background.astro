@@ -1,35 +1,56 @@
-<div class="bg-grid">
-  <div class="overlay"></div>
+---
+import Container from "./Container.astro";
+---
+
+<div class="background">
+	<Container>
+		<div class="lines">
+			<div class="line line-1"></div>
+			<div class="line line-2"></div>
+			<div class="line line-3"></div>
+			<div class="line line-4"></div>
+			<div class="line line-5"></div>
+			<div class="line line-6"></div>
+			<div class="line line-7"></div>
+			<div class="line line-8"></div>
+			<div class="line line-9"></div>
+			<div class="line line-10"></div>
+			<div class="line line-11"></div>
+			<div class="line line-12"></div>
+			<div class="line line-13"></div>
+		</div>
+	</Container>
 </div>
 
 <style>
-  .bg-grid {
-    position: absolute;
-    height: 30rem;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background-size: 4.75rem 4.75rem;
-    background-image:
-      linear-gradient(to right, var(--black-10) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--black-10) 1px, transparent 1px);
-    background-position: top center;
-    border-left: 1px solid var(--black-10);
-    border-right: 1px solid var(--black-10);
-  }
-  .overlay {
-    position: absolute;
-    height: 200%;
-    width: calc(200% + 1px);
-    top: -100%;
-    left: -100%;
-    background: linear-gradient(180deg, var(--light-gray-0) 50%, var(--light-gray) 100%);
-  }
+	.background {
+		position: fixed;
+		z-index: -1;
+		width: 100vw;
+	}
+	.lines {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: space-between;
+	}
+	.line {
+		width: 1px;
+		height: 100%;
+		background: var(--black-4);
+	}
 
-  @media screen and (max-width: 768px) {
-    .bg-grid {
-      background-size: 3.5rem 3.5rem;
-    }
-  }
+	@media screen and (max-width: 960px) {
+		.line-8,
+		.line-9,
+		.line-10,
+		.line-11,
+		.line-12,
+		.line-13 {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+	}
 </style>
