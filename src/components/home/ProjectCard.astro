@@ -1,279 +1,254 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
 
 interface Props {
-  slug: string;
-  title: string;
-  type: string;
-  thumbnail: ImageMetadata;
-  preview: ImageMetadata;
-  id: string;
+	slug: string;
+	title: string;
+	type: string;
+	thumbnail: ImageMetadata;
+	preview: ImageMetadata;
+	id: string;
 }
 
 const { slug, title, type, thumbnail, preview, id } = Astro.props;
 ---
 
-<project-card>
-  <div class="card">
-    <div class="p-small">
-      <div class="layout">
-        <a href=`/projects/${slug}` cursor-focus>
-          <div class="top">
-            <div class="title">{title}</div>
-            <div class="empty" cursor-target></div>
-          </div>
-          <div class="bottom">
-            <div class="image">
-              <Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail"/>
-              <Image src={preview} alt={`Aperçu vidéo de notre projet ${title}.`} class="preview"/>
-            </div>
-            <div class="infos">
-              <div class="id">{id}</div>
-              <div class="type">{type}</div>
-            </div>
-          </div>
-        </a>
-        <div class="play-btn" cursor-focus>
-          <div class="icon">
-            <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"/>
-            </svg>            
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="corners">
-      <div class="corner top-left"></div>
-      <div class="corner top-right"></div>
-      <div class="corner bottom-left"></div>
-      <div class="corner bottom-right"></div>
-    </div>
-  </div>
-</project-card>
+<a class="card" href=`/projects/${slug}` cursor-focus>
+	<div class="wrapper">
+		<div class="layout">
+			<div class="bottom">
+				<div class="image">
+					<Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail" />
+					<Image src={preview} alt={`Aperçu vidéo de notre projet ${title}.`} class="preview" />
+				</div>
+				<div class="infos">
+					<div class="id">{id}</div>
+					<div class="type">{type}</div>
+				</div>
+			</div>
+			<div class="top">
+				<div class="title">{title}</div>
+				<div class="icon" cursor-target>
+					<svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="corners">
+		<div class="corner top-left"></div>
+		<div class="corner top-right"></div>
+		<div class="corner bottom-left"></div>
+		<div class="corner bottom-right"></div>
+	</div>
+</a>
 
 <style>
-  project-card {
-    width: 100%;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+	a.card {
+		display: block;
+		position: relative;
+		width: 100%;
+	}
+	.card .wrapper {
+		padding: 1.5rem;
+	}
 
-  .layout {
-    position: relative;
-  }
+	.layout {
+		position: relative;
+	}
 
-  .layout .top {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 20px;
-    pointer-events: none;
-  }
-  .layout .top .title {
-    background-color: var(--black-60);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: var(--white);
-    text-transform: uppercase;
-    font-size: var(--text-small);
-    padding: 0 .3rem;
-    width: 100%;
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-  .layout .top .empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-  }
+	.layout .top {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		height: 20px;
+		pointer-events: none;
+	}
+	.layout .top .title {
+		background-color: var(--dark-gray-90);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		mix-blend-mode: normal;
+		color: var(--black-60);
+		text-transform: uppercase;
+		font-size: var(--text-small);
+		padding: 0 0.3rem;
+		width: 100%;
+		flex: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
+	}
+	.layout .top .icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 20px;
+		height: 20px;
+		z-index: 10;
+		pointer-events: none;
+		color: var(--black-60);
+	}
+	.layout .top .icon svg {
+		width: 40%;
+		height: auto;
+	}
 
-  .layout .bottom {
-    display: flex;
-    pointer-events: none;
-  }
-  .layout .bottom .infos {
+	.layout .bottom {
+		display: flex;
+		pointer-events: none;
+	}
+	.layout .bottom .infos {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 20px;
+		background-color: var(--dark-gray-90);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		color: var(--black-60);
+		mix-blend-mode: normal;
+		text-transform: uppercase;
+		font-size: var(--text-small);
+		padding: 0.3rem 0;
+	}
+	.layout .bottom .infos .id {
+		transform: rotate(-90deg);
+		text-align: right;
+		width: 20px;
+	}
+	.layout .bottom .infos .type {
+		transform: rotate(-90deg);
+		width: 20px;
+	}
+	.layout .bottom .image {
+		position: relative;
+	}
+	.layout .bottom .image .thumbnail {
+		aspect-ratio: 1/1;
+		height: auto;
+		pointer-events: none;
+	}
+	.layout .bottom .image .preview {
+		position: absolute;
+		opacity: 0;
+		width: 100%;
+		top: 0;
+		left: 0;
+		aspect-ratio: 1/1;
+		height: auto;
+		transition: opacity ease-in 0.25s;
+		transition-delay: 0.25s;
+		pointer-events: none;
+	}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 20px;
-    background-color: var(--black-60);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: var(--white);
-    text-transform: uppercase;
-    font-size: var(--text-small);
-    padding: .3rem 0;
-  }
-  .layout .bottom .infos .id {
-    transform: rotate(-90deg);
-    text-align: right;
-    width: 20px;
-  }
-  .layout .bottom .infos .type {
-    transform: rotate(-90deg);
-    width: 20px;
-  }
-  .layout .bottom .image {
-    position: relative;
-  }
-  .layout .bottom .image .thumbnail {
-    aspect-ratio: 1/1;
-    height: auto;
-    pointer-events: none;
-  }
-  .layout .bottom .image .preview {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    top: 0;
-    left: 0;
-    aspect-ratio: 1/1;
-    height: auto;
-    transition: opacity ease-in .25s;
-    transition-delay: .25s;
-    pointer-events: none;
-  }
+	.card:hover .layout .bottom .image .preview {
+		opacity: 1;
+	}
 
-  .layout:hover .bottom .image .preview {
-    opacity: 1;
-  }
+	.corners {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		pointer-events: none;
+	}
+	.corner {
+		position: absolute;
+		width: 0.75rem;
+		height: 0.75rem;
+		transition: all ease-out 0.15s;
+	}
+	.corner.top-left {
+		border-top: 1px solid var(--black-60);
+		border-left: 1px solid var(--black-60);
+		top: 0;
+		left: 0;
+	}
+	.corner.top-right {
+		border-top: 1px solid var(--black-60);
+		border-right: 1px solid var(--black-60);
+		top: 0;
+		right: 0;
+	}
+	.corner.bottom-left {
+		border-bottom: 1px solid var(--black-60);
+		border-left: 1px solid var(--black-60);
+		bottom: 0;
+		left: 0;
+	}
+	.corner.bottom-right {
+		border-bottom: 1px solid var(--black-60);
+		border-right: 1px solid var(--black-60);
+		bottom: 0;
+		right: 0;
+	}
 
-  .layout .play-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-  .layout .play-btn .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    z-index: 10;
-    pointer-events: none;
-  }
-  .layout .play-btn .icon svg {
-    width: 40%;
-    height: auto;
-  }
+	.card:hover .corner.top-left {
+		top: 0.25rem;
+		left: 0.25rem;
+	}
+	.card:hover .corner.top-right {
+		top: 0.25rem;
+		right: 0.25rem;
+	}
+	.card:hover .corner.bottom-left {
+		bottom: 0.25rem;
+		left: 0.25rem;
+	}
+	.card:hover .corner.bottom-right {
+		bottom: 0.25rem;
+		right: 0.25rem;
+	}
 
-  .card {
-    position: relative;
-    width: 100%;
-  }
-  .card .p-small {
-    padding: 1rem;
-  }
-  .card .corners {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    pointer-events: none;
-  }
-  .card .corner {
-    position: absolute;
-    width: .75rem;
-    height: .75rem;
-    transition: all ease-out .15s;
-  }
-  .card .top-left {
-    border-top: 1px solid var(--black-60);
-    border-left: 1px solid var(--black-60);
-    top: 0;
-    left: 0;
-  }
-  .card .top-right {
-    border-top: 1px solid var(--black-60);
-    border-right: 1px solid var(--black-60);
-    top: 0;
-    right: 0;
-  }
-  .card .bottom-left {
-    border-bottom: 1px solid var(--black-60);
-    border-left: 1px solid var(--black-60);
-    bottom: 0;
-    left: 0;
-  }
-  .card .bottom-right {
-    border-bottom: 1px solid var(--black-60);
-    border-right: 1px solid var(--black-60);
-    bottom: 0;
-    right: 0;
-  }
+	@media screen and (max-width: 480px) {
+		.card .wrapper {
+			padding: 0.75rem;
+		}
+		.layout .top {
+			height: 16px;
+		}
+		.layout .top .title {
+			font-size: var(--text-xs);
+		}
+		.layout .top .empty {
+			width: 16px;
+		}
+		.layout .top .icon {
+			width: 16px;
+			height: 16px;
+		}
+		.layout .bottom .infos {
+			width: 16px;
+			font-size: var(--text-xs);
+		}
+		.layout .bottom .infos .id {
+			width: 16px;
+		}
+		.layout .bottom .infos .type {
+			width: 16px;
+		}
 
-  .card:hover .top-left {
-    top: .25rem;
-    left: .25rem;
-  }
-  .card:hover .top-right {
-    top: .25rem;
-    right: .25rem;
-  }
-  .card:hover .bottom-left {
-    bottom: .25rem;
-    left: .25rem;
-  }
-  .card:hover .bottom-right {
-    bottom: .25rem;
-    right: .25rem;
-  }
-
-  @media screen and (max-width: 480px) {
-    .card .p-small {
-      padding: .5rem;
-    }
-    .layout .top {
-      height: 16px;
-    }
-    .layout .top .title {
-      font-size: var(--text-xs);
-    }
-    .layout .top .empty {
-      width: 16px;
-    }
-    .layout .bottom .infos {
-      width: 16px;
-      font-size: var(--text-xs);
-    }
-    .layout .bottom .infos .id {
-      width: 16px;
-    }
-    .layout .bottom .infos .type {
-      width: 16px;
-    }
-    .layout .play-btn .icon {
-      width: 16px;
-      height: 16px;
-    }
-
-    .card:hover .top-left {
-      top: 0;
-      left: 0;
-    }
-    .card:hover .top-right {
-      top: 0;
-      right: 0;
-    }
-    .card:hover .bottom-left {
-      bottom: 0;
-      left: 0;
-    }
-    .card:hover .bottom-right {
-      bottom: 0;
-      right: 0;
-    }
-  }
+		.card:hover .corner.top-left {
+			top: 0;
+			left: 0;
+		}
+		.card:hover .corner.top-right {
+			top: 0;
+			right: 0;
+		}
+		.card:hover .corner.bottom-left {
+			bottom: 0;
+			left: 0;
+		}
+		.card:hover .corner.bottom-right {
+			bottom: 0;
+			right: 0;
+		}
+	}
 </style>

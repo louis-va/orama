@@ -80,7 +80,7 @@ const { title, description } = Astro.props;
 		--text-small: 0.875rem;
 		--text-base: 1rem;
 		--text-medium: 1.125rem;
-		--text-large: 1.25rem;
+		--text-large: 1.5rem;
 		--text-xl: 1.75rem;
 		--text-2xl: 2.25rem;
 		--card-w: 300px;
@@ -111,6 +111,19 @@ const { title, description } = Astro.props;
 	::selection {
 		background-color: var(--black);
 		color: var(--white);
+	}
+
+	/* TEXT */
+	.paragraph {
+		font-size: var(--text-base);
+		line-height: 135%;
+		margin-bottom: 0.5rem;
+	}
+	.heading {
+		text-transform: uppercase;
+		font-size: var(--text-small);
+		font-weight: 600;
+		margin-bottom: 0.25rem;
 	}
 
 	/* RESET */

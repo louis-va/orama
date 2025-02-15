@@ -25,25 +25,33 @@ const { title, num, id } = Astro.props;
 
 <style>
 	section {
-		padding-top: 12rem;
+		margin-top: 5rem;
+		padding-top: 5rem;
 	}
 	.two-cols {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(12, minmax(0, 1fr));
 	}
 	.two-cols .left {
-		grid-column: span 1 / span 1;
+		grid-column: span 3 / span 3;
 	}
 	.two-cols .right {
-		grid-column: span 3 / span 3;
+		grid-column: span 6 / span 6;
+	}
+
+	@media screen and (max-width: 960px) {
+		.two-cols .left {
+			grid-column: span 4 / span 4;
+		}
+		.two-cols .right {
+			grid-column: span 8 / span 8;
+		}
 	}
 
 	@media screen and (max-width: 768px) {
-		section {
-			padding-top: 6rem;
-		}
 		.two-cols {
 			gap: 3rem;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
 		}
 		.two-cols .left {
 			grid-column: span 4 / span 4;

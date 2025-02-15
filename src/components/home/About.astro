@@ -7,108 +7,61 @@ import TwoCols from "../../layouts/TwoCols.astro";
 ---
 
 <TwoCols title="À propos" id="about" num="03">
-	<p>
+	<p class="paragraph">
 		<b>Orama</b> – Du grec ancien <i>hórama</i>. Élément qui signifie «vision».
 	</p>
-
-	<p>
+	<p class="paragraph">
 		Nous sommes une équipe d'amis dont les chemins se sont croisés à l'université, forgeant un lien enraciné dans
 		l'amitié et la passion partagée.
 	</p>
-	<p>
+	<p class="paragraph">
 		Ce qui nous distingue, c'est notre mélange unique de personnalités et de talents, qui nous permet de nous attaquer à
 		un large éventail de projets créatifs.
 	</p>
 
 	<div class="team">
 		<div class="member">
-			<div class="name">Django Schrevens</div>
+			<div class="heading">Django Schrevens</div>
 			<div class="role">Réalisateur, cadreur</div>
 		</div>
 		<div class="member">
-			<div class="name">Pierre Terranova</div>
+			<div class="heading">Pierre Terranova</div>
 			<div class="role">Réalisateur, monteur</div>
 		</div>
 		<div class="member">
-			<div class="name">Emmanuel Zamora</div>
+			<div class="heading">Emmanuel Zamora</div>
 			<div class="role">Réalisateur, chargé de production</div>
 		</div>
 		<div class="member">
-			<div class="name">Mathieu Soille</div>
+			<div class="heading">Mathieu Soille</div>
 			<div class="role">Chef-opérateur, cadreur</div>
 		</div>
 		<div class="member">
-			<div class="name">Guerric Verougstraete</div>
+			<div class="heading">Guerric Verougstraete</div>
 			<div class="role">Ingénieur du son, compositeur</div>
 		</div>
 		<div class="member">
-			<div class="name">Jonathan Pourchet</div>
+			<div class="heading">Jonathan Pourchet</div>
 			<div class="role">Photographe, technicien</div>
 		</div>
 		<div class="member">
-			<div class="name">Julien Vanbelle</div>
+			<div class="heading">Julien Vanbelle</div>
 			<div class="role">Informaticien, Cadreur</div>
 		</div>
 	</div>
 </TwoCols>
 
 <style>
-	p {
-		font-size: 1rem;
-		line-height: 135%;
-		margin-bottom: 0.5rem;
-		max-width: 30rem;
-	}
-	img {
-		width: 100%;
-		height: auto;
-		border-radius: 0.25rem;
-	}
-	figure {
-		margin: 4rem 0;
-	}
-	figcaption {
-		margin-top: 0.25rem;
-		text-transform: uppercase;
-		font-size: var(--text-xs);
-		color: var(--black-40);
-	}
-	figure:last-child {
-		margin-bottom: 0;
-	}
-
 	.team {
-		margin-top: 3rem;
+		margin-top: 2rem;
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		row-gap: 3rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 2rem;
 	}
 	.member {
 		padding-right: 2rem;
 	}
-	.member .name {
-		text-transform: uppercase;
-		font-size: var(--text-small);
-		font-weight: 600;
-	}
 	.member .role {
 		font-size: var(--text-small);
-	}
-
-	@media screen and (max-width: 960px) {
-		.team {
-			margin-top: 2rem;
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
-
-	@media screen and (max-width: 480px) {
-		figure {
-			margin: 3rem 0;
-		}
-		.team {
-			margin-top: 2rem;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
 	}
 </style>

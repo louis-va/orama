@@ -1,34 +1,121 @@
+---
+import Arrow from "../common/Arrow.astro";
+---
+
 <section>
-  <h1>
-    Nous sommes <span class="orama" cursor-focus>Orama</span>, un studio de production audiovisuel bruxellois.
-    Nous créons des contenus commerciaux, documentaires et de fiction percutants, axés sur un storytelling de qualité.
-  </h1>
+	<h1>
+		<span class="content">
+			Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux,
+			documentaires et de fiction percutants, axés sur un storytelling de qualité.
+		</span>
+		<span class="typewriter" aria-hidden="true"> </span>
+	</h1>
+	<a href="/#projects" class="more" cursor-focus>
+		<span><Arrow variant="down" /></span>
+	</a>
 </section>
 
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const content = document.querySelector(".content") as HTMLElement;
+		const typewriter = document.querySelector(".typewriter") as HTMLElement;
+
+		const text = content.innerHTML;
+		typewriter.innerHTML = "";
+
+		const spans = Array.from(text).map((char) => {
+			const span = document.createElement("span");
+			span.textContent = char;
+			span.style.opacity = "0";
+			typewriter.appendChild(span);
+			return span;
+		});
+
+		let i = 0;
+
+		function type() {
+			spans[i].style.opacity = "1";
+			i++;
+			if (i < spans.length) {
+				setTimeout(type, 20);
+			}
+		}
+
+		type();
+	});
+</script>
+
 <style>
-  section {
-    padding-top: 25rem;
-    padding-bottom: 5rem;
-  }
-  h1 {
-    font-size: var(--text-xl);
-    font-weight: 400;
-    line-height: 125%;
-    max-width: 50rem;
-  }
-  .orama {
-    text-decoration: underline;
-  }
+	section {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 2rem;
+		height: 100dvh;
+		padding-bottom: 5rem;
+	}
+	h1 {
+		position: relative;
+		display: block;
+		font-size: var(--text-xl);
+		font-weight: 400;
+		line-height: 125%;
+		max-width: 50rem;
+	}
+	.content {
+		opacity: 0.15;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+	.typewriter {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.typewriter span {
+		opacity: 0;
+		transition: opacity 1s ease;
+	}
+	a.more {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 2.75rem;
+		height: 2.75rem;
+		padding: 0.25rem;
+	}
+	a.more span {
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+	.orama {
+		text-decoration: underline;
+	}
 
-  @media screen and (max-width: 1024px) {
-    section {
-      padding-top: 15rem;
-    }
-  }
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
+	}
 
-  @media screen and (max-width: 768px) {
-    h1 {
-      font-size: var(--text-large);
-    }
-  }
+	@media screen and (max-width: 1024px) {
+		section {
+			padding-top: 20rem;
+			padding-bottom: 4rem;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		section {
+			flex-direction: column;
+			align-items: end;
+			justify-content: end;
+			padding-bottom: 2rem;
+		}
+		h1 {
+			font-size: var(--text-large);
+		}
+	}
 </style>

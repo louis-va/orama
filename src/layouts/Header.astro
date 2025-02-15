@@ -13,7 +13,7 @@ import Arrow from "../components/common/Arrow.astro";
 			</div>
 			<button id="mobile-nav-btn" cursor-focus aria-hidden="true">Menu</button>
 			<ul>
-				<li><a href="/#projects" cursor-focus>Projets</a></li>
+				<li><a href="/#projects" cursor-focus>Réalisations</a></li>
 				<li><a href="/#services" cursor-focus>Services</a></li>
 				<li><a href="/#about" cursor-focus>À propos</a></li>
 				<li><a href="/#contact" cursor-focus>Contact</a></li>
@@ -23,7 +23,7 @@ import Arrow from "../components/common/Arrow.astro";
 		<div class="mobile-nav" aria-hidden="true">
 			<a href="/#projects" cursor-focus class="cols-3">
 				<div class="id">01</div>
-				<div class="name">Projets <span class="icon"><Arrow /></span></div>
+				<div class="name">Réalisations <span class="icon"><Arrow /></span></div>
 			</a>
 			<a href="/#services" cursor-focus class="cols-3">
 				<div class="id">02</div>
@@ -184,16 +184,6 @@ import Arrow from "../components/common/Arrow.astro";
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
 			transition: backdrop-filter 0.15s ease-in;
-		}
-	}
-
-	@media screen and (max-width: 480px) {
-		header {
-			mix-blend-mode: normal;
-			padding: 0.5rem;
-		}
-		.container {
-			padding: 0rem 0.75rem;
 		}
 	}
 </style>

@@ -1,21 +1,24 @@
 ---
 interface Props {
-  angle?: 'normal' | 'd-45'
+	variant?: "normal" | "up-right" | "down";
 }
 
-const { angle } = Astro.props;
+const { variant } = Astro.props;
 ---
 
-<svg class={angle} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-  <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" fill="currentColor"/>
+<svg class={variant} xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+	<path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" fill="currentColor"></path>
 </svg>
 
 <style>
-  svg {
-    width: 100%;
-    height: auto;
-  }
-  svg.d-45 {
-    transform: rotate(-45deg);
-  }
+	svg {
+		width: 100%;
+		height: auto;
+	}
+	svg.up-right {
+		transform: rotate(-45deg);
+	}
+	svg.down {
+		transform: rotate(90deg);
+	}
 </style>

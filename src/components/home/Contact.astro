@@ -1,42 +1,56 @@
 ---
-import TwoCols from '../../layouts/TwoCols.astro';
-import Arrow from '../common/Arrow.astro';
+import TwoCols from "../../layouts/TwoCols.astro";
+import Arrow from "../common/Arrow.astro";
 ---
 
-<TwoCols title='Contact' id='contact' num="04">
-  <p>
-    Des idées à mettre en image, une histoire à raconter au son ou des moments à immortaliser en photo ?
-  </p>
-  <p>
-    Prenez contact avec nous dès aujourd'hui, rencontrez l'équipe et voyons si nous sommes en adéquation avec ce que vous voulez faire et où vous voulez aller.
-  </p>
-  <a href="mailto:info@oramaprod.be" class="contact-btn" cursor-focus>
-    <span class="icon">
-      <Arrow />
-    </span>
-    info@oramaprod.be
-  </a>
+<TwoCols title="Contact" id="contact" num="04">
+	<p class="paragraph">
+		Des idées à mettre en image, une histoire à raconter au son ou des moments à immortaliser en photo ?
+	</p>
+	<p class="paragraph">
+		Prenez contact avec nous dès aujourd'hui, rencontrez l'équipe et voyons si nous sommes en adéquation avec ce que
+		vous voulez faire et où vous voulez aller.
+	</p>
+
+	<div class="links">
+		<div>
+			<h3 class="heading">Réseaux</h3>
+			<a href="https://www.instagram.com/orama_prod/" target="_blank" cursor-focus
+				><span class="icon"><Arrow variant="up-right" /></span> Instagram</a
+			>
+			<br />
+			<a href="https://www.facebook.com/profile.php?id=100090062064406" target="_blank" cursor-focus
+				><span class="icon"><Arrow variant="up-right" /></span> Facebook</a
+			>
+			<br />
+			<a href="https://www.linkedin.com/company/orama-production/" target="_blank" cursor-focus
+				><span class="icon"><Arrow variant="up-right" /></span> Linkedin</a
+			>
+		</div>
+		<div>
+			<h3 class="heading">Email</h3>
+			<a href="mailto:info@oramaprod.be" target="_blank" cursor-focus
+				><span class="icon"><Arrow /></span> info@oramaprod.be</a
+			>
+		</div>
+	</div>
 </TwoCols>
 
 <style>
-  p {
-    font-size: 1rem;
-    line-height: 135%;
-    margin-bottom: .5rem;
-    max-width: 30rem;
-  }
-  .contact-btn {
-    display: inline-flex;
-    font-size: var(--text-base);
-    text-transform: uppercase;
-    align-items: center;
-    font-weight: 600;
-    line-height: 100%;
-    margin-top: 1rem;
-    gap: .25rem;
-  }
-  .contact-btn .icon {
-    width: .75rem;
-    height: auto;
-  }
+	.links {
+		margin-top: 2rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.links .icon {
+		display: inline-block;
+		width: 0.75rem;
+		height: auto;
+	}
+	@media screen and (max-width: 480) {
+		.links {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+			gap: 2rem;
+		}
+	}
 </style>
