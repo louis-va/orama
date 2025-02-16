@@ -19,8 +19,8 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		<a class="layout" href=`/projects/${slug}` data-cursor="icon" data-icon="eye">
 			<div class="bottom">
 				<div class="image">
-					<Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail" />
-					<Image src={preview} alt={`Aperçu vidéo de notre projet ${title}.`} class="preview" />
+					<Image src={thumbnail} alt={`Projet ${title}.`} class="thumbnail" />
+					<Image src={preview} alt={`Aperçu ${title}.`} class="preview" />
 				</div>
 				<div class="infos">
 					<div class="id">{id}</div>
