@@ -1,6 +1,9 @@
 <div class="cursor-overlay">
 	<div id="cursor" class="cursor">
 		<svg
+			id="square"
+			class="icon"
+			style="display: block"
 			preserveAspectRatio="none"
 			width="10"
 			height="10"
@@ -9,40 +12,84 @@
 			xmlns="http://www.w3.org/2000/svg">
 			<path d="M0 0H10V10H0V0Z" fill="currentColor"></path>
 		</svg>
+		<svg
+			id="eye"
+			class="icon"
+			style="display: none"
+			preserveAspectRatio="none"
+			width="10"
+			height="10"
+			viewBox="0 0 10 10"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<path
+				fill-rule="evenodd"
+				clip-rule="evenodd"
+				d="M5 3.57143C4.11426 3.57143 3.19466 4.02197 2.141 5C3.19466 5.97803 4.11426 6.42857 5 6.42857C5.88574 6.42857 6.80534 5.97803 7.859 5C6.80534 4.02197 5.88574 3.57143 5 3.57143ZM5.8356 4.94805C5.8356 5.42144 5.46149 5.8052 5 5.8052C4.53851 5.8052 4.1644 5.42144 4.1644 4.94805C4.1644 4.47466 4.53851 4.09091 5 4.09091C5.46149 4.09091 5.8356 4.47466 5.8356 4.94805Z"
+				fill="currentColor"></path>
+			<path
+				fill-rule="evenodd"
+				clip-rule="evenodd"
+				d="M10 0H0V10H10V0ZM8.66667 5C7.39973 6.29644 6.22144 7 5 7C3.77856 7 2.60027 6.29644 1.33333 5C2.60027 3.70356 3.77856 3 5 3C6.22144 3 7.39973 3.70356 8.66667 5Z"
+				fill="currentColor"></path>
+		</svg>
 	</div>
 </div>
 
 <script>
 	import debounce from "lodash.debounce";
 
-	const CURSOR = document.getElementById("cursor")!;
+	const CURSOR = document.getElementById("cursor") as HTMLElement;
+	const ICONS = CURSOR.getElementsByClassName("icon") as HTMLCollectionOf<HTMLElement>;
 
 	let cursor = {
 		size: { w: 8, h: 8 },
 		position: { x: 0, y: 0 },
+		opacity: 0,
 	};
 	let mouseRef = { x: 0, y: 0 };
 
 	const updateCursorPosition = (x: number, y: number) => {
 		const hoveredElement = document.elementFromPoint(x, y);
 
-		if (hoveredElement && hoveredElement.hasAttribute("cursor-focus")) {
-			const targetElement = hoveredElement.querySelector("[cursor-target]");
+		if (hoveredElement && hoveredElement.getAttribute("data-cursor") === "focus") {
+			const targetElement = hoveredElement.querySelector('[data-cursor="target"]');
 			const target = targetElement ? targetElement : hoveredElement;
 			const info = target.getBoundingClientRect();
-
+			setIcon("square");
 			cursor = {
 				size: { w: info.width, h: info.height },
 				position: { x: info.x + info.width / 2 - 5, y: info.y + info.height / 2 - 5 },
+				opacity: 1,
+			};
+		} else if (hoveredElement && hoveredElement.getAttribute("data-cursor") === "icon") {
+			setIcon(hoveredElement.getAttribute("data-icon") ?? "square");
+			cursor = {
+				size: { w: 30, h: 30 },
+				position: { x: x - 7, y: y - 7 },
+				opacity: 1,
 			};
 		} else {
+			setIcon("square");
 			cursor = {
 				size: { w: 8, h: 8 },
-				position: { x: x - 5, y: y - 5 },
+				position: { x: x - 7, y: y - 7 },
+				opacity: 1,
 			};
 		}
 
 		CURSOR.style.transform = `translate(${cursor.position.x}px, ${cursor.position.y}px) scale(${cursor.size.w / 10}, ${cursor.size.h / 10})`;
+		CURSOR.style.opacity = `${cursor.opacity}`;
+	};
+
+	const setIcon = (i: string) => {
+		for (let icon of ICONS) {
+			if (icon.id === i) {
+				icon.style.display = "block";
+			} else {
+				icon.style.display = "none";
+			}
+		}
 	};
 
 	const handleMouseMove = debounce((event: any) => {
@@ -76,13 +123,13 @@
 	}
 	.cursor {
 		position: absolute;
-		transition-property: all;
-		transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-		transition-duration: 150ms;
+		transition:
+			transform cubic-bezier(0, 0, 0.2, 1) 150ms,
+			opacity linear 300ms 300ms;
 		pointer-events: none;
-		background-color: rgba(255, 255, 255, 0);
+		background-color: rgba(0, 0, 0, 0);
 		filter: invert(1);
-
+		opacity: 0;
 		will-change: transform; /* trigger hardware acceleration */
 	}
 	.cursor svg {

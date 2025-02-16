@@ -14,9 +14,9 @@ interface Props {
 const { slug, title, type, thumbnail, preview, id } = Astro.props;
 ---
 
-<a class="card" href=`/projects/${slug}` cursor-focus>
+<div class="card">
 	<div class="wrapper">
-		<div class="layout">
+		<a class="layout" href=`/projects/${slug}` data-cursor="icon" data-icon="eye">
 			<div class="bottom">
 				<div class="image">
 					<Image src={thumbnail} alt={`Image vignette de notre projet ${title}.`} class="thumbnail" />
@@ -29,13 +29,13 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 			</div>
 			<div class="top">
 				<div class="title">{title}</div>
-				<div class="icon" cursor-target>
+				<div class="icon">
 					<svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"></path>
 					</svg>
 				</div>
 			</div>
-		</div>
+		</a>
 	</div>
 	<div class="corners">
 		<div class="corner top-left"></div>
@@ -43,10 +43,10 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		<div class="corner bottom-left"></div>
 		<div class="corner bottom-right"></div>
 	</div>
-</a>
+</div>
 
 <style>
-	a.card {
+	.card {
 		display: block;
 		position: relative;
 		width: 100%;
@@ -145,7 +145,7 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		pointer-events: none;
 	}
 
-	.card:hover .layout .bottom .image .preview {
+	.layout:hover .bottom .image .preview {
 		opacity: 1;
 	}
 
@@ -189,19 +189,19 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		right: 0;
 	}
 
-	.card:hover .corner.top-left {
+	.card:has(.layout:hover) .corners .corner.top-left {
 		top: 0.25rem;
 		left: 0.25rem;
 	}
-	.card:hover .corner.top-right {
+	.card:has(.layout:hover) .corners .corner.top-right {
 		top: 0.25rem;
 		right: 0.25rem;
 	}
-	.card:hover .corner.bottom-left {
+	.card:has(.layout:hover) .corners .corner.bottom-left {
 		bottom: 0.25rem;
 		left: 0.25rem;
 	}
-	.card:hover .corner.bottom-right {
+	.card:has(.layout:hover) .corners .corner.bottom-right {
 		bottom: 0.25rem;
 		right: 0.25rem;
 	}
