@@ -37,7 +37,8 @@ import Container from "./Container.astro";
 	.line {
 		width: 1px;
 		height: 100%;
-		background: var(--black-4);
+		background: var(--background-lines);
+		transition: all ease-in-out 0.75s;
 	}
 
 	@media screen and (max-width: 960px) {
@@ -49,8 +50,5 @@ import Container from "./Container.astro";
 		.line-13 {
 			display: none;
 		}
-	}
-
-	@media screen and (max-width: 480px) {
 	}
 </style>

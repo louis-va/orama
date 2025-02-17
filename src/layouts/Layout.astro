@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import Container from "./Container.astro";
 import Header from "./Header.astro";
 import Background from "./Background.astro";
@@ -8,13 +9,32 @@ import Footer from "./Footer.astro";
 interface Props {
 	title: string;
 	description: string;
+	theme: "light" | "dark";
 }
 
-const { title, description } = Astro.props;
+const { title, description, theme } = Astro.props;
+
+const fade = {
+	old: {
+		name: "fade-out",
+		duration: "0.5s",
+		easing: "ease-in-out",
+	},
+	new: {
+		name: "slide-in",
+		duration: "1s",
+		easing: "ease-in-out",
+	},
+};
+
+const fadeTransition = {
+	forwards: fade,
+	backwards: fade,
+};
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="light" transition:name="root" transition:animate="none" transition:persist>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -22,19 +42,38 @@ const { title, description } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ClientRouter />
 	</head>
 	<body>
 		<Cursor />
 		<Background />
 		<Header />
 		<Container>
-			<main>
+			<main transition:animate={fadeTransition}>
 				<slot />
+				<Footer />
 			</main>
-			<Footer />
 		</Container>
 	</body>
 </html>
+
+<script define:vars={{ theme }}>
+	function setTheme() {
+		const root = document.getElementsByTagName("html")[0];
+		root.className = theme;
+	}
+
+	document.addEventListener("astro:after-swap", () => {
+		setTheme();
+	});
+
+	// check if touch device
+	if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+		document.body.classList.add("touch-device");
+	}
+
+	setTheme();
+</script>
 
 <style is:global>
 	/* GLOBAL */
@@ -53,18 +92,18 @@ const { title, description } = Astro.props;
 		font-display: swap;
 	}
 
+	/* VARIABLES */
 	:root {
-		--white: rgb(255, 255, 255);
+		--white: rgb(241, 238, 233);
+		--white-4: rgba(241, 238, 233, 0.04);
 
-		--light-gray: rgb(248, 246, 246);
-		--dark-gray-90: rgba(224, 222, 222, 0.9);
-
-		--black: rgb(7, 9, 12);
-		--black-60: rgba(7, 9, 9, 0.6);
-		--black-40: rgba(7, 9, 9, 0.4);
-		--black-7: rgba(7, 9, 9, 0.075);
-		--black-4: rgba(7, 9, 9, 0.04);
-		--black-0: rgba(7, 9, 9, 0);
+		--black: rgb(14, 17, 22);
+		--black-60: rgba(14, 17, 22, 0.6);
+		--black-40: rgba(14, 17, 22, 0.4);
+		--black-20: rgba(14, 17, 22, 0.2);
+		--black-7: rgba(14, 17, 22, 0.075);
+		--black-4: rgba(14, 17, 22, 0.04);
+		--black-0: rgba(14, 17, 22, 0);
 
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
@@ -73,34 +112,37 @@ const { title, description } = Astro.props;
 		--text-large: 1.5rem;
 		--text-xl: 1.75rem;
 		--text-2xl: 2.25rem;
-		--card-w: 300px;
 	}
 
-	@media screen and (max-width: 768px) {
-		:root {
-			--card-w: 250px;
-		}
-		.mobile-hidden {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 480px) {
-		:root {
-			--card-w: 200px;
-		}
-	}
-
-	html {
+	/* GENERAL */
+	html.light {
 		font-family: "Basically A Mono", monospace;
-		background: var(--light-gray);
 		color: var(--black);
-		font-size: var(--text-base);
 		scroll-behavior: smooth;
+		--background-color: var(--white);
+		--background-lines: var(--black-4);
 	}
-	::selection {
+	html.light ::selection {
 		background-color: var(--black);
 		color: var(--white);
+	}
+	html.dark {
+		font-family: "Basically A Mono", monospace;
+		color: var(--white);
+		scroll-behavior: smooth;
+		--background-color: var(--black);
+		--background-lines: var(--white-4);
+	}
+	html.dark ::selection {
+		background-color: var(--white);
+		color: var(--black);
+	}
+	html {
+		background: var(--background-color);
+		transition: all linear 0.5s;
+	}
+	main {
+		animation: slide-in 1s ease-in-out;
 	}
 
 	/* TEXT */
@@ -116,6 +158,38 @@ const { title, description } = Astro.props;
 		margin-bottom: 0.25rem;
 	}
 
+	/* ANIMATIONS */
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	@keyframes fade-out {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+	@keyframes slide-in {
+		0% {
+			opacity: 0;
+			transform: translateY(2rem);
+		}
+		50% {
+			opacity: 0;
+			transform: translateY(2rem);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0rem);
+		}
+	}
+
 	/* RESET */
 	*,
 	*::before,
@@ -125,8 +199,7 @@ const { title, description } = Astro.props;
 	* {
 		margin: 0;
 	}
-	html,
-	body {
+	html {
 		height: 100%;
 	}
 	body {
@@ -180,10 +253,3 @@ const { title, description } = Astro.props;
 		pointer-events: none;
 	}
 </style>
-
-<script>
-	// check if touch device
-	if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-		document.body.classList.add("touch-device");
-	}
-</script>

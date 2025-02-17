@@ -8,7 +8,10 @@ import Arrow from "../common/Arrow.astro";
 			Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux,
 			documentaires et de fiction percutants, axés sur un storytelling de qualité.
 		</span>
-		<span class="typewriter" aria-hidden="true"> </span>
+		<span class="typewriter" aria-hidden="true">
+			Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux,
+			documentaires et de fiction percutants, axés sur un storytelling de qualité.
+		</span>
 	</h1>
 	<a href="/#projects" aria-label="Scroll down" class="more" data-cursor="focus">
 		<span><Arrow variant="down" /></span>
@@ -16,33 +19,33 @@ import Arrow from "../common/Arrow.astro";
 </section>
 
 <script>
-	document.addEventListener("DOMContentLoaded", () => {
-		const content = document.querySelector(".content") as HTMLElement;
-		const typewriter = document.querySelector(".typewriter") as HTMLElement;
+	const content = document.querySelector(".content") as HTMLElement;
+	const typewriter = document.querySelector(".typewriter") as HTMLElement;
 
-		const text = content.innerHTML;
-		typewriter.innerHTML = "";
+	const text = content.innerHTML;
+	typewriter.innerHTML = "";
 
-		const spans = Array.from(text).map((char) => {
-			const span = document.createElement("span");
-			span.textContent = char;
-			span.style.opacity = "0";
-			typewriter.appendChild(span);
-			return span;
-		});
-
-		let i = 0;
-
-		function type() {
-			spans[i].style.opacity = "1";
-			i++;
-			if (i < spans.length) {
-				setTimeout(type, 20);
-			}
-		}
-
-		type();
+	const spans = Array.from(text).map((char) => {
+		const span = document.createElement("span");
+		span.textContent = char;
+		span.style.opacity = "0";
+		typewriter.appendChild(span);
+		return span;
 	});
+
+	let i = 0;
+
+	function type() {
+		spans[i].style.opacity = "1";
+		i++;
+		if (i < spans.length) {
+			setTimeout(type, 20);
+		}
+	}
+
+	setTimeout(() => {
+		type();
+	}, 1000);
 </script>
 
 <style>
@@ -51,7 +54,7 @@ import Arrow from "../common/Arrow.astro";
 		align-items: end;
 		justify-content: space-between;
 		gap: 2rem;
-		height: 100dvh;
+		height: calc(100dvh - 4rem);
 		padding-bottom: 5rem;
 	}
 	h1 {
@@ -113,6 +116,7 @@ import Arrow from "../common/Arrow.astro";
 			align-items: end;
 			justify-content: end;
 			padding-bottom: 2rem;
+			height: calc(100dvh - 3rem);
 		}
 		h1 {
 			font-size: var(--text-large);

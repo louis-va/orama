@@ -1,4 +1,4 @@
-<div class="cursor-overlay">
+<div class="cursor-overlay" transition:persist>
 	<div id="cursor" class="cursor">
 		<svg
 			id="square"
@@ -104,10 +104,29 @@
 		updateCursorPosition(x, y);
 	}, 12);
 
+	const handleMouseDown = () => {
+		CURSOR.classList.add("active");
+		setTimeout(() => {
+			const { x, y } = mouseRef;
+			updateCursorPosition(x, y);
+		}, 1);
+	};
+
+	const handleMouseUp = () => {
+		CURSOR.classList.remove("active");
+		const { x, y } = mouseRef;
+		setTimeout(() => {
+			const { x, y } = mouseRef;
+			updateCursorPosition(x, y);
+		}, 1);
+	};
+
 	// if not on a touch device
 	if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
 		document.addEventListener("mousemove", handleMouseMove);
 		window.addEventListener("scroll", handleScroll);
+		document.addEventListener("mousedown", handleMouseDown);
+		document.addEventListener("mouseup", handleMouseUp);
 	}
 </script>
 
@@ -125,9 +144,10 @@
 		position: absolute;
 		transition:
 			transform cubic-bezier(0, 0, 0.2, 1) 150ms,
-			opacity linear 150ms 150ms;
+			opacity ease-in-out 150ms 150ms;
 		pointer-events: none;
 		background-color: rgba(0, 0, 0, 0);
+		color: rgb(0, 0, 0);
 		filter: invert(1);
 		opacity: 0;
 		will-change: transform; /* trigger hardware acceleration */
@@ -135,6 +155,12 @@
 	.cursor .icon {
 		width: 100%;
 		height: 100%;
+		transform: scale(1);
+		will-change: transform;
+		transition: transform ease-in-out 150ms;
+	}
+	.cursor.active .icon {
+		transform: scale(1.1);
 	}
 </style>
 
