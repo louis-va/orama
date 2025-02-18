@@ -10,7 +10,7 @@ video: [
   {
     title: "Clip vidéo de Cœur",
     platform: "youtube",
-    url: "https://www.youtube.com/embed/GSPf9yhKO6I?si=Qwm0w-qimc4bRceb"
+    url: "https://www.youtube.com/watch?v=ABQdRa509d4"
   }
 ]
 thumbnail: "./thumbnail.jpg"

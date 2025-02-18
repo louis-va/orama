@@ -22,7 +22,7 @@ const fade = {
 	},
 	new: {
 		name: "slide-in",
-		duration: "1s",
+		duration: "1.5s",
 		easing: "ease-in-out",
 	},
 };
@@ -94,10 +94,10 @@ const fadeTransition = {
 
 	/* VARIABLES */
 	:root {
-		--white: rgb(241, 238, 233);
-		--white-4: rgba(241, 238, 233, 0.04);
+		--white: rgb(230, 230, 230);
+		--white-2: rgba(240, 240, 240, 0.025);
 
-		--black: rgb(14, 17, 22);
+		--black: rgb(25, 25, 25);
 		--black-60: rgba(14, 17, 22, 0.6);
 		--black-40: rgba(14, 17, 22, 0.4);
 		--black-20: rgba(14, 17, 22, 0.2);
@@ -116,9 +116,7 @@ const fadeTransition = {
 
 	/* GENERAL */
 	html.light {
-		font-family: "Basically A Mono", monospace;
 		color: var(--black);
-		scroll-behavior: smooth;
 		--background-color: var(--white);
 		--background-lines: var(--black-4);
 	}
@@ -127,19 +125,19 @@ const fadeTransition = {
 		color: var(--white);
 	}
 	html.dark {
-		font-family: "Basically A Mono", monospace;
 		color: var(--white);
-		scroll-behavior: smooth;
 		--background-color: var(--black);
-		--background-lines: var(--white-4);
+		--background-lines: var(--white-2);
 	}
 	html.dark ::selection {
 		background-color: var(--white);
 		color: var(--black);
 	}
 	html {
+		font-family: "Basically A Mono", monospace;
 		background: var(--background-color);
-		transition: all linear 0.5s;
+		transition: all ease-in-out 1s;
+		scroll-behavior: smooth;
 	}
 	main {
 		animation: slide-in 1s ease-in-out;
@@ -180,7 +178,7 @@ const fadeTransition = {
 			opacity: 0;
 			transform: translateY(2rem);
 		}
-		50% {
+		66% {
 			opacity: 0;
 			transform: translateY(2rem);
 		}
