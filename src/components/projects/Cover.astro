@@ -1,25 +1,36 @@
 ---
 import { Picture } from "astro:assets";
+import VideoPlayer from "./VideoPlayer.astro";
 
 interface Props {
 	title: string;
-	overview: string;
-	type: string;
 	id: string;
 	cover: ImageMetadata;
+	videoType?: "video/mp4" | "youtube" | "vimeo";
+	videoSrc?: string;
 }
 
-const { title, overview, cover, type, id } = Astro.props;
+const { title, id, cover, videoType, videoSrc } = Astro.props;
 ---
 
 <section>
-	<Picture src={cover} formats={["jpg", "webp"]} alt={title} class="img" />
+	{
+		() => {
+			if (videoType && videoSrc) {
+				return <VideoPlayer type={videoType} src={videoSrc} title={title} poster={cover.src} />;
+			} else {
+				<Picture src={cover} formats={["jpg", "webp"]} alt={title} class="img" />;
+			}
+		}
+	}
 </section>
 
 <style>
+	section {
+		margin-top: 10rem;
+	}
 	img {
 		width: 100%;
 		height: auto;
-		padding-top: 10rem;
 	}
 </style>

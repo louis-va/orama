@@ -6,13 +6,10 @@ type: "Théatre"
 year: 2023
 client: "Collectif Libertalia"
 services: ["Captation", "trailer"]
-video: [
-  {
-    title: "Captation de la pièce de théatre",
-    platform: "youtube",
-    url: "https://www.youtube.com/embed/GSPf9yhKO6I?si=Qwm0w-qimc4bRceb"
-  }
-]
+video: {
+  type: "video/mp4",
+  src: "/videos/video.mp4"
+}
 thumbnail: "./thumbnail.jpg"
 preview: "./preview.gif"
 cover: "./cover.jpg"

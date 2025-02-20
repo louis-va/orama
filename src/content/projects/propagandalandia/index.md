@@ -6,13 +6,10 @@ type: "Clip"
 year: 2023
 client: "JADE & NAÏA"
 services: ["Clip musical", "Étalonage"]
-video: [
-  {
-    title: "Clip vidéo de Cœur",
-    platform: "youtube",
-    url: "https://www.youtube.com/embed/GSPf9yhKO6I?si=Qwm0w-qimc4bRceb"
-  }
-]
+video: {
+  type: "youtube",
+  src: "https://www.youtube.com/embed/ABQdRa509d4"
+}
 thumbnail: "./thumbnail.jpg"
 preview: "./preview.gif"
 cover: "./cover.jpg"

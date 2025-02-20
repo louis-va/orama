@@ -10,11 +10,10 @@ const projectCollection = defineCollection({
     year: z.number(),
     client: z.string(),
     services: z.array(z.string()),
-    video: z.array(z.object({
-      title: z.string(),
-      platform: z.string(),
-      url: z.string()
-    })).optional(),
+    video: z.object({
+      type: z.enum(["video/mp4", "youtube", "vimeo"]),
+      src: z.string()
+    }).optional(),
     thumbnail: image(),
     preview: image(),
     cover: image()

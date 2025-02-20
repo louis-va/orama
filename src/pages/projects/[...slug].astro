@@ -23,12 +23,12 @@ export async function getStaticPaths() {
 const { entry, prev, next } = Astro.props;
 ---
 
-<Layout title="Project" description="Project Description" theme="dark">
+<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.overview} theme="dark">
 	<Cover
 		title={entry.data.title}
-		overview={entry.data.overview}
-		type={entry.data.type}
 		id={entry.data.id > 9 ? "" + entry.data.id : "0" + entry.data.id}
 		cover={entry.data.cover}
+		videoType={entry.data.video?.type}
+		videoSrc={entry.data.video?.src}
 	/>
 </Layout>

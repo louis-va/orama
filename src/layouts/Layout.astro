@@ -34,7 +34,7 @@ const fadeTransition = {
 ---
 
 <!doctype html>
-<html lang="fr" class="light" transition:name="root" transition:animate="none" transition:persist>
+<html lang="fr" class={theme} transition:name="root" transition:animate="none" transition:persist>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -140,7 +140,7 @@ const fadeTransition = {
 		scroll-behavior: smooth;
 	}
 	main {
-		animation: slide-in 1s ease-in-out;
+		animation: slide-in 1.5s ease-in-out;
 	}
 
 	/* TEXT */
