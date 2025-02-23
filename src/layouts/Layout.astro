@@ -78,16 +78,9 @@ const fadeTransition = {
 <style is:global>
 	/* GLOBAL */
 	@font-face {
-		font-family: "Basically A Mono";
-		src: url("/fonts/BasicallyAMono-Regular.woff2") format("woff2");
-		font-weight: 400;
-		font-style: normal;
-		font-display: swap;
-	}
-	@font-face {
-		font-family: "Basically A Mono";
-		src: url("/fonts/BasicallyAMono-SemiBold.woff2") format("woff2");
-		font-weight: 600;
+		font-family: "Geist Mono";
+		src: url("/fonts/GeistMono.ttf") format("truetype");
+		font-weight: 100 900;
 		font-style: normal;
 		font-display: swap;
 	}
@@ -95,23 +88,24 @@ const fadeTransition = {
 	/* VARIABLES */
 	:root {
 		--white: rgb(230, 230, 230);
-		--white-2: rgba(240, 240, 240, 0.025);
+		--white-60: rgba(230, 230, 230, 0.6);
+		--white-2: rgba(230, 230, 230, 0.025);
 
 		--black: rgb(25, 25, 25);
-		--black-60: rgba(14, 17, 22, 0.6);
-		--black-40: rgba(14, 17, 22, 0.4);
-		--black-20: rgba(14, 17, 22, 0.2);
-		--black-7: rgba(14, 17, 22, 0.075);
-		--black-4: rgba(14, 17, 22, 0.04);
-		--black-0: rgba(14, 17, 22, 0);
+		--black-60: rgba(25, 25, 25, 0.6);
+		--black-40: rgba(25, 25, 25, 0.4);
+		--black-20: rgba(25, 25, 25, 0.2);
+		--black-10: rgba(25, 25, 25, 0.1);
+		--black-4: rgba(25, 25, 25, 0.04);
+		--black-0: rgba(25, 25, 25, 0);
 
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
 		--text-base: 1rem;
-		--text-medium: 1.125rem;
-		--text-large: 1.5rem;
-		--text-xl: 1.75rem;
-		--text-2xl: 2.25rem;
+		--text-medium: 1.25rem;
+		--text-large: 1.75rem;
+		--text-xl: 2rem;
+		--text-2xl: 2.75rem;
 	}
 
 	/* GENERAL */
@@ -134,7 +128,7 @@ const fadeTransition = {
 		color: var(--black);
 	}
 	html {
-		font-family: "Basically A Mono", monospace;
+		font-family: "Geist Mono", monospace;
 		background: var(--background-color);
 		transition: all ease-in-out 1s;
 		scroll-behavior: smooth;

@@ -1,0 +1,44 @@
+---
+import { Picture } from "astro:assets";
+import VideoPlayer from "./VideoPlayer.astro";
+
+interface Props {
+	title: string;
+	cover: ImageMetadata;
+	videoType?: "video/mp4" | "youtube" | "vimeo";
+	videoSrc?: string;
+}
+
+const { title, cover, videoType, videoSrc } = Astro.props;
+---
+
+<section>
+	<h1>{title}</h1>
+	<figure>
+		{
+			videoType && videoSrc ? (
+				<VideoPlayer type={videoType} src={videoSrc} title={title} poster={cover.src} />
+			) : (
+				<Picture src={cover} formats={["jpg", "webp"]} alt={title} class="img" />
+			)
+		}
+	</figure>
+</section>
+
+<style>
+	section {
+		margin-top: 10rem;
+	}
+	h1 {
+		font-size: var(--text-2xl);
+		font-weight: 600;
+		line-height: 125%;
+	}
+	figure {
+		margin-top: 2rem;
+	}
+	figure img {
+		width: 100%;
+		height: auto;
+	}
+</style>

@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Cover from "../../components/projects/Cover.astro";
+import Cover from "../../components/project/Cover.astro";
 
 import { getAdjacentElements } from "../../utils/array.utils";
 
@@ -21,14 +21,13 @@ export async function getStaticPaths() {
 }
 
 const { entry, prev, next } = Astro.props;
+
+// Get project's video src
+const videoFiles: any = import.meta.glob("/src/content/projects/*/*.mp4", { eager: true });
+const videoFile: string = videoFiles[`/src/content/projects/${entry.slug}/${entry.data.video?.src}`]?.default;
+const videoSource = videoFile && entry.data.video?.type === "video/mp4" ? videoFile : (entry.data.video?.src as string);
 ---
 
 <Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.overview} theme="dark">
-	<Cover
-		title={entry.data.title}
-		id={entry.data.id > 9 ? "" + entry.data.id : "0" + entry.data.id}
-		cover={entry.data.cover}
-		videoType={entry.data.video?.type}
-		videoSrc={entry.data.video?.src}
-	/>
+	<Cover title={entry.data.title} cover={entry.data.cover} videoType={entry.data.video?.type} videoSrc={videoSource} />
 </Layout>

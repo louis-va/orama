@@ -1,6 +1,6 @@
 ---
 title: "Cléone"
-id: 2
+order: 2
 overview: "Cléone est un poème théâtralisé qui mélange mouvement, danse et théâtre."
 type: "Théatre"
 year: 2023
@@ -8,7 +8,7 @@ client: "Collectif Libertalia"
 services: ["Captation", "trailer"]
 video: {
   type: "video/mp4",
-  src: "/videos/video.mp4"
+  src: "video.mp4"
 }
 thumbnail: "./thumbnail.jpg"
 preview: "./preview.gif"

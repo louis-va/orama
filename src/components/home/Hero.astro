@@ -19,10 +19,9 @@ import Arrow from "../common/Arrow.astro";
 </section>
 
 <script>
-	const content = document.querySelector(".content") as HTMLElement;
 	const typewriter = document.querySelector(".typewriter") as HTMLElement;
 
-	const text = content.innerHTML;
+	const text = typewriter.innerHTML;
 	typewriter.innerHTML = "";
 
 	const spans = Array.from(text).map((char) => {
@@ -63,7 +62,7 @@ import Arrow from "../common/Arrow.astro";
 		font-size: var(--text-xl);
 		font-weight: 400;
 		line-height: 125%;
-		max-width: 50rem;
+		max-width: 55rem;
 	}
 	.content {
 		opacity: 0.15;

@@ -8,7 +8,7 @@ import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
 projects.sort((a, b) => {
-	return a.data.id - b.data.id;
+	return a.data.order - b.data.order;
 });
 ---
 
@@ -18,16 +18,17 @@ projects.sort((a, b) => {
 
 	<div class="project-grid">
 		{
-			projects.map((project) => {
+			projects.map((project, index) => {
 				return (
 					<div class="project-cell">
 						<ProjectCard
 							slug={project.slug}
+							id={index + 1}
 							title={project.data.title}
 							type={project.data.type}
 							thumbnail={project.data.thumbnail}
 							preview={project.data.preview}
-							id={project.data.id > 9 ? "" + project.data.id : "0" + project.data.id}
+							year={project.data.year}
 						/>
 					</div>
 				);
@@ -60,7 +61,7 @@ projects.sort((a, b) => {
 			padding-top: 5rem;
 		}
 		.project-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
 	}
 </style>

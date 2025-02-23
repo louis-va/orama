@@ -4,35 +4,52 @@ import { Image } from "astro:assets";
 
 interface Props {
 	slug: string;
+	id: number;
 	title: string;
 	type: string;
+	year: number;
 	thumbnail: ImageMetadata;
 	preview: ImageMetadata;
-	id: string;
 }
 
-const { slug, title, type, thumbnail, preview, id } = Astro.props;
+const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 ---
 
-<div class="card">
+<div class="container">
 	<div class="wrapper">
-		<a class="layout" href=`/projects/${slug}` data-cursor="icon" data-icon="eye">
-			<div class="bottom">
+		<a class="card" href=`/projects/${slug}` data-cursor="icon" data-icon="eye">
+			<div class="top">
 				<div class="image">
 					<Image src={thumbnail} alt={`Projet ${title}.`} class="thumbnail" />
 					<Image src={preview} alt={`Aperçu ${title}.`} class="preview" />
 				</div>
-				<div class="infos">
-					<div class="id">{id}</div>
-					<div class="type">{type}</div>
+				<div class="side">
+					<div class="text">
+						<span>{type}</span>
+						<span>{year}</span>
+					</div>
 				</div>
 			</div>
-			<div class="top">
-				<div class="title">{title}</div>
-				<div class="icon">
-					<svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M8 5.00005L0.5 9.33018L0.5 0.669922L8 5.00005Z" fill="currentColor"></path>
-					</svg>
+			<div class="bottom">
+				<div class="title">
+					<span>{title}</span>
+					<span class="id">
+						<svg
+							data-testid="geist-icon"
+							height="16"
+							stroke-linejoin="round"
+							viewBox="0 0 16 16"
+							width="16"
+							style="color: currentcolor;">
+							<path
+								fill-rule="evenodd"
+								clip-rule="evenodd"
+								d="M14.5528 7.77638C14.737 7.86851 14.737 8.13147 14.5528 8.2236L1.3618 14.8191C1.19558 14.9022 1 14.7813 1 14.5955L1 1.4045C1 1.21865 1.19558 1.09778 1.3618 1.18089L14.5528 7.77638Z"
+								fill="currentColor">
+							</path>
+						</svg>
+						{id}
+					</span>
 				</div>
 			</div>
 		</a>
@@ -46,93 +63,34 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 </div>
 
 <style>
-	.card {
+	.container {
 		display: block;
 		position: relative;
 		width: 100%;
 	}
-	.card .wrapper {
+	.wrapper {
 		padding: 1.5rem;
 	}
 
-	.layout {
+	.card {
+		position: relative;
+		font-size: var(--text-xs);
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+	.card .top {
+		display: flex;
+		pointer-events: none;
+	}
+	.card .top .image {
 		position: relative;
 	}
-
-	.layout .top {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		height: 20px;
-		pointer-events: none;
-	}
-	.layout .top .title {
-		background-color: var(--black-7);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		mix-blend-mode: normal;
-		color: var(--black-60);
-		text-transform: uppercase;
-		font-size: var(--text-small);
-		padding: 0 0.3rem;
-		width: 100%;
-		flex: 1;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-width: 100%;
-	}
-	.layout .top .icon {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 20px;
-		height: 20px;
-		z-index: 10;
-		pointer-events: none;
-		color: var(--black-60);
-	}
-	.layout .top .icon svg {
-		width: 40%;
-		height: auto;
-	}
-
-	.layout .bottom {
-		display: flex;
-		pointer-events: none;
-	}
-	.layout .bottom .infos {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		width: 20px;
-		background-color: var(--black-7);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		color: var(--black-60);
-		mix-blend-mode: normal;
-		text-transform: uppercase;
-		font-size: var(--text-small);
-		padding: 0.3rem 0;
-	}
-	.layout .bottom .infos .id {
-		transform: rotate(-90deg);
-		text-align: right;
-		width: 20px;
-	}
-	.layout .bottom .infos .type {
-		transform: rotate(-90deg);
-		width: 20px;
-	}
-	.layout .bottom .image {
-		position: relative;
-	}
-	.layout .bottom .image .thumbnail {
+	.card .top .image .thumbnail {
 		aspect-ratio: 1/1;
 		height: auto;
 		pointer-events: none;
 	}
-	.layout .bottom .image .preview {
+	.card .top .image .preview {
 		position: absolute;
 		opacity: 0;
 		width: 100%;
@@ -144,9 +102,50 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		transition-delay: 0.25s;
 		pointer-events: none;
 	}
-
-	.layout:hover .bottom .image .preview {
+	.card:hover .top .image .preview {
 		opacity: 1;
+	}
+	.card .top .side {
+		display: flex;
+		justify-content: center;
+		background-color: var(--black-10);
+		max-height: 100%;
+		min-width: 20px;
+		max-width: 20px;
+		padding: 0.3rem 0;
+	}
+	.card .top .side .text {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		writing-mode: vertical-lr;
+		transform: scale(-1, -1);
+	}
+
+	.card .bottom {
+		pointer-events: none;
+	}
+	.card .bottom .title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--black-10);
+		padding: 0 0.3rem;
+		height: 20px;
+		width: calc(100% - 20px);
+		max-width: calc(100% - 20px);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.card .bottom .title .id {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+	.card .bottom .title .id svg {
+		height: 0.5rem;
+		width: auto;
 	}
 
 	.corners {
@@ -188,67 +187,43 @@ const { slug, title, type, thumbnail, preview, id } = Astro.props;
 		bottom: 0;
 		right: 0;
 	}
-
-	.card:has(.layout:hover) .corners .corner.top-left {
+	.container:has(.card:hover) .corners .corner.top-left {
 		top: 0.25rem;
 		left: 0.25rem;
 	}
-	.card:has(.layout:hover) .corners .corner.top-right {
+	.container:has(.card:hover) .corners .corner.top-right {
 		top: 0.25rem;
 		right: 0.25rem;
 	}
-	.card:has(.layout:hover) .corners .corner.bottom-left {
+	.container:has(.card:hover) .corners .corner.bottom-left {
 		bottom: 0.25rem;
 		left: 0.25rem;
 	}
-	.card:has(.layout:hover) .corners .corner.bottom-right {
+	.container:has(.card:hover) .corners .corner.bottom-right {
 		bottom: 0.25rem;
 		right: 0.25rem;
 	}
 
 	@media screen and (max-width: 480px) {
 		.card .wrapper {
-			padding: 0.75rem;
-		}
-		.layout .top {
-			height: 16px;
-		}
-		.layout .top .title {
-			font-size: var(--text-xs);
-		}
-		.layout .top .empty {
-			width: 16px;
-		}
-		.layout .top .icon {
-			width: 16px;
-			height: 16px;
-		}
-		.layout .bottom .infos {
-			width: 16px;
-			font-size: var(--text-xs);
-		}
-		.layout .bottom .infos .id {
-			width: 16px;
-		}
-		.layout .bottom .infos .type {
-			width: 16px;
+			padding: 1rem;
 		}
 
-		.card:hover .corner.top-left {
+		.container:has(.card:hover) .corners .corner.top-left {
 			top: 0;
 			left: 0;
 		}
-		.card:hover .corner.top-right {
+		.container:has(.card:hover) .corners .corner.top-right {
 			top: 0;
-			right: 0;
-		}
-		.card:hover .corner.bottom-left {
-			bottom: 0;
 			left: 0;
 		}
-		.card:hover .corner.bottom-right {
-			bottom: 0;
-			right: 0;
+		.container:has(.card:hover) .corners .corner.bottom-left {
+			top: 0;
+			left: 0;
+		}
+		.container:has(.card:hover) .corners .corner.bottom-right {
+			top: 0;
+			left: 0;
 		}
 	}
 </style>

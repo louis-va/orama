@@ -1,15 +1,11 @@
 ---
 title: "Déni Choubaga"
-id: 3
+order: 3
 overview: "Un amant découvre l'amour sanglant de deux sœurs qu'il mène en bateau."
 type: "Clip"
 year: 2023
 client: "JADE & NAÏA"
 services: ["Clip musical", "Étalonage"]
-video: {
-  type: "youtube",
-  src: "https://www.youtube.com/embed/ABQdRa509d4"
-}
 thumbnail: "./thumbnail.jpg"
 preview: "./preview.gif"
 cover: "./cover.jpg"
