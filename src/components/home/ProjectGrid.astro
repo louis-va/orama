@@ -6,7 +6,7 @@ import Heading from "../common/Heading.astro";
 // PROJECTS
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
+const projects = await getCollection("project");
 projects.sort((a, b) => {
 	return a.data.order - b.data.order;
 });

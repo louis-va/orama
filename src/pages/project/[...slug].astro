@@ -9,7 +9,7 @@ import { getEntries } from "astro:content";
 
 // Generate a new path for every project
 export async function getStaticPaths() {
-	const projects = await getCollection("projects");
+	const projects = await getCollection("project");
 	return projects.map((entry, index) => ({
 		params: { slug: entry.slug },
 		props: {
