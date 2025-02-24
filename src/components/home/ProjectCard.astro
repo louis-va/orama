@@ -17,7 +17,7 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 
 <div class="container">
 	<div class="wrapper">
-		<a class="card" href=`/project/${slug}` data-cursor="icon" data-icon="arrow-r">
+		<a class="card" href=`/project/${slug}` data-cursor="icon" data-icon="eye">
 			<div class="top">
 				<div class="image">
 					<Image src={thumbnail} alt={`Projet ${title}.`} class="thumbnail" />

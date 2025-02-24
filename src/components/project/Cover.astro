@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import VideoPlayer from "./VideoPlayer.astro";
 
 interface Props {
@@ -19,7 +19,7 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 			videoType && videoSrc ? (
 				<VideoPlayer type={videoType} src={videoSrc} title={title} poster={cover.src} />
 			) : (
-				<Picture src={cover} formats={["jpg", "webp"]} alt={title} class="img" />
+				<Image src={cover} alt={title} class="img" />
 			)
 		}
 	</figure>

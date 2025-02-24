@@ -1,0 +1,186 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { gallery } from '../../content/gallery/gallery';
+
+// Get gallery images dynamically
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/content/gallery/*.{jpeg,jpg,png,gif}', { eager: true });
+const path = "/src/content/gallery/";
+---
+
+<section class="gallery">
+  <div class="grid">
+    <!-- Carousel container -->
+    <div id="carousel" class="carousel" data-cursor="icon" data-icon="arrow-r">
+      {gallery.map((image, index) => {
+        const imgPath = path + image.src;
+        if (imageFiles[imgPath]) {
+          return (
+            <figure class="carousel-item">
+              <Image src={imageFiles[imgPath].default} alt={image.description} />
+              <figcaption>
+                <span class="id">[{index+1}]</span> 
+                <span>{image.description}</span>
+              </figcaption>
+            </figure>
+          );
+        }
+      })}
+      <div class="corner"></div>
+    </div>
+    <!-- Indicators -->
+    <div id="carousel-indicators" class="carousel-indicators">
+      {gallery.map((_, index) => (
+         <button class="indicator" aria-label={`Go to slide ${index + 1}`}></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Client-side script to power the carousel -->
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const carousel = document.getElementById('carousel') as HTMLElement;
+    const items = carousel.querySelectorAll('.carousel-item') as NodeListOf<HTMLElement>;
+    const indicators = document.getElementById('carousel-indicators') as HTMLElement;
+
+    const total = items.length;
+    let current = 0;
+
+    function showItem(index: number) {
+      items[current].style.display = 'none';
+      current = index;
+      items[current].style.display = 'block';
+      updateIndicators();
+    }
+
+    function updateIndicators() {
+      Array.from(indicators.children).forEach((dot, index) => {
+        if (index === current) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+
+    // Show only the first image initially
+    items.forEach((item, index) => {
+      item.style.display = index === 0 ? 'block' : 'none';
+    });
+
+    updateIndicators();
+
+    // Allow clicking on indicator dots to navigate directly
+    Array.from(indicators.children).forEach((dot, index) => {
+      dot.addEventListener('click', () => showItem(index));
+    });
+
+    carousel.addEventListener('click', () => showItem((current + 1 + total) % total));
+  });
+</script>
+
+<style>
+  .gallery {
+    margin-top: 3rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    justify-content: end;
+  }
+  .carousel {
+    position: relative;
+    grid-column: 9 / span 4;
+    height: 25rem;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--black-0),
+      var(--black-0) 5px,
+      var(--black-4) 5px,
+      var(--black-4) 6px
+    );
+    cursor: pointer;
+  }
+  .carousel-item {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+  }
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+  }
+  .carousel-item figcaption {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-left: 50%;
+    font-size: var(--text-xs);
+    line-height: 125%;
+    margin-top: .25rem;
+    text-align: right;
+  }
+  .carousel-btn {
+    font-size: var(--text-sm);
+  }
+  .carousel-indicators {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    grid-column: 9 / span 4;
+    text-align: left;
+    margin-top: .5rem;
+  }
+  .carousel-indicators .indicator {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: var(--black-20);
+    cursor: pointer;
+  }
+  .carousel-indicators .indicator.active {
+    background: var(--black);
+  }
+  .carousel .corner {
+		position: absolute;
+		width: 0.75rem;
+		height: 0.75rem;
+		transition: all ease-out 0.15s;
+		border-top: 1px solid var(--black-60);
+		border-left: 1px solid var(--black-60);
+		top: 0;
+		left: 0;
+  }
+
+  @media screen and (max-width: 960px) {
+		.grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    .carousel {
+      grid-column: 3 / span 4;
+    }
+    .carousel-indicators {
+      grid-column: 3 / span 4;
+    }
+	}
+
+	@media screen and (max-width: 560px) {
+		.grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    .carousel {
+      grid-column: 2 / span 5;
+      height: 20rem;
+    }
+    .carousel-indicators {
+      grid-column: 2 / span 5;
+    }
+	}
+</style>
