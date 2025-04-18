@@ -46,5 +46,5 @@ export const gallery = [
   {
     src: "Jade&Naia_Coeur_OramaProd_-102.jpg",
     description: "Tournage Jade & Naia - Coeur"
-  },
+  }
 ]

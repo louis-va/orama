@@ -54,12 +54,14 @@ projects.sort((a, b) => {
 	}
 
 	@media screen and (max-width: 768px) {
-		section {
-			margin-top: -5rem;
-			padding-top: 5rem;
-		}
 		.grid {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.grid {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
 	}
 </style>
