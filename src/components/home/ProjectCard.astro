@@ -218,27 +218,10 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 		bottom: 0.25rem;
 		right: 0.25rem;
 	}
+</style>
 
-	@media screen and (max-width: 480px) {
-		.card .wrapper {
-			padding: 1rem;
-		}
-
-		.container:has(.card:hover) .corners .corner.top-left {
-			top: 0;
-			left: 0;
-		}
-		.container:has(.card:hover) .corners .corner.top-right {
-			top: 0;
-			left: 0;
-		}
-		.container:has(.card:hover) .corners .corner.bottom-left {
-			top: 0;
-			left: 0;
-		}
-		.container:has(.card:hover) .corners .corner.bottom-right {
-			top: 0;
-			left: 0;
-		}
+<style is:global>
+  .touch-device .card:hover .top .image .image-overlay {
+		opacity: 0 !important;
 	}
 </style>

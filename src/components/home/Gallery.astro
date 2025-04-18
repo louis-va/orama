@@ -163,18 +163,20 @@ const path = "/src/content/gallery/";
 </style>
 
 <script>
-  const galleryContainer = document.getElementById('gallery-container') as HTMLElement;
-  const viewfinder = galleryContainer.querySelector('.viewfinder') as HTMLElement;
+  document.addEventListener('astro:page-load', () => {
+    const galleryContainer = document.getElementById('gallery-container') as HTMLElement;
+    const viewfinder = galleryContainer.querySelector('.viewfinder') as HTMLElement;
 
-  // initialize at center
-  viewfinder.style.left = '50%';
+    // initialize at center
+    viewfinder.style.left = '50%';
 
-  galleryContainer.addEventListener('mousemove', (e) => {
-    const rect = galleryContainer.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const viewSize = rect.height  * (4/3);
-    const halfWidth = viewSize / 2;
-    const clampedX = Math.min(Math.max(x, halfWidth), rect.width - halfWidth);
-    viewfinder.style.left = `${clampedX}px`;
+    galleryContainer.addEventListener('mousemove', (e) => {
+      const rect = galleryContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const viewSize = rect.height  * (4/3);
+      const halfWidth = viewSize / 2;
+      const clampedX = Math.min(Math.max(x, halfWidth), rect.width - halfWidth);
+      viewfinder.style.left = `${clampedX}px`;
+    });
   });
 </script>

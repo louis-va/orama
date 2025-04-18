@@ -53,7 +53,7 @@ import Arrow from "../common/Arrow.astro";
 		align-items: end;
 		justify-content: space-between;
 		gap: 2rem;
-		height: calc(100dvh - 4rem);
+		height: calc(100dvh - 10rem);
 		padding-bottom: 5rem;
 	}
 	h1 {
@@ -119,6 +119,12 @@ import Arrow from "../common/Arrow.astro";
 		}
 		h1 {
 			font-size: var(--text-large);
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		h1 {
+			font-size: var(--text-medium);
 		}
 	}
 </style>
