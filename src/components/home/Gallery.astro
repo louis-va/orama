@@ -8,179 +8,173 @@ const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/content/ga
 const path = "/src/content/gallery/";
 ---
 
-<section class="gallery">
-  <div class="grid">
-    <!-- Carousel container -->
-    <div id="carousel" class="carousel" data-cursor="icon" data-icon="arrow-r">
-      {gallery.map((image, index) => {
-        const imgPath = path + image.src;
-        if (imageFiles[imgPath]) {
-          return (
-            <figure class="carousel-item">
-              <Image src={imageFiles[imgPath].default} alt={image.description} />
-              <figcaption>
-                <span class="id">[{index+1}]</span> 
-                <span>{image.description}</span>
-              </figcaption>
-            </figure>
-          );
-        }
-      })}
-      <div class="corner"></div>
-    </div>
-    <!-- Indicators -->
-    <div id="carousel-indicators" class="carousel-indicators">
-      {gallery.map((_, index) => (
-         <button class="indicator" aria-label={`Go to slide ${index + 1}`}></button>
-      ))}
+<div class="container">
+  <div class="gallery" id="gallery-container">
+    <div class="container">
+      <div class="viewfinder" data-cursor="focus">
+        SCAN
+        <div class="pointer">
+          <div class="top-left"></div>
+          <div class="top-right"></div>
+          <div class="bottom-left"></div>
+          <div class="bottom-right"></div>
+        </div>
+        <div class="invert"></div>
+      </div>
+
+      <div class="slider">
+        {gallery.map((image) => {
+          const imgPath = path + image.src;
+          if (imageFiles[imgPath]) {
+            return (
+              <div class="img">
+                <Image src={imageFiles[imgPath].default} alt={image.description} />
+              </div>
+            );
+          }
+        })}
+
+        {gallery.map((image) => {
+          const imgPath = path + image.src;
+          if (imageFiles[imgPath]) {
+            return (
+              <div class="img" aria-hidden="true">
+                <Image src={imageFiles[imgPath].default} alt="" />
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   </div>
-</section>
 
-<!-- Client-side script to power the carousel -->
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const carousel = document.getElementById('carousel') as HTMLElement;
-    const items = carousel.querySelectorAll('.carousel-item') as NodeListOf<HTMLElement>;
-    const indicators = document.getElementById('carousel-indicators') as HTMLElement;
-
-    const total = items.length;
-    let current = 0;
-
-    function showItem(index: number) {
-      items[current].style.display = 'none';
-      current = index;
-      items[current].style.display = 'block';
-      updateIndicators();
-    }
-
-    function updateIndicators() {
-      Array.from(indicators.children).forEach((dot, index) => {
-        if (index === current) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    };
-
-    // Show only the first image initially
-    items.forEach((item, index) => {
-      item.style.display = index === 0 ? 'block' : 'none';
-    });
-
-    updateIndicators();
-
-    // Allow clicking on indicator dots to navigate directly
-    Array.from(indicators.children).forEach((dot, index) => {
-      dot.addEventListener('click', () => showItem(index));
-    });
-
-    carousel.addEventListener('click', () => showItem((current + 1 + total) % total));
-  });
-</script>
+  <div class="squares">
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+    <div class="square mobile-hidden"></div>
+  </div>
+</div>
 
 <style>
   .gallery {
-    margin-top: 3rem;
+    margin-top: 5rem;
+    width: 100%;
+    height: 15rem;
+    background-color: var(--black);
+    --red: #FF0000;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    justify-content: end;
-  }
-  .carousel {
+  .gallery .container {
     position: relative;
-    grid-column: 9 / span 4;
-    height: 25rem;
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--black-0),
-      var(--black-0) 5px,
-      var(--black-4) 5px,
-      var(--black-4) 6px
-    );
-    cursor: pointer;
-  }
-  .carousel-item {
-    width: 100%;
     height: 100%;
+    overflow: hidden;
+  }
+  .gallery .slider {
+    width: max-content;
+    white-space: nowrap;
+    -moz-animation: slider 60s linear infinite;
+    -webkit-animation: slider 60s linear infinite;
+    animation: slider 60s linear infinite;
+  }
+  .gallery .img {
+    padding: 0.5rem;
+    display: inline-block;
+    height: 100%;
+    width: auto;
+  }
+  .gallery .img img {
+    height: 14rem;
+    border-radius: .125rem;
+    width: auto;
     pointer-events: none;
-    display: none;
+    opacity: 0.95;
+    filter: invert(1);
   }
-  .carousel-item img {
-    width: 100%;
+
+  .viewfinder {
+    position: absolute;
+    display: block;
     height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: bottom right;
+    aspect-ratio: 4/3;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--red);
+    z-index: 10;
+    padding: 0.5rem;
+    font-size: var(--text-small);
+    text-transform: uppercase;
+    color: var(--red);
+    line-height: 100%;
   }
-  .carousel-item figcaption {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-left: 50%;
-    font-size: var(--text-xs);
-    line-height: 125%;
-    margin-top: .25rem;
-    text-align: right;
+  .viewfinder .pointer {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    left: calc(50% - 0.5rem);
+    top: calc(50% - 0.5rem);
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    gap: 0.5rem;
   }
-  .carousel-btn {
-    font-size: var(--text-sm);
+  .viewfinder .pointer .top-left {
+    border-top: 1px solid var(--red);
+    border-left: 1px solid var(--red);
   }
-  .carousel-indicators {
-    width: 50%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .4rem;
-    grid-column: 9 / span 4;
-    text-align: left;
-    margin-top: .5rem;
+  .viewfinder .pointer .top-right {
+    border-top: 1px solid var(--red);
+    border-right: 1px solid var(--red);
   }
-  .carousel-indicators .indicator {
-    width: 0.4rem;
-    height: 0.4rem;
-    background: var(--black-20);
-    cursor: pointer;
+  .viewfinder .pointer .bottom-left {
+    border-bottom: 1px solid var(--red);
+    border-left: 1px solid var(--red);
   }
-  .carousel-indicators .indicator.active {
-    background: var(--black);
-  }
-  .carousel .corner {
-		position: absolute;
-		width: 0.75rem;
-		height: 0.75rem;
-		transition: all ease-out 0.15s;
-		border-top: 1px solid var(--black-60);
-		border-left: 1px solid var(--black-60);
-		top: 0;
-		left: 0;
+  .viewfinder .pointer .bottom-right {
+    border-bottom: 1px solid var(--red);
+    border-right: 1px solid var(--red);
   }
 
-  @media screen and (max-width: 960px) {
-		.grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-    .carousel {
-      grid-column: 3 / span 4;
-    }
-    .carousel-indicators {
-      grid-column: 3 / span 4;
-    }
-	}
+  @keyframes slider {
+    from { transform: translateX(0%); }
+    to   { transform: translateX(-50%); }
+  }
 
-	@media screen and (max-width: 560px) {
-		.grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-    .carousel {
-      grid-column: 2 / span 5;
-      height: 20rem;
-    }
-    .carousel-indicators {
-      grid-column: 2 / span 5;
+  @media screen and (max-width: 768px) {
+		.viewfinder {
+      aspect-ratio: 1/1;
     }
 	}
 </style>
+
+<style is:global>
+  .touch-device .viewfinder .invert {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		backdrop-filter: invert(100%);
+		z-index: -1;
+  }
+</style>
+
+<script>
+  const galleryContainer = document.getElementById('gallery-container') as HTMLElement;
+  const viewfinder = galleryContainer.querySelector('.viewfinder') as HTMLElement;
+
+  // initialize at center
+  viewfinder.style.left = '50%';
+
+  galleryContainer.addEventListener('mousemove', (e) => {
+    const rect = galleryContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const viewSize = rect.height  * (4/3);
+    const halfWidth = viewSize / 2;
+    const clampedX = Math.min(Math.max(x, halfWidth), rect.width - halfWidth);
+    viewfinder.style.left = `${clampedX}px`;
+  });
+</script>

@@ -17,11 +17,12 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 
 <div class="container">
 	<div class="wrapper">
-		<a class="card" href=`/project/${slug}` data-cursor="icon" >
+		<a class="card" href=`/project/${slug}` data-cursor="focus" >
 			<div class="top">
 				<div class="image">
 					<Image src={thumbnail} alt={`Projet ${title}.`} class="thumbnail" />
 					<Image src={preview} alt={`Aperçu ${title}.`} class="preview" />
+					<div class="image-overlay"></div>
 				</div>
 				<div class="side">
 					<div class="text">
@@ -103,6 +104,20 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 		pointer-events: none;
 	}
 	.card:hover .top .image .preview {
+		opacity: 1;
+	}
+	.card .top .image .image-overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		backdrop-filter: invert(100%);
+		opacity: 0;
+		transition: all 0.5s ease-in-out 0.25s;
+	}
+	.card:hover .top .image .image-overlay {
 		opacity: 1;
 	}
 	.card .top .side {
