@@ -11,7 +11,7 @@ video: {
   src: "https://www.youtube.com/embed/ABQdRa509d4"
 }
 thumbnail: "./thumbnail.jpg"
-preview: "./preview.gif"
+preview: "preview.webm"
 cover: "./cover.jpg"
 ---
 

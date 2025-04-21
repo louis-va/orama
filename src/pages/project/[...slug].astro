@@ -23,8 +23,8 @@ export async function getStaticPaths() {
 const { entry, prev, next } = Astro.props;
 
 // Get project's video src
-const videoFiles: any = import.meta.glob("/src/content/projects/*/*.mp4", { eager: true });
-const videoFile: string = videoFiles[`/src/content/projects/${entry.slug}/${entry.data.video?.src}`]?.default;
+const videoFiles: any = import.meta.glob("/src/content/project/*/*.mp4", { eager: true });
+const videoFile: string = videoFiles[`/src/content/project/${entry.slug}/${entry.data.video?.src}`]?.default;
 const videoSource = videoFile && entry.data.video?.type === "video/mp4" ? videoFile : (entry.data.video?.src as string);
 ---
 

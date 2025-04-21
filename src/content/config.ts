@@ -15,7 +15,7 @@ const projectCollection = defineCollection({
       src: z.string()
     }).optional(),
     thumbnail: image(),
-    preview: image(),
+    preview: z.string(),
     cover: image()
   }),
 });
