@@ -1,0 +1,89 @@
+---
+interface Credit {
+  role: string;
+  name: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+	year: number;
+	type: string;
+  client?: string;
+  credits?: Credit[];
+}
+
+const { title, description, year, type, client, credits } = Astro.props;
+---
+
+<div class="information">
+  <h1>{title}</h1>
+  <dl>
+    <div class="item">
+      <dt>Description</dt>
+      <dd>{description}</dd>
+    </div>
+    <div class="item">
+      <dt>Année</dt>
+      <dd>{year}</dd>
+    </div>
+    <div class="item">
+      <dt>Type</dt>
+      <dd>{type}</dd>
+    </div>
+
+    {client &&
+      <div class="item">
+        <dt>Client</dt>
+        <dd>{client}</dd>
+      </div>
+    }
+
+    {credits && credits.length > 0 && 
+      <div class="item">
+        <dt>Crédits</dt>
+        <dd>
+          {credits.map((credit) => (
+            <div class="credit">
+              <span class="name">{credit.name}</span>
+              <span class="role">({credit.role})</span>
+            </div>
+          ))}
+        </dd>
+      </div>
+    }
+  </dl>
+</div>
+
+<style>
+  .information {
+    margin-top: 4rem;
+  }
+  h1 {
+		font-size: var(--text-2xl);
+		font-weight: 600;
+		line-height: 125%;
+	}
+  dl {
+    margin-top: 1rem;
+  }
+  .item {
+    padding: 0.75rem 0;
+    display: grid;
+		grid-template-columns: repeat(10, minmax(0, 1fr));
+    border-top: 1px solid var(--white-20);
+  }
+  .item dt {
+    grid-column: span 2 / span 2;
+    color: var(--white-60);
+  }
+  .item dd {
+    grid-column: span 8 / span 8;
+  }
+  .item dd .credit {
+    line-height: 175%;
+  }
+  .item dd .credit .role {
+    color: var(--white-60);
+  }
+</style>

@@ -13,7 +13,6 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 ---
 
 <section id="cover">
-	<h1>{title}</h1>
 	<figure>
 		{
 			videoType && videoSrc ? (
@@ -27,12 +26,7 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 
 <style>
 	section {
-		margin-top: 10rem;
-	}
-	h1 {
-		font-size: var(--text-2xl);
-		font-weight: 600;
-		line-height: 125%;
+		margin-top: 7.5rem;
 	}
 	figure {
 		margin-top: 2rem;

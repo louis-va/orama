@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Cover from "../../components/project/Cover.astro";
+import Information from "../../components/project/Information.astro";
 
 import { getAdjacentElements } from "../../utils/array.utils";
 
@@ -28,6 +29,21 @@ const videoFile: string = videoFiles[`/src/content/project/${entry.slug}/${entry
 const videoSource = videoFile && entry.data.video?.type === "video/mp4" ? videoFile : (entry.data.video?.src as string);
 ---
 
-<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.overview} theme="dark">
+<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.description} theme="dark">
 	<Cover title={entry.data.title} cover={entry.data.cover} videoType={entry.data.video?.type} videoSrc={videoSource} />
+	<div class="container">
+		<Information title={entry.data.title} description={entry.data.description} year={entry.data.year} type={entry.data.type} client={entry.data.client} credits={entry.data.credits} />
+	</div>
 </Layout>
+
+<style>
+	.container {
+		width: 83.33%;
+		margin: auto;
+	}
+	@media screen and (max-width: 768px) {
+		.container {
+			width: 100%;
+		}
+	}
+</style>
