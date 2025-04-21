@@ -91,6 +91,8 @@ const fadeTransition = {
 		--white-60: rgba(230, 230, 230, 0.6);
 		--white-2: rgba(230, 230, 230, 0.025);
 
+		--gray: rgba(100, 100, 100, 1);
+
 		--black: rgb(25, 25, 25);
 		--black-80: rgba(25, 25, 25, 0.8);
 		--black-60: rgba(25, 25, 25, 0.6);
@@ -108,6 +110,8 @@ const fadeTransition = {
 		--text-large: 1.75rem;
 		--text-xl: 2rem;
 		--text-2xl: 2.75rem;
+
+		--font-mono: "Geist Mono", monospace;
 	}
 
 	/* GENERAL */
@@ -130,7 +134,7 @@ const fadeTransition = {
 		color: var(--black);
 	}
 	html {
-		font-family: "Geist Mono", monospace;
+		font-family: var(--font-mono);
 		background: var(--background-color);
 		transition: all ease-in-out 1s;
 		transition-delay: 0.5s;

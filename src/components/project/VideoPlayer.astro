@@ -65,6 +65,26 @@ const options: Options = {
 </script>
 
 <style is:global>
+  :root {
+    --plyr-color-main: var(--gray);
+    --plyr-badge-border-radius: 0px;
+    --plyr-control-radius: 0px;
+    --plyr-menu-radius: 0px;
+    --plyr-tooltip-radius: 0px;
+    --plyr-font-family: var(--font-mono);
+  }
+  .plyr--video .plyr__progress__buffer{
+    border-radius: 0px !important;
+  }
+  .plyr__progress__buffer {
+    border-radius: 0px !important;
+  }
+  .plyr__control {
+    border-radius: 0px !important;
+  }
+  .plyr--full-ui input[type=range] {
+    border-radius: 0px !important;
+  }
   .plyr--video.plyr--stopped .plyr__controls {
     display: none;
   }
