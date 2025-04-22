@@ -1,6 +1,4 @@
 ---
-import type { Options, SourceInfo, Source } from 'plyr';
-
 export type Props = {
   type: "video/mp4" | "youtube" | "vimeo";
   src: string;
@@ -10,58 +8,59 @@ export type Props = {
 };
 
 const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
-
-const sources: Source[] = [
-  {
-    ...(type === "youtube" || type === "vimeo" ? { provider: type } : { type }),
-    src,
-  },
-];
-
-const source: SourceInfo = {
-  type: "video",
-  title,
-  poster,
-  sources,
-};
-
-const options: Options = {
-  controls: [
-    'play-large',
-    'play',
-    'progress',
-    'current-time',
-    'mute',
-    'volume',
-    'settings',
-    'pip',
-    'airplay',
-    'fullscreen'
-  ],
-  settings: ['quality'],
-  volume: 1,
-};
 ---
 
 <video
+  id="player"
   class="plyr"
-  data-plyr-config={JSON.stringify(options)}
-  data-plyr-source={JSON.stringify(source)}
+  data-type={type}
+  data-src={src}
+  data-title={title}
+  data-poster={poster}
   crossorigin={crossorigin}>
 </video>
 
 <script>
-	import Plyr from 'plyr';
-	import 'plyr/dist/plyr.css';
+  import Plyr from 'plyr';
+  import type { Options, SourceInfo, Source } from 'plyr';
+  import 'plyr/dist/plyr.css';
 
-  document.addEventListener("astro:page-load", () => {
-		const plyrEls = document.querySelectorAll('.plyr');
-    if (plyrEls.length === 0) return;
-    Plyr.setup(plyrEls).forEach((player, i) => {
-      const plyrEl = plyrEls[i] as HTMLElement;
-      player.source = JSON.parse(plyrEl.dataset.plyrSource as string);
-    });
-	});
+  document.addEventListener('astro:page-load', () => {
+    const el = document.getElementById('player');
+    if (!el) return;
+
+    const { type, src, title, poster } = el.dataset as { type: string, src: string, title: string, poster: string};
+    const sources: Source[] = [
+      {
+        ...(type === 'youtube' || type === 'vimeo'
+          ? { provider: type }
+          : { type }),
+        src,
+      },
+    ];
+    const source: SourceInfo = { type: 'video', title, poster, sources };
+
+    const options: Options = {
+      controls: [
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'settings',
+        'pip',
+        'airplay',
+        'fullscreen',
+      ],
+      settings: ['quality'],
+      volume: 1,
+    };
+
+    const player = new Plyr(el as HTMLVideoElement, options);
+    player.source = source;
+    player.poster = poster;
+  });
 </script>
 
 <style is:global>
