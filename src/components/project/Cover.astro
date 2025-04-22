@@ -33,6 +33,9 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 </section>
 
 <style>
+	section {
+		margin-top: 7.5rem;
+	}
 	ul.breadcrumb {
 		display: flex;
 		align-items: center;
@@ -44,13 +47,10 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 		list-style: none;
 	}
 	ul.breadcrumb li a {
-		color: var(--white-60);
+		color: var(--foreground-60);
 	}
 	ul.breadcrumb li a:hover {
-		color: var(--white);
-	}
-	section {
-		margin-top: 7.5rem;
+		color: var(--foreground);
 	}
 	figure {
 		margin-top: 2rem;
@@ -58,5 +58,13 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 	figure img {
 		width: 100%;
 		height: auto;
+	}
+	@media screen and (max-width: 768px) {
+    section {
+			margin-top: 5rem;
+		}
+		figure {
+			margin-top: 1.5rem;
+		}
 	}
 </style>

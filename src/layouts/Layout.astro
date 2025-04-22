@@ -88,11 +88,14 @@ const fadeTransition = {
 	/* VARIABLES */
 	:root {
 		--white: rgb(230, 230, 230);
+		--white-80: rgba(230, 230, 230, 0.8);
 		--white-60: rgba(230, 230, 230, 0.6);
+		--white-40: rgba(230, 230, 230, 0.4);
 		--white-20: rgba(230, 230, 230, 0.2);
+		--white-10: rgba(230, 230, 230, 0.1);
+		--white-7: rgba(230, 230, 230, 0.07);
 		--white-4: rgba(230, 230, 230, 0.04);
-
-		--gray: rgba(100, 100, 100, 1);
+		--white-0: rgba(230, 230, 230, 0);
 
 		--black: rgb(25, 25, 25);
 		--black-80: rgba(25, 25, 25, 0.8);
@@ -103,6 +106,8 @@ const fadeTransition = {
 		--black-7: rgba(25, 25, 25, 0.07);
 		--black-4: rgba(25, 25, 25, 0.04);
 		--black-0: rgba(25, 25, 25, 0);
+
+		--gray: rgba(100, 100, 100, 1);
 
 		--text-xs: 0.75rem;
 		--text-small: 0.875rem;
@@ -120,6 +125,16 @@ const fadeTransition = {
 		color: var(--black);
 		--background-color: var(--white);
 		--background-lines: var(--black-4);
+
+		--foreground: var(--black);
+		--foreground-80: var(--black-80);
+		--foreground-60: var(--black-60);
+		--foreground-40: var(--black-40);
+		--foreground-20: var(--black-20);
+		--foreground-10: var(--black-10);
+		--foreground-7: var(--black-7);
+		--foreground-4: var(--black-4);
+		--foreground-0: var(--black-0);
 	}
 	html.light ::selection {
 		background-color: var(--black);
@@ -129,6 +144,16 @@ const fadeTransition = {
 		color: var(--white);
 		--background-color: var(--black);
 		--background-lines: var(--white-4);
+
+		--foreground: var(--white);
+		--foreground-80: var(--white-80);
+		--foreground-60: var(--white-60);
+		--foreground-40: var(--white-40);
+		--foreground-20: var(--white-20);
+		--foreground-10: var(--white-10);
+		--foreground-7: var(--white-7);
+		--foreground-4: var(--white-4);
+		--foreground-0: var(--white-0);
 	}
 	html.dark ::selection {
 		background-color: var(--white);
