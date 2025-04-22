@@ -3,23 +3,23 @@ order: 1
 title: "Cœur"
 description: "Un amant découvre l'amour sanglant de deux sœurs qu'il mène en bateau."
 year: 2023
-type: "Clip"
-client: "JADE & NAÏA"
+type: "Clip musical"
+client: "Jade & Naïa"
 credits: [
   {
-    role: "Réalisateurs",
+    role: "Réalisation",
     name: ["Django Schrevens", "Emmanuel Zamora"]
   },
   {
-    role: "Chef-opérateur",
-    name: ["Mathieu Soille"]
-  },
-  {
-    role: "Monteur",
+    role: "Montage",
     name: ["Pierre Terranova"]
   },
   {
-    role: "Photographe",
+    role: "Image",
+    name: ["Mathieu Soille"]
+  },
+  {
+    role: "Photographie",
     name: ["Jonathan Pourchet"]
   },
   {
