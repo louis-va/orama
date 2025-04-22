@@ -70,24 +70,39 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
     --plyr-control-radius: 0px;
     --plyr-menu-radius: 0px;
     --plyr-tooltip-radius: 0px;
+    --plyr-range-track-height: 4px;
+    --plyr-range-thumb-height: 8px;
+    --plyr-video-control-color: var(--white);
+    --plyr-range-fill-background: var(--white);
     --plyr-font-family: var(--font-mono);
-  }
-  .plyr--video .plyr__progress__buffer{
-    border-radius: 0px !important;
-  }
-  .plyr__progress__buffer {
-    border-radius: 0px !important;
   }
   .plyr__control {
     border-radius: 0px !important;
   }
-  .plyr--full-ui input[type=range] {
-    border-radius: 0px !important;
+  .plyr__video-embed iframe,
+  .plyr__video-wrapper video,
+  .plyr__video-wrapper {
+    aspect-ratio: 16/9 !important;
   }
-  .plyr--video.plyr--stopped .plyr__controls {
-    display: none;
+
+  /* Square sliders — */
+  .plyr__volume input[type="range"]::-webkit-slider-runnable-track,
+  .plyr__progress input[type="range"]::-webkit-slider-runnable-track,
+  .plyr__volume input[type="range"]::-webkit-slider-thumb,
+  .plyr__progress input[type="range"]::-webkit-slider-thumb {
+    border-radius: 0 !important;
   }
-  .plyr__video-embed iframe {
-    pointer-events: none;
+  .plyr__volume input[type="range"]::-moz-range-track,
+  .plyr__progress input[type="range"]::-moz-range-track,
+  .plyr__volume input[type="range"]::-moz-range-thumb,
+  .plyr__progress input[type="range"]::-moz-range-thumb {
+    border-radius: 0 !important;
   }
+  .plyr__volume input[type="range"]::-ms-track,
+  .plyr__progress input[type="range"]::-ms-track,
+  .plyr__volume input[type="range"]::-ms-thumb,
+  .plyr__progress input[type="range"]::-ms-thumb {
+    border-radius: 0 !important;
+  }
+
 </style>
