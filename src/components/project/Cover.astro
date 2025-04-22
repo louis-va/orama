@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import VideoPlayer from "./VideoPlayer.astro";
+import VideoPlayer from "@components/project/VideoPlayer.astro";
+import ChevronRight from "@assets/icons/ChevronRight.astro";
 
 interface Props {
 	title: string;
@@ -13,6 +14,13 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 ---
 
 <section id="cover">
+	<ul class="breadcrumb">
+		<li><a href="/" data-cursor="focus">Accueil</a></li>
+		<ChevronRight className="size-xs" />
+		<li><a href="/#projects" data-cursor="focus">Projets</a></li>
+		<ChevronRight className="size-xs" />
+		<li>{title}</li>
+	</ul>
 	<figure>
 		{
 			videoType && videoSrc ? (
@@ -25,6 +33,22 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 </section>
 
 <style>
+	ul.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: var(--text-small);
+		text-transform: uppercase;
+	}
+	ul.breadcrumb {
+		list-style: none;
+	}
+	ul.breadcrumb li a {
+		color: var(--white-60);
+	}
+	ul.breadcrumb li a:hover {
+		color: var(--white);
+	}
 	section {
 		margin-top: 7.5rem;
 	}

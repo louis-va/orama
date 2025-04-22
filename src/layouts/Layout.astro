@@ -1,10 +1,10 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import Container from "./Container.astro";
-import Header from "./Header.astro";
-import Background from "./Background.astro";
-import Cursor from "../components/common/Cursor.astro";
-import Footer from "./Footer.astro";
+import Container from "@layouts/Container.astro";
+import Header from "@layouts/Header.astro";
+import Background from "@layouts/Background.astro";
+import Cursor from "@components/common/Cursor.astro";
+import Footer from "@layouts/Footer.astro";
 
 interface Props {
 	title: string;
@@ -90,7 +90,7 @@ const fadeTransition = {
 		--white: rgb(230, 230, 230);
 		--white-60: rgba(230, 230, 230, 0.6);
 		--white-20: rgba(230, 230, 230, 0.2);
-		--white-2: rgba(230, 230, 230, 0.025);
+		--white-4: rgba(230, 230, 230, 0.04);
 
 		--gray: rgba(100, 100, 100, 1);
 
@@ -128,7 +128,7 @@ const fadeTransition = {
 	html.dark {
 		color: var(--white);
 		--background-color: var(--black);
-		--background-lines: var(--white-2);
+		--background-lines: var(--white-4);
 	}
 	html.dark ::selection {
 		background-color: var(--white);
@@ -156,6 +156,28 @@ const fadeTransition = {
 		font-size: var(--text-small);
 		font-weight: 600;
 		margin-bottom: 0.25rem;
+	}
+
+	/* SIZE */
+	.size-xs {
+		width: 0.75rem;
+		height: 0.75rem;
+	}
+	.size-small {
+		width: 0.875rem;
+		height: 0.875rem;
+	}
+	.size-base {
+		width: 1rem;
+		height: 1rem;
+	}
+	.size-medium {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+	.size-large {
+		width: 1.75rem;
+		height: 1.75rem;
 	}
 
 	/* ANIMATIONS */
