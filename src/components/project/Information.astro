@@ -9,7 +9,7 @@ interface Props {
   client?: string;
   credits?: {
     role: string;
-    name: string;
+    name: string[];
   }[];
 }
 
@@ -48,8 +48,10 @@ const { title, description, year, type, client, credits } = Astro.props;
             <dd>
               {credits.map((credit) => (
                 <div class="credit">
-                  <span class="name">{credit.name}</span>
-                  <span class="role">({credit.role})</span>
+                  <span class="role">{credit.role}</span>
+                  <ul class="name">{credit.name.map((name) => (
+                    <li>{name}</li>
+                  ))}</ul>
                 </div>
               ))}
             </dd>
@@ -62,7 +64,7 @@ const { title, description, year, type, client, credits } = Astro.props;
 
 <style>
   .information {
-    margin-top: 4rem;
+    margin-top: 7.5rem;
   }
   .wrapper {
     margin-top: -7.5rem;
@@ -86,10 +88,27 @@ const { title, description, year, type, client, credits } = Astro.props;
     grid-column: span 4 / span 4;
   }
   .item dd .credit {
-    line-height: 175%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 0.5rem;
+  }
+  .item dd .credit:last-child {
+    margin-bottom: 0;
   }
   .item dd .credit .role {
+    grid-column: span 1 / span 1;
     color: var(--foreground-60);
+  }
+  .item dd .credit .name {
+    grid-column: span 1 / span 1;
+    color: var(--foreground);
+  }
+  .item dd .credit .name li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+  }
+  .item dd .credit .name li:last-child {
+    margin-bottom: 0;
   }
 
   @media screen and (max-width: 960px) {

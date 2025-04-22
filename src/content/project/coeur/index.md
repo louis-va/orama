@@ -8,23 +8,23 @@ client: "JADE & NAÏA"
 credits: [
   {
     role: "Réalisateurs",
-    name: "Django Schrevens & Emmanuel Zamora"
+    name: ["Django Schrevens", "Emmanuel Zamora"]
   },
   {
     role: "Chef-opérateur",
-    name: "Mathieu Soille"
+    name: ["Mathieu Soille"]
   },
   {
     role: "Monteur",
-    name: "Pierre Terranova"
+    name: ["Pierre Terranova"]
   },
   {
     role: "Photographe",
-    name: "Jonathan Pourchet"
+    name: ["Jonathan Pourchet"]
   },
   {
     role: "Électronique",
-    name: "Maëlle Crespo"
+    name: ["Maëlle Crespo"]
   },
 ]
 video: {
@@ -35,3 +35,9 @@ thumbnail: "./thumbnail.jpg"
 preview: "preview.webm"
 cover: "./cover.jpg"
 ---
+
+![Still du clip Cœur](./stills/Coeur_Stills_OG_1.jpg)
+![Still du clip Cœur](./stills/Coeur_Stills_OG_2.jpg)
+![Still du clip Cœur](./stills/Coeur_Stills_OG_3.jpg)
+![Still du clip Cœur](./stills/Coeur_Stills_OG_4.jpg)
+![Still du clip Cœur](./stills/Coeur_Stills_OG_5.jpg)

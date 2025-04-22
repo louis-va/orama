@@ -11,7 +11,7 @@ const projectCollection = defineCollection({
     client: z.string().optional(),
     credits: z.array(z.object({
       role: z.string(),
-      name: z.string()
+      name: z.array(z.string())
     })).optional(),
     video: z.object({
       type: z.enum(["video/mp4", "youtube", "vimeo"]),
