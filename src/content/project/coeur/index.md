@@ -28,8 +28,8 @@ credits: [
   },
 ]
 video: {
-  type: "youtube",
-  src: "https://www.youtube.com/embed/ABQdRa509d4"
+  type: "video/mp4",
+  src: "https://orama-video.vanakenlouis.workers.dev/coeur_clip.mp4"
 }
 thumbnail: "./thumbnail.jpg"
 preview: "preview.webm"

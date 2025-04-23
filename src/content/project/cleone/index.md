@@ -21,7 +21,7 @@ credits: [
 ]
 video: {
   type: "video/mp4",
-  src: "cleone_trailer.mp4"
+  src: "https://orama-video.vanakenlouis.workers.dev/cleone_trailer.mp4"
 }
 thumbnail: "./thumbnail.jpg"
 preview: "preview.webm"
