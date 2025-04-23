@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import VideoPlayer from "./VideoPlayer.astro";
+import VideoPlayer from "@components/project/VideoPlayer.astro";
+import ChevronRight from "@assets/icons/ChevronRight.astro";
 
 interface Props {
 	title: string;
@@ -13,7 +14,13 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 ---
 
 <section id="cover">
-	<h1>{title}</h1>
+	<ul class="breadcrumb">
+		<li><a href="/" data-cursor="focus">Accueil</a></li>
+		<ChevronRight className="size-xs" />
+		<li><a href="/#projects" data-cursor="focus">Projets</a></li>
+		<ChevronRight className="size-xs" />
+		<li>{title}</li>
+	</ul>
 	<figure>
 		{
 			videoType && videoSrc ? (
@@ -27,12 +34,23 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 
 <style>
 	section {
-		margin-top: 10rem;
+		margin-top: 7.5rem;
 	}
-	h1 {
-		font-size: var(--text-2xl);
-		font-weight: 600;
-		line-height: 125%;
+	ul.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: var(--text-small);
+		text-transform: uppercase;
+	}
+	ul.breadcrumb {
+		list-style: none;
+	}
+	ul.breadcrumb li a {
+		color: var(--foreground-60);
+	}
+	ul.breadcrumb li a:hover {
+		color: var(--foreground);
 	}
 	figure {
 		margin-top: 2rem;
@@ -40,5 +58,13 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 	figure img {
 		width: 100%;
 		height: auto;
+	}
+	@media screen and (max-width: 768px) {
+    section {
+			margin-top: 5rem;
+		}
+		figure {
+			margin-top: 1.5rem;
+		}
 	}
 </style>

@@ -9,19 +9,30 @@ interface Props {
 	type: string;
 	year: number;
 	thumbnail: ImageMetadata;
-	preview: ImageMetadata;
+	preview: string;
 }
 
 const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
+
+// Get project's thumbnail src
+const webmFiles: any = import.meta.glob("/src/content/project/*/*.webm", { eager: true });
+const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?.default;
 ---
 
-<div class="container">
+<div class="container" id={`project-card-${id}`}>
 	<div class="wrapper">
 		<a class="card" href=`/project/${slug}` data-cursor="focus" >
 			<div class="top">
 				<div class="image">
-					<Image src={thumbnail} alt={`Projet ${title}.`} class="thumbnail" />
-					<Image src={preview} alt={`Aperçu ${title}.`} class="preview" />
+					<Image src={thumbnail} alt="" loading="eager" class="thumbnail" />
+					<video
+						class="preview-video"
+						muted
+						playsinline
+						preload="none"
+						loop
+						style="opacity: 0"
+					></video>
 					<div class="image-overlay"></div>
 				</div>
 				<div class="side">
@@ -52,6 +63,22 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 						{id}
 					</span>
 				</div>
+				<div class="spinner" style="opacity: 0">
+					<svg height="16" stroke-linejoin="round" style="color:currentColor" viewBox="0 0 16 16" width="16">
+						<g clip-path="url(#clip0_2393_1490)">
+							<path d="M8 0V4" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.5" d="M8 16V12" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.9" d="M3.29773 1.52783L5.64887 4.7639" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.1" d="M12.7023 1.52783L10.3511 4.7639" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.4" d="M12.7023 14.472L10.3511 11.236" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.6" d="M3.29773 14.472L5.64887 11.236" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.2" d="M15.6085 5.52783L11.8043 6.7639" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.7" d="M0.391602 10.472L4.19583 9.23598" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.3" d="M15.6085 10.4722L11.8043 9.2361" stroke="currentColor" stroke-width="1.5"></path>
+							<path opacity="0.8" d="M0.391602 5.52783L4.19583 6.7639" stroke="currentColor" stroke-width="1.5"></path>
+						</g>
+					</svg>
+				</div>
 			</div>
 		</a>
 	</div>
@@ -62,6 +89,48 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 		<div class="corner bottom-right"></div>
 	</div>
 </div>
+
+<script define:vars={{id, previewSrc}}>
+	document.addEventListener('astro:page-load', () => {
+		// Reference elements
+		const container = document.querySelector(`#project-card-${id}`);
+		const card = container.querySelector('.card');
+		const thumbnail = container.querySelector('.thumbnail');
+		const preview = container.querySelector('.preview-video');
+		const spinner = container.querySelector('.spinner');
+
+		const loadVideo = () => {
+			if (!preview.src) {
+				spinner.style.opacity = 1;
+				preview.src = previewSrc;
+				preview.load();
+			}
+		}
+
+		const playVideo = () => {
+			spinner.style.opacity = 0;
+			thumbnail.style.opacity = 0;
+			preview.style.opacity = 1;
+			preview.play();
+		}
+
+		const hideVideo = () => {
+			preview.pause();
+			preview.currentTime = 0;
+			preview.style.opacity = 0;
+			spinner.style.opacity = 0;
+			thumbnail.style.opacity = 1;
+			preview.removeAttribute('src');
+		}
+
+		card.addEventListener('mouseenter', loadVideo);
+		card.addEventListener('mouseleave', hideVideo);
+		card.addEventListener('touchstart', loadVideo);
+		card.addEventListener('touchend', hideVideo);
+		card.addEventListener('touchcancel', hideVideo);
+		preview.addEventListener('loadeddata', playVideo);
+	});
+</script>
 
 <style>
 	.container {
@@ -85,26 +154,23 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 	}
 	.card .top .image {
 		position: relative;
+		background: var(--foreground);
 	}
 	.card .top .image .thumbnail {
 		aspect-ratio: 1/1;
 		height: auto;
 		pointer-events: none;
+		transition: opacity 0.5s ease-in-out 0.25s;
 	}
-	.card .top .image .preview {
+	.card .top .image .preview-video {
 		position: absolute;
-		opacity: 0;
 		width: 100%;
 		top: 0;
 		left: 0;
 		aspect-ratio: 1/1;
 		height: auto;
-		transition: opacity ease-in 0.25s;
-		transition-delay: 0.25s;
 		pointer-events: none;
-	}
-	.card:hover .top .image .preview {
-		opacity: 1;
+		transition: opacity 0.5s ease-in-out 0.25s;
 	}
 	.card .top .image .image-overlay {
 		position: absolute;
@@ -115,7 +181,7 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 		z-index: 10;
 		backdrop-filter: invert(100%);
 		opacity: 0;
-		transition: all 0.5s ease-in-out 0.25s;
+		transition: opacity 0.5s ease-in-out 0.25s;
 	}
 	.card:hover .top .image .image-overlay {
 		opacity: 1;
@@ -123,7 +189,7 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 	.card .top .side {
 		display: flex;
 		justify-content: center;
-		background-color: var(--black-10);
+		background-color: var(--foreground-10);
 		max-height: 100%;
 		min-width: 20px;
 		max-width: 20px;
@@ -138,13 +204,14 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 	}
 
 	.card .bottom {
+		display: flex;
 		pointer-events: none;
 	}
 	.card .bottom .title {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: var(--black-10);
+		background-color: var(--foreground-10);
 		padding: 0 0.3rem;
 		height: 20px;
 		width: calc(100% - 20px);
@@ -161,6 +228,14 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 	.card .bottom .title .id svg {
 		height: 0.5rem;
 		width: auto;
+	}
+	.card .bottom .spinner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		animation: spin 1.2s linear infinite;
 	}
 
 	.corners {
@@ -179,26 +254,26 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 		transition: all ease-out 0.15s;
 	}
 	.corner.top-left {
-		border-top: 1px solid var(--black-60);
-		border-left: 1px solid var(--black-60);
+		border-top: 1px solid var(--foreground-60);
+		border-left: 1px solid var(--foreground-60);
 		top: 0;
 		left: 0;
 	}
 	.corner.top-right {
-		border-top: 1px solid var(--black-60);
-		border-right: 1px solid var(--black-60);
+		border-top: 1px solid var(--foreground-60);
+		border-right: 1px solid var(--foreground-60);
 		top: 0;
 		right: 0;
 	}
 	.corner.bottom-left {
-		border-bottom: 1px solid var(--black-60);
-		border-left: 1px solid var(--black-60);
+		border-bottom: 1px solid var(--foreground-60);
+		border-left: 1px solid var(--foreground-60);
 		bottom: 0;
 		left: 0;
 	}
 	.corner.bottom-right {
-		border-bottom: 1px solid var(--black-60);
-		border-right: 1px solid var(--black-60);
+		border-bottom: 1px solid var(--foreground-60);
+		border-right: 1px solid var(--foreground-60);
 		bottom: 0;
 		right: 0;
 	}
@@ -217,6 +292,11 @@ const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
 	.container:has(.card:hover) .corners .corner.bottom-right {
 		bottom: 0.25rem;
 		right: 0.25rem;
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
 	}
 </style>
 

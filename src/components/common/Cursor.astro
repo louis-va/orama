@@ -13,30 +13,6 @@
 			<path d="M0 0H10V10H0V0Z" fill="currentColor"></path>
 		</svg>
 		<svg
-			id="eye"
-			class="icon"
-			style="display: none"
-			preserveAspectRatio="none"
-			width="10"
-			height="10"
-			viewBox="0 0 10 10"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg">
-			<path
-				d="M4.99998 4.25C4.58577 4.25 4.24998 4.58578 4.24998 5C4.24998 5.41421 4.58577 5.75 4.99998 5.75C5.4142 5.75 5.74998 5.41421 5.74998 5C5.74998 4.58578 5.4142 4.25 4.99998 4.25Z"
-				fill="currentColor"></path>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M6.98915 3.38466C5.94187 2.16849 4.05809 2.16849 3.01084 3.38466L1.61985 5L3.01084 6.61535C4.0581 7.8315 5.94187 7.8315 6.98915 6.61535L8.3801 5L6.98915 3.38466ZM3.49998 5C3.49998 4.17157 4.17155 3.5 4.99998 3.5C5.82841 3.5 6.5 4.17157 6.5 5C6.5 5.82843 5.82841 6.5 4.99998 6.5C4.17155 6.5 3.49998 5.82843 3.49998 5Z"
-				fill="currentColor"></path>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M10 0H0V10H10V0ZM2.44252 2.89527C3.78899 1.33162 6.211 1.33162 7.55745 2.89527L9.15915 4.7553V5.24469L7.55745 7.1047C6.211 8.66835 3.78899 8.66835 2.44252 7.1047L0.84082 5.24469V4.7553L2.44252 2.89527Z"
-				fill="currentColor"></path>
-		</svg>
-		<svg
 			id="arrow-r"
 			class="icon"
 			style="display: none"
@@ -71,7 +47,7 @@
 	const updateCursorPosition = (x: number, y: number) => {
 		const hoveredElement = document.elementFromPoint(x, y);
 
-		if (hoveredElement && hoveredElement.getAttribute("data-cursor") === "focus") {
+		if (hoveredElement && (hoveredElement.getAttribute("data-cursor") === "focus" || hoveredElement.classList.contains("plyr__control"))) {
 			const targetElement = hoveredElement.querySelector('[data-cursor="target"]');
 			const target = targetElement ? targetElement : hoveredElement;
 			const info = target.getBoundingClientRect();
@@ -128,7 +104,7 @@
 		setTimeout(() => {
 			const { x, y } = mouseRef;
 			updateCursorPosition(x, y);
-		}, 1);
+		}, 350);
 	};
 
 	const handleMouseUp = () => {
@@ -137,7 +113,7 @@
 		setTimeout(() => {
 			const { x, y } = mouseRef;
 			updateCursorPosition(x, y);
-		}, 1);
+		}, 350);
 	};
 
 	// if not on a touch device

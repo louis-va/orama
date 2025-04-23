@@ -1,0 +1,92 @@
+---
+import Logo from "@components/common/Logo.astro";
+---
+
+<div class="loading">
+  <div class="logo">
+    <Logo />
+  </div>
+</div>
+
+<style>
+  .loading {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;          /* start hidden */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+
+  .loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .logo {
+    width: 10rem;
+    height: 10rem;
+    filter: invert(1);
+  }
+
+  /* continuously rotate the entire SVG */
+  .logo svg {
+    width: 100%;
+    height: 100%;
+    animation: rotate 2s linear infinite;
+    transform-origin: center center;
+  }
+
+  /* pulse each path’s fill from transparent → opaque → transparent */
+  .logo svg path {
+    fill: currentColor;
+    animation: fillPulse 1s ease-in-out infinite;
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fillPulse {
+    0%, 100%   { fill-opacity: 0; }
+    50%        { fill-opacity: 1; }
+  }
+</style>
+
+<script>
+  const loadingEl = document.querySelector(".loading") as HTMLElement;
+
+  // Only run loader logic if we haven't yet on this session
+  if (!sessionStorage.getItem("hasSeenLoader")) {
+    // Mark that we've shown it
+    sessionStorage.setItem("hasSeenLoader", "true");
+    // Show the loader
+    loadingEl.style.display = "flex";
+
+    // Promise for actual page load
+    const pageLoaded = new Promise<void>(res => {
+      if (document.readyState === "complete") {
+        res();
+      } else {
+        window.addEventListener("load", () => res(), { once: true });
+      }
+    });
+
+    // Promise for minimum 1 s duration
+    const minDuration = new Promise<void>(res => setTimeout(res, 1000));
+
+    // When both done, fade out and remove from flow
+    Promise.all([pageLoaded, minDuration]).then(() => {
+      loadingEl.classList.add("hidden");
+      loadingEl.addEventListener(
+        "transitionend",
+        () => { loadingEl.style.display = "none"; },
+        { once: true }
+      );
+    });
+  }
+  // else: do nothing, loader stays hidden
+</script>

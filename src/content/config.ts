@@ -3,19 +3,22 @@ import { z, defineCollection } from 'astro:content';
 const projectCollection = defineCollection({
   type: 'content',
   schema: ({ image }) =>  z.object({
-    title: z.string(),
     order: z.number(),
-    overview: z.string(),
-    type: z.string(),
+    title: z.string(),
+    description: z.string(),
     year: z.number(),
-    client: z.string(),
-    services: z.array(z.string()),
+    type: z.string(),
+    client: z.string().optional(),
+    credits: z.array(z.object({
+      role: z.string(),
+      name: z.array(z.string())
+    })).optional(),
     video: z.object({
       type: z.enum(["video/mp4", "youtube", "vimeo"]),
       src: z.string()
     }).optional(),
     thumbnail: image(),
-    preview: image(),
+    preview: z.string(),
     cover: image()
   }),
 });

@@ -1,0 +1,156 @@
+---
+import TwoCols from '@layouts/TwoCols.astro';
+
+interface Props {
+  title: string;
+  description: string;
+	year: number;
+	type: string;
+  client?: string;
+  credits?: {
+    role: string;
+    name: string[];
+  }[];
+}
+
+const { title, description, year, type, client, credits } = Astro.props;
+---
+
+<div class="information">
+  <h1>{title}</h1>
+
+  <div class="wrapper">
+    <TwoCols title="Infos" id="infos" num="01">
+      <dl>
+        <div class="item">
+          <dt class="heading">Description</dt>
+          <dd>{description}</dd>
+        </div>
+        <div class="item">
+          <dt class="heading">Année</dt>
+          <dd>{year}</dd>
+        </div>
+        <div class="item">
+          <dt class="heading">Type</dt>
+          <dd>{type}</dd>
+        </div>
+    
+        {client &&
+          <div class="item">
+            <dt class="heading">Client</dt>
+            <dd>{client}</dd>
+          </div>
+        }
+    
+        {credits && credits.length > 0 && 
+          <div class="item">
+            <dt class="heading">Crédits</dt>
+            <dd>
+              {credits.map((credit) => (
+                <div class="credit">
+                  <span class="role">{credit.role}</span>
+                  <ul class="name">{credit.name.map((name) => (
+                    <li>{name}</li>
+                  ))}</ul>
+                </div>
+              ))}
+            </dd>
+          </div>
+        }
+      </dl>
+    </TwoCols>
+  </div>
+</div>
+
+<style>
+  .information {
+    margin-top: 7.5rem;
+  }
+  .wrapper {
+    margin-top: -7.5rem;
+  }
+  h1 {
+		font-size: var(--text-2xl);
+		font-weight: 400;
+		line-height: 125%;
+	}
+  .item {
+    margin-bottom: 2rem;
+    display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  }
+  .item dt {
+    grid-column: span 2 / span 2;
+    color: var(--foreground-60);
+  }
+  .item dd {
+    grid-column: span 4 / span 4;
+  }
+  .item dd .credit {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 0.5rem;
+  }
+  .item dd .credit:last-child {
+    margin-bottom: 0;
+  }
+  .item dd .credit .role {
+    grid-column: span 1 / span 1;
+    color: var(--foreground-60);
+  }
+  .item dd .credit .name {
+    grid-column: span 1 / span 1;
+    color: var(--foreground);
+  }
+  .item dd .credit .name li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+  }
+  .item dd .credit .name li:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 960px) {
+		.item {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+		.item dt {
+			grid-column: span 1 / span 1;
+		}
+		.item dd {
+			grid-column: span 3 / span 3;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+    .information {
+      margin-top: 3rem;
+    }
+    h1 {
+      font-size: var(--text-xl);
+    }
+		.item {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+		.item dt {
+			grid-column: span 2 / span 2;
+		}
+		.item dd {
+			grid-column: span 4 / span 4;
+		}
+	}
+
+  @media screen and (max-width: 768px) {
+		.item {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.5rem;
+		}
+		.item dt {
+			grid-column: span 6 / span 6;
+		}
+		.item dd {
+			grid-column: span 6 / span 6;
+		}
+	}
+</style>

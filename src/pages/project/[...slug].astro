@@ -1,11 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Cover from "../../components/project/Cover.astro";
-
-import { getAdjacentElements } from "../../utils/array.utils";
-
-import { getCollection } from "astro:content";
-import { getEntries } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Cover from "@components/project/Cover.astro";
+import Information from "@components/project/Information.astro";
+import Body from "@components/project/Body.astro";
+import { getAdjacentElements } from "@utils/array.utils";
+import { getCollection, render } from "astro:content";
 
 // Generate a new path for every project
 export async function getStaticPaths() {
@@ -21,13 +20,13 @@ export async function getStaticPaths() {
 }
 
 const { entry, prev, next } = Astro.props;
-
-// Get project's video src
-const videoFiles: any = import.meta.glob("/src/content/projects/*/*.mp4", { eager: true });
-const videoFile: string = videoFiles[`/src/content/projects/${entry.slug}/${entry.data.video?.src}`]?.default;
-const videoSource = videoFile && entry.data.video?.type === "video/mp4" ? videoFile : (entry.data.video?.src as string);
+const { Content } = await render(entry);
 ---
 
-<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.overview} theme="dark">
-	<Cover title={entry.data.title} cover={entry.data.cover} videoType={entry.data.video?.type} videoSrc={videoSource} />
+<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.description} theme="dark">
+	<Cover title={entry.data.title} cover={entry.data.cover} videoType={entry.data.video?.type} videoSrc={entry.data.video?.src} />
+	<Information title={entry.data.title} description={entry.data.description} year={entry.data.year} type={entry.data.type} client={entry.data.client} credits={entry.data.credits} />
+	<Body>
+		<Content />
+	</Body>
 </Layout>
