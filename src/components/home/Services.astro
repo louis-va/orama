@@ -3,52 +3,47 @@ import TwoCols from "@layouts/TwoCols.astro";
 ---
 
 <TwoCols title="Nos services" id="services" num="02">
-	<p class="paragraph">Nous proposons une gamme complète de services de production vidéo.</p>
 	<p class="paragraph">
-		De la préproduction, qui comprend le brainstorming, le développement et l'aide à la rédaction, à la postproduction,
-		qui comprend le montage, l'étalonnage et le titrage.
+		Production audiovisuelle, création sonore ou image fixe quel que soit votre projet, nous vous proposons un accompagnement personnalisé à chaque étapes de celui-ci.
 	</p>
 
 	<div class="service">
 		<div class="title">
-			<h3 class="heading">Vidéo</h3>
+			<h3 class="heading">Prod. audiovisuelle</h3>
 		</div>
 		<div class="list">
 			<ul>
+				<li>Court & long-métrage</li>
+				<li>Série documentaire & fiction</li>
+				<li>Contenu publicitaire & réseaux</li>
 				<li>Clip musical</li>
-				<li>Captation théâtre</li>
-				<li>Documentaire et Fiction</li>
-				<li>Aftermovie</li>
-				<li>Contenu Réseaux</li>
+				<li>Captations & Aftermovie</li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="service">
 		<div class="title">
-			<h3 class="heading">Photo</h3>
+			<h3 class="heading">Prod. sonore</h3>
 		</div>
 		<div class="list">
 			<ul>
-				<li>Documentaire et reportage photo</li>
+				<li>Montage et mixage son</li>
+				<li>Composition/Enregistrement de musique originale</li>
+				<li>Documentaire audio/Podcast</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="service">
+		<div class="title">
+			<h3 class="heading">Photographie</h3>
+		</div>
+		<div class="list">
+			<ul>
+				<li>Documentaire photographique</li>
 				<li>Photographie de plateau</li>
-				<li>Portrait</li>
-				<li>Affiche de films et d'événements</li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="service">
-		<div class="title">
-			<h3 class="heading">Son</h3>
-		</div>
-		<div class="list">
-			<ul>
-				<li>Documentaire audio</li>
-				<li>Podcast (filmé ou non)</li>
-				<li>Composition de musique sur mesure</li>
-				<li>Post–Production cinéma</li>
-				<li>Doublage</li>
+				<li>Affiche</li>
 			</ul>
 		</div>
 	</div>
@@ -56,12 +51,11 @@ import TwoCols from "@layouts/TwoCols.astro";
 
 <style>
 	ul {
-		list-style-type: square;
+		list-style-type: none;
 	}
 	ul li {
-		text-transform: uppercase;
-		font-size: var(--text-small);
-		margin-bottom: 0.25rem;
+		font-size: var(--text-base);
+		margin-bottom: 0.5rem;
 	}
 
 	.service {
@@ -71,6 +65,7 @@ import TwoCols from "@layouts/TwoCols.astro";
 	}
 	.service .title {
 		grid-column: span 2 / span 2;
+		padding-right: 1rem;
 	}
 	.service .list {
 		grid-column: span 4 / span 4;
@@ -97,6 +92,18 @@ import TwoCols from "@layouts/TwoCols.astro";
 		}
 		.service .list {
 			grid-column: span 4 / span 4;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.service {
+			gap: 0.5rem;
+		}
+		.service .title {
+			grid-column: span 6 / span 6;
+		}
+		.service .list {
+			grid-column: span 6 / span 6;
 		}
 	}
 </style>

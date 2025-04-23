@@ -1,7 +1,6 @@
 ---
 order: 1
 title: "Cœur"
-description: "Un amant découvre l'amour sanglant de deux sœurs qu'il mène en bateau."
 year: 2023
 type: "Clip musical"
 client: "Jade & Naïa"
@@ -15,16 +14,32 @@ credits: [
     name: ["Pierre Terranova"]
   },
   {
-    role: "Image",
+    role: "Chef opérateur",
     name: ["Mathieu Soille"]
   },
   {
-    role: "Photographie",
+    role: "Cadrage",
+    name: ["Django Schrevens"]
+  },
+  {
+    role: "Étalonnage",
+    name: ["Mathieu Soille"]
+  },
+  {
+    role: "Photographe",
     name: ["Jonathan Pourchet"]
   },
   {
-    role: "Électronique",
+    role: "Électro",
     name: ["Maëlle Crespo"]
+  },
+  {
+    role: "Runner",
+    name: ["Guerric Verougstraete"]
+  },
+  {
+    role: "Avec",
+    name: ["Edson Pedro", "Jade & Naïa Franche"]
   },
 ]
 video: {
@@ -35,6 +50,8 @@ thumbnail: "./thumbnail.jpg"
 preview: "preview.webm"
 cover: "./cover.jpg"
 ---
+
+Entre amour et haine, Cœur met en scène Jade et Naïa, deux chanteuses unies et déchirées par le même homme. Dans un univers à la fois intime et intense, leurs voix deviennent les reflets d’un cœur partagé, où passion et trahison se mêlent.
 
 ![Still du clip Cœur](./stills/Coeur_Stills_OG_1.jpg)
 ![Still du clip Cœur](./stills/Coeur_Stills_OG_2.jpg)

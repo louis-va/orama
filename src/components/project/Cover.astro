@@ -42,8 +42,6 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 		gap: 1rem;
 		font-size: var(--text-small);
 		text-transform: uppercase;
-	}
-	ul.breadcrumb {
 		list-style: none;
 	}
 	ul.breadcrumb li a {
@@ -59,12 +57,20 @@ const { title, cover, videoType, videoSrc } = Astro.props;
 		width: 100%;
 		height: auto;
 	}
+
 	@media screen and (max-width: 768px) {
     section {
 			margin-top: 5rem;
 		}
 		figure {
 			margin-top: 1.5rem;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+    ul.breadcrumb {
+			gap: 0.5rem;
+			font-size: var(--text-xs);
 		}
 	}
 </style>

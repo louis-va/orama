@@ -23,9 +23,9 @@ const { entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Layout title={`Orama Production – ${entry.data.title}`} description={entry.data.description} theme="dark">
+<Layout title={`Orama Production | ${entry.data.title}`} description={`Projet ${entry.data.type} pour ${entry.data.client} réalisé en ${entry.data.year}`} theme="dark">
 	<Cover title={entry.data.title} cover={entry.data.cover} videoType={entry.data.video?.type} videoSrc={entry.data.video?.src} />
-	<Information title={entry.data.title} description={entry.data.description} year={entry.data.year} type={entry.data.type} client={entry.data.client} credits={entry.data.credits} />
+	<Information title={entry.data.title} year={entry.data.year} type={entry.data.type} client={entry.data.client} credits={entry.data.credits} />
 	<Body>
 		<Content />
 	</Body>

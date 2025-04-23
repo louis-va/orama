@@ -3,19 +3,17 @@ import Arrow from "@components/common/Arrow.astro";
 ---
 
 <section id="hero">
-	<h1>
-		<span class="content">
-			Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux,
-			documentaires et de fiction percutants, axés sur un storytelling de qualité.
-		</span>
-		<span class="typewriter" aria-hidden="true">
-			Nous sommes Orama, un studio de production audiovisuel bruxellois. Nous créons des contenus commerciaux,
-			documentaires et de fiction percutants, axés sur un storytelling de qualité.
-		</span>
-	</h1>
-	<a href="/#projects" aria-label="Scroll down" class="more" data-cursor="focus">
-		<span><Arrow variant="down" /></span>
-	</a>
+	<div>
+		<span class="heading">INT/EXT. Bruxelles</span>
+		<h1>
+			<span class="content">
+				ORAMA, studio de production audiovisuelle bruxellois, vous accompagne dans la création de films commerciaux, de documentaires engagés et de fictions originales.
+			</span>
+			<span class="typewriter" aria-hidden="true">
+				ORAMA, studio de production audiovisuelle bruxellois, vous accompagne dans la création de films commerciaux, de documentaires engagés et de fictions originales.
+			</span>
+		</h1>
+	</div>
 </section>
 
 <script>
@@ -53,10 +51,11 @@ import Arrow from "@components/common/Arrow.astro";
 		align-items: end;
 		justify-content: space-between;
 		gap: 2rem;
-		height: calc(100dvh - 10rem);
+		height: calc(100vh - 10rem);
 		padding-bottom: 5rem;
 	}
 	h1 {
+		margin-top: 2rem;
 		position: relative;
 		display: block;
 		font-size: var(--text-xl);
@@ -83,8 +82,8 @@ import Arrow from "@components/common/Arrow.astro";
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		width: 2.75rem;
-		height: 2.75rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		padding: 0.25rem;
 	}
 	a.more span {
@@ -114,8 +113,8 @@ import Arrow from "@components/common/Arrow.astro";
 			flex-direction: column;
 			align-items: end;
 			justify-content: end;
-			padding-bottom: 2rem;
-			height: calc(100dvh - 3rem);
+			padding-bottom: 3rem;
+			height: calc(100vh - 9rem);
 		}
 		h1 {
 			font-size: var(--text-large);

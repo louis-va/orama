@@ -1,7 +1,6 @@
 ---
 order: 2
 title: "Cléone"
-description: "Cléone est un poème théâtralisé qui mélange mouvement, danse et théâtre."
 year: 2023
 type: "Captation théatre"
 client: "Collectif Libertalia"
@@ -11,12 +10,28 @@ credits: [
     name: ["Django Schrevens", "Emmanuel Zamora"]
   },
   {
+    role: "Montage",
+    name: ["Pierre Terranova"]
+  },
+  {
     role: "Étalonnage",
     name: ["Mathieu Soille"]
   },
   {
-    role: "Montage",
-    name: ["Pierre Terranova"]
+    role: "Conception",
+    name: ["Patrick Duquesne"]
+  },
+  {
+    role: "Mise en scène théâtrale",
+    name: ["Patrick Duquesne"]
+  },
+  {
+    role: "Lumières",
+    name: ["Mathieu Houart", "Patrick Duquesne"]
+  },
+  {
+    role: "Avec",
+    name: ["Elisa Bagni", "Marco Borgheresi", "Aurélie Camil", "Marine Haelterman", "Samuel Osman", "Céline Spicy", "Fernando Zamora"]
   },
 ]
 video: {
@@ -28,9 +43,9 @@ preview: "preview.webm"
 cover: "./cover.jpg"
 ---
 
-Dans cette mis en scène de Cléone et de ses compagnons en fuite, le Collectif Libertalia part à la rencontre d’une forme théâtrale articulée autour de l’expression non verbale. 
+Une production du Colletif Libertalia en collaboration avec la Compagnie Arca Azzurra (IT).
 
-Comme un poème théâtralisé et dansé, un spectacle fait de sons, mouvements, et rythmes qui tentent la voie du lyrisme et de la poésie pour remettre la petite histoire des opprimés, à sa place, dans la grande histoire du monde.
+Cléone est une sorcière intemporelle et contemporaine. Esclave en fuite, elle questionne poétiquement le désordre du monde. Vite rejointe par quelques compagnons d’évasion, dans leur course folle, il se font « miroir de nos vies traquées » tout en refusant le rôle de victimes.
 
 ![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_1.jpg)
 ![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_2.jpg)
