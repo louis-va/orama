@@ -55,6 +55,8 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
       ],
       settings: ['quality'],
       volume: 1,
+      iconUrl: '/icons/geist-plyr-icons.svg',
+      iconPrefix: 'geist'
     };
 
     const player = new Plyr(el as HTMLVideoElement, options);
@@ -70,8 +72,10 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
     --plyr-control-radius: 0px;
     --plyr-menu-radius: 0px;
     --plyr-tooltip-radius: 0px;
-    --plyr-range-track-height: 4px;
-    --plyr-range-thumb-height: 8px;
+    --plyr-range-track-height: 0.25rem;
+    --plyr-range-thumb-height: 0.5rem;
+    --plyr-control-icon-size: 1rem;
+    --plyr-control-spacing: 0.5rem;
     --plyr-video-control-color: var(--white);
     --plyr-range-fill-background: var(--white);
     --plyr-font-family: var(--font-mono);
@@ -79,6 +83,7 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
   .plyr__control {
     border-radius: 0px !important;
   }
+
   .plyr__video-embed iframe,
   .plyr__video-wrapper video,
   .plyr__video-wrapper {

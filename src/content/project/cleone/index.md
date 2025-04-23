@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 2
 title: "Cléone"
 description: "Cléone est un poème théâtralisé qui mélange mouvement, danse et théâtre."
 year: 2023
