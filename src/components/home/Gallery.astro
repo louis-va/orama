@@ -1,11 +1,18 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import { gallery } from '@content/gallery/gallery';
+import Play from "@assets/icons/Play.astro";
 
-// Get gallery images dynamically
-const imageFiles = import.meta.glob<{ default: ImageMetadata }>('/src/content/gallery/*.{jpeg,jpg,png,gif}', { eager: true });
-const path = "/src/content/gallery/";
+// Import all images from the gallery folder eagerly
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/gallery/*.{jpeg,jpg,png,gif,webp}',
+  { eager: true }
+);
+// Convert the imported modules object into an array of ImageMetadata
+const images = Object.values(modules).map((m) => m.default);
+
+// Duration: 5 seconds per image
+const duration = images.length * 5;
 ---
 
 <div class="container">
@@ -22,41 +29,27 @@ const path = "/src/content/gallery/";
         <div class="invert"></div>
       </div>
 
-      <div class="slider">
-        {gallery.map((image) => {
-          const imgPath = path + image.src;
-          if (imageFiles[imgPath]) {
-            return (
-              <div class="img">
-                <Image src={imageFiles[imgPath].default} alt={image.description} />
-              </div>
-            );
-          }
-        })}
-
-        {gallery.map((image) => {
-          const imgPath = path + image.src;
-          if (imageFiles[imgPath]) {
-            return (
-              <div class="img" aria-hidden="true">
-                <Image src={imageFiles[imgPath].default} alt="" />
-              </div>
-            );
-          }
-        })}
+      <div class="slider" style={`animation: slider ${duration}s linear infinite`}>
+        {images.map((image, index) => (
+          <div class="img">
+            <Image src={image} alt="" />
+            <div class="data">
+              <div>ORA 200</div>
+              <div class="index"><Play className="size-3xs" />{index + 1}</div>
+            </div>
+          </div>
+        ))}
+        {images.map((image, index) => (
+          <div class="img" aria-hidden="true">
+            <Image src={image} alt="" />
+            <div class="data">
+              <div>ORA 200</div>
+              <div class="index"><Play className="size-3xs" />{index + 1}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  </div>
-
-  <div class="squares">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square mobile-hidden"></div>
-    <div class="square mobile-hidden"></div>
-    <div class="square mobile-hidden"></div>
-    <div class="square mobile-hidden"></div>
   </div>
 </div>
 
@@ -65,7 +58,7 @@ const path = "/src/content/gallery/";
     margin-top: 7.5rem;
     width: 100%;
     height: 15rem;
-    background-color: var(--foreground);
+    background-color: var(--black);
     --red: #FF0000;
   }
   .gallery .container {
@@ -75,24 +68,36 @@ const path = "/src/content/gallery/";
   }
   .gallery .slider {
     width: max-content;
-    white-space: nowrap;
-    -moz-animation: slider 60s linear infinite;
-    -webkit-animation: slider 60s linear infinite;
-    animation: slider 60s linear infinite;
+    display: flex;
   }
   .gallery .img {
-    padding: 0.5rem;
-    display: inline-block;
+    padding: 0.75rem 0.5rem 0 0.5rem;
+    display: block;
     height: 100%;
     width: auto;
   }
   .gallery .img img {
-    height: 14rem;
+    height: 13.25rem;
     border-radius: .125rem;
     width: auto;
     pointer-events: none;
     opacity: 0.95;
     filter: invert(1);
+  }
+  .gallery .img .data {
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25rem;
+    font-size: 0.5rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .gallery .img .data .index {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .viewfinder {
@@ -146,6 +151,12 @@ const path = "/src/content/gallery/";
   @media screen and (max-width: 768px) {
 		.viewfinder {
       aspect-ratio: 1/1;
+    }
+	}
+
+  @media screen and (max-width: 480px) {
+		.gallery {
+      margin-top: 5rem;
     }
 	}
 </style>
