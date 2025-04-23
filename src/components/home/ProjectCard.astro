@@ -7,13 +7,13 @@ interface Props {
 	slug: string;
 	id: number;
 	title: string;
-	type: string;
+	filter: string;
 	year: number;
 	thumbnail: ImageMetadata;
 	preview: string;
 }
 
-const { slug, id, title, type, year, thumbnail, preview } = Astro.props;
+const { slug, id, title, filter, year, thumbnail, preview } = Astro.props;
 
 // Get project's thumbnail src
 const webmFiles: any = import.meta.glob("/src/content/project/*/*.webm", { eager: true });
@@ -38,7 +38,7 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 				</div>
 				<div class="side">
 					<div class="text">
-						<span>{type}</span>
+						<span>{filter}</span>
 						<span>{year}</span>
 					</div>
 				</div>

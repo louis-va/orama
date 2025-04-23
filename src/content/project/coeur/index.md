@@ -3,6 +3,7 @@ order: 1
 title: "Cœur"
 year: 2023
 type: "Clip musical"
+filter: "Clip"
 client: "Jade & Naïa"
 credits: [
   {

@@ -3,6 +3,7 @@ order: 2
 title: "Cléone"
 year: 2023
 type: "Captation théatre"
+filter: "Théatre"
 client: "Collectif Libertalia"
 credits: [
   {

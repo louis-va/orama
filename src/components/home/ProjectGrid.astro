@@ -2,66 +2,137 @@
 import ProjectCard from "@components/home/ProjectCard.astro";
 import Separator from "@components/common/Separator.astro";
 import Heading from "@components/common/Heading.astro";
-
-// PROJECTS
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("project");
-projects.sort((a, b) => {
-	return a.data.order - b.data.order;
-});
+projects.sort((a, b) => a.data.order - b.data.order);
+
+// derive unique filters
+const rawFilters = projects.map(p => p.data.filter);
+const filters = ["tout", ...Array.from(new Set(rawFilters))];
 ---
 
 <section id="projects">
-	<Separator />
-	<Heading id="01">Nos projets</Heading>
+  <Separator />
+  <Heading id="01">Nos projets</Heading>
 
-	<div class="grid">
-		{
-			projects.map((project, index) => {
-				return (
-					<ProjectCard
-						slug={project.slug}
-						id={index + 1}
-						title={project.data.title}
-						type={project.data.type}
-						thumbnail={project.data.thumbnail}
-						preview={project.data.preview}
-						year={project.data.year}
-					/>
-				);
-			})
-		}
+  <!-- filter buttons -->
+	<div class="filters">
+		{filters.map(filter => (
+			<button
+				type="button"
+				data-filter={filter}
+				class="filter-btn"
+				data-cursor="focus"
+			>
+				{filter}
+			</button>
+			<span class="separator">/</span>
+		))}
 	</div>
+
+  <div class="grid">
+    {projects.map((project, i) => (
+      <div
+        class="project-item"
+        data-filter={project.data.filter}
+      >
+        <ProjectCard
+          slug={project.slug}
+          id={i + 1}
+          title={project.data.title}
+          filter={project.data.filter}
+          thumbnail={project.data.thumbnail}
+          preview={project.data.preview}
+          year={project.data.year}
+        />
+      </div>
+    ))}
+  </div>
 </section>
 
 <style>
-	section {
-		margin-top: -5rem;
-		padding-top: 5rem;
-	}
-	.grid {
+  section {
+    margin-top: -5rem;
+    padding-top: 5rem;
+  }
+
+  .filters {
 		margin-top: 3rem;
-		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0.25rem;
-	}
+    display: flex;
+		align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+	.filters .separator {
+    font-size: var(--text-xs);
+  }
+	.filters .separator:last-child {
+    display: none;
+  }
 
-	@media screen and (max-width: 1024px) {
-		.grid {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
+  .filter-btn {
+		padding: 0;
+		font-size: var(--text-small);
+		text-transform: uppercase;
+  }
+  .filter-btn.active {
+    background: var(--black);
+    color: var(--white);
+  }
 
-	@media screen and (max-width: 768px) {
-		.grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
+  .grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.25rem;
+  }
 
-	@media screen and (max-width: 480px) {
-		.grid {
-			grid-template-columns: repeat(1, minmax(0, 1fr));
-		}
-	}
+  @media screen and (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
 </style>
+
+<!-- client-side filtering script -->
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const items = document.querySelectorAll(".project-item");
+
+    function setActive(button) {
+      buttons.forEach(btn => btn.classList.toggle("active", btn === button));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+        setActive(btn);
+
+        items.forEach(item => {
+          const matches = filter === "tout" || item.dataset.filter === filter;
+          item.style.display = matches ? "" : "none";
+        });
+      });
+    });
+
+    // initialize with "all" active
+    const first = document.querySelector('.filter-btn[data-filter="tout"]');
+    if (first) {
+      setActive(first);
+    }
+  });
+</script>

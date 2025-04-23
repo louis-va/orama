@@ -7,6 +7,7 @@ const projectCollection = defineCollection({
     title: z.string(),
     year: z.number(),
     type: z.string(),
+    filter: z.string(),
     client: z.string().optional(),
     credits: z.array(z.object({
       role: z.string(),
