@@ -1,7 +1,10 @@
 function getAdjacentElements(array: any[], index: number) {
   const length = array.length;
   if (length === 0) {
-      return [undefined, undefined];
+      return {
+        prev: undefined,
+        next: undefined
+      };
   }
   
   let prevIndex = index - 1;
@@ -13,7 +16,10 @@ function getAdjacentElements(array: any[], index: number) {
       nextIndex = 0; // second element
   }
   
-  return [array[prevIndex], array[nextIndex]];
+  return {
+    prev: array[prevIndex],
+    next: array[nextIndex]
+  };
 }
 
 export { getAdjacentElements };

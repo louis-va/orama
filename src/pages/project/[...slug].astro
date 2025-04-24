@@ -3,18 +3,20 @@ import Layout from "@layouts/Layout.astro";
 import Cover from "@components/project/Cover.astro";
 import Information from "@components/project/Information.astro";
 import Body from "@components/project/Body.astro";
+import PreviousNext from "@components/project/PreviousNext.astro";
 import { getAdjacentElements } from "@utils/array.utils";
 import { getCollection, render } from "astro:content";
 
 // Generate a new path for every project
 export async function getStaticPaths() {
 	const projects = await getCollection("project");
+	projects.sort((a, b) => a.data.order - b.data.order);
 	return projects.map((entry, index) => ({
 		params: { slug: entry.slug },
 		props: {
 			entry,
-			prev: getAdjacentElements(projects, index)[0],
-			next: getAdjacentElements(projects, index)[1],
+			prev: getAdjacentElements(projects, index).prev as typeof entry,
+			next: getAdjacentElements(projects, index).next as typeof entry,
 		},
 	}));
 }
@@ -29,4 +31,5 @@ const { Content } = await render(entry);
 	<Body>
 		<Content />
 	</Body>
+	<PreviousNext previousUrl={`/project/${prev.slug}`} previousTitle={prev.data.title} nextUrl={`/project/${next.slug}`} nextTitle={next.data.title} />
 </Layout>
