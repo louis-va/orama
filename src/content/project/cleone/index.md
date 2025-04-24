@@ -44,12 +44,12 @@ preview: "preview.webm"
 cover: "./cover.jpg"
 ---
 
-Une production du Colletif Libertalia en collaboration avec la Compagnie Arca Azzurra (IT).
-
 Cléone est une sorcière intemporelle et contemporaine. Esclave en fuite, elle questionne poétiquement le désordre du monde. Vite rejointe par quelques compagnons d’évasion, dans leur course folle, il se font « miroir de nos vies traquées » tout en refusant le rôle de victimes.
 
-![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_1.jpg)
-![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_2.jpg)
-![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_3.jpg)
-![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_4.jpg)
-![Still de la captation de la pièce Cléone](./stills/Cleone_Stills_Og_5.jpg)
+Une production du Colletif Libertalia en collaboration avec la Compagnie Arca Azzurra (IT).
+
+![Still de la captation théatre Cléone](./stills/Cleone_Stills_Og_1.jpg)
+![Still de la captation théatre Cléone](./stills/Cleone_Stills_Og_2.jpg)
+![Still de la captation théatre Cléone](./stills/Cleone_Stills_Og_3.jpg)
+![Still de la captation théatre Cléone](./stills/Cleone_Stills_Og_4.jpg)
+![Still de la captation théatre Cléone](./stills/Cleone_Stills_Og_5.jpg)
