@@ -14,21 +14,22 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
 
 <section id="projects">
   <Separator />
-  <Heading id="01">Nos projets</Heading>
-
-  <!-- filter buttons -->
-	<div class="filters">
-		{filters.map(filter => (
-			<button
-				type="button"
-				data-filter={filter}
-				class="filter-btn"
-				data-cursor="focus"
-			>
-				{filter}
-			</button>
-			<span class="separator">/</span>
-		))}
+	<div class="top">
+		<Heading id="01">Nos projets</Heading>
+		 <!-- filter buttons -->
+		<div class="filters">
+			{filters.map(filter => (
+				<button
+					type="button"
+					data-filter={filter}
+					class="filter-btn"
+					data-cursor="focus"
+				>
+					{filter}
+				</button>
+				<span class="separator">/</span>
+			))}
+		</div>
 	</div>
 
   <div class="grid">
@@ -57,8 +58,13 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
     padding-top: 5rem;
   }
 
+	.top {
+		display: flex;
+		justify-content: space-between;
+		width: calc(100%/12*11);
+	}
+
   .filters {
-		margin-top: 3rem;
     display: flex;
 		align-items: center;
     flex-wrap: wrap;
@@ -77,12 +83,12 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
 		text-transform: uppercase;
   }
   .filter-btn.active {
-    background: var(--black);
+    background: var(--black-80);
     color: var(--white);
   }
 
   .grid {
-    margin-top: 1.5rem;
+    margin-top: 3rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.25rem;
@@ -98,6 +104,12 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
     .grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+		.top {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			width: 100%;
+		}
   }
 
   @media screen and (max-width: 480px) {
