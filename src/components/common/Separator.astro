@@ -1,6 +1,16 @@
+---
+interface Props {
+	corner?: boolean;
+}
+
+const { corner = true } = Astro.props;
+---
+
 <div class="separator">
   <div></div>
-  <div class="corner"></div>
+  { corner && 
+    <div class="corner"></div>
+  }
 </div>
 
 <style>

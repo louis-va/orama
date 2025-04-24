@@ -9,11 +9,11 @@ projects.sort((a, b) => a.data.order - b.data.order);
 
 // derive unique filters
 const rawFilters = projects.map(p => p.data.filter);
-const filters = ["tout", ...Array.from(new Set(rawFilters))];
+const filters = [...Array.from(new Set(rawFilters)), "tout"];
 ---
 
 <section id="projects">
-  <Separator />
+  <Separator corner={false} />
 	<div class="top">
 		<Heading id="01">Nos projets</Heading>
 		 <!-- filter buttons -->
@@ -61,7 +61,6 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
 	.top {
 		display: flex;
 		justify-content: space-between;
-		width: calc(100%/12*11);
 	}
 
   .filters {
@@ -108,7 +107,6 @@ const filters = ["tout", ...Array.from(new Set(rawFilters))];
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
-			width: 100%;
 		}
   }
 
