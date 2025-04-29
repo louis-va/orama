@@ -2,6 +2,7 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import Play from "@assets/icons/Play.astro";
+import Spinner from "@assets/icons/Spinner.astro";
 
 interface Props {
 	slug: string;
@@ -52,20 +53,7 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 					</span>
 				</div>
 				<div class="spinner" style="opacity: 0">
-					<svg height="16" stroke-linejoin="round" style="color:currentColor" viewBox="0 0 16 16" width="16">
-						<g clip-path="url(#clip0_2393_1490)">
-							<path d="M8 0V4" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.5" d="M8 16V12" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.9" d="M3.29773 1.52783L5.64887 4.7639" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.1" d="M12.7023 1.52783L10.3511 4.7639" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.4" d="M12.7023 14.472L10.3511 11.236" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.6" d="M3.29773 14.472L5.64887 11.236" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.2" d="M15.6085 5.52783L11.8043 6.7639" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.7" d="M0.391602 10.472L4.19583 9.23598" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.3" d="M15.6085 10.4722L11.8043 9.2361" stroke="currentColor" stroke-width="1.5"></path>
-							<path opacity="0.8" d="M0.391602 5.52783L4.19583 6.7639" stroke="currentColor" stroke-width="1.5"></path>
-						</g>
-					</svg>
+					<Spinner className="size-small" />
 				</div>
 			</div>
 		</a>
@@ -80,8 +68,9 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 
 <script define:vars={{id, previewSrc}}>
 	document.addEventListener('astro:page-load', () => {
-		// Reference elements
 		const container = document.querySelector(`#project-card-${id}`);
+		if (!container) return;
+
 		const card = container.querySelector('.card');
 		const thumbnail = container.querySelector('.thumbnail');
 		const preview = container.querySelector('.preview-video');
@@ -96,10 +85,12 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 		}
 
 		const playVideo = () => {
-			spinner.style.opacity = 0;
-			thumbnail.style.opacity = 0;
-			preview.style.opacity = 1;
-			preview.play();
+			if (preview.src) {
+				spinner.style.opacity = 0;
+				thumbnail.style.opacity = 0;
+				preview.style.opacity = 1;
+				preview.play();
+			}
 		}
 
 		const hideVideo = () => {
@@ -179,8 +170,8 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 		justify-content: center;
 		background-color: var(--foreground-10);
 		max-height: 100%;
-		min-width: 20px;
-		max-width: 20px;
+		min-width: 1.25rem;
+		max-width: 1.25rem;
 		padding: 0.3rem 0;
 	}
 	.card .top .side .text {
@@ -201,9 +192,9 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 		justify-content: space-between;
 		background-color: var(--foreground-10);
 		padding: 0 0.3rem;
-		height: 20px;
-		width: calc(100% - 20px);
-		max-width: calc(100% - 20px);
+		height: 1.25rem;
+		width: calc(100% - 1.25rem);
+		max-width: calc(100% - 1.25rem);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -217,8 +208,8 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 20px;
-		height: 20px;
+		width: 1.25rem;
+		height: 1.25rem;
 		animation: spin 1.2s linear infinite;
 	}
 
@@ -287,5 +278,22 @@ const previewSrc: string = webmFiles[`/src/content/project/${slug}/${preview}`]?
 <style is:global>
   .touch-device .card:hover .top .image .image-overlay {
 		opacity: 0 !important;
+	}
+
+	.touch-device .container:has(.card:hover) .corners .corner.top-left {
+		top: 0 !important;
+		left: 0 !important;
+	}
+	.touch-device .container:has(.card:hover) .corners .corner.top-right {
+		top: 0 !important;
+		right: 0 !important;
+	}
+	.touch-device .container:has(.card:hover) .corners .corner.bottom-left {
+		bottom: 0 !important;
+		left: 0 !important;
+	}
+	.touch-device .container:has(.card:hover) .corners .corner.bottom-right {
+		bottom: 0 !important;
+		right: 0 !important;
 	}
 </style>

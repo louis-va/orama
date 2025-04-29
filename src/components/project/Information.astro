@@ -129,16 +129,11 @@ const { title, year, type, client, credits } = Astro.props;
     h1 {
       font-size: var(--text-xl);
     }
-		.item {
-			grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-		}
 		.item dt {
-			grid-column: span 6 / span 6;
+			grid-column: span 3 / span 3;
 		}
 		.item dd {
-			grid-column: span 6 / span 6;
+			grid-column: span 3 / span 3;
 		}
 	}
 </style>

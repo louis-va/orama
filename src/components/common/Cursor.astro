@@ -100,21 +100,23 @@
 	}, 12);
 
 	const handleMouseDown = () => {
-		CURSOR.classList.add("active");
-		setTimeout(() => {
-			const { x, y } = mouseRef;
-			updateCursorPosition(x, y);
-		}, 350);
-	};
+    const { w, h } = cursor.size;
+    if (w > 0 && h > 0) {
+      const sx = (w + 4) / w;
+      const sy = (h + 4) / h;
+      for (let icon of ICONS) {
+        icon.style.transform = `scale(${sx}, ${sy})`;
+      }
+    }
+    updateCursorPosition(mouseRef.x, mouseRef.y);
+  };
 
-	const handleMouseUp = () => {
-		CURSOR.classList.remove("active");
-		const { x, y } = mouseRef;
-		setTimeout(() => {
-			const { x, y } = mouseRef;
-			updateCursorPosition(x, y);
-		}, 350);
-	};
+  const handleMouseUp = () => {
+    for (let icon of ICONS) {
+      icon.style.transform = "";
+    }
+    updateCursorPosition(mouseRef.x, mouseRef.y);
+  };
 
 	// if not on a touch device
 	if (!("ontouchstart" in window || navigator.maxTouchPoints > 0)) {
@@ -153,9 +155,6 @@
 		transform: scale(1);
 		will-change: transform;
 		transition: transform ease-in-out 150ms;
-	}
-	.cursor.active .icon {
-		transform: scale(1.1);
 	}
 </style>
 

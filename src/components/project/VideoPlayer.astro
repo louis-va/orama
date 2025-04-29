@@ -67,7 +67,7 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
 
 <style is:global>
   :root {
-    --plyr-color-main: var(--gray);
+    --plyr-color-main: rgb(var(--black));
     --plyr-badge-border-radius: 0px;
     --plyr-control-radius: 0px;
     --plyr-menu-radius: 0px;
@@ -76,8 +76,9 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
     --plyr-range-thumb-height: 0.5rem;
     --plyr-control-icon-size: 1rem;
     --plyr-control-spacing: 0.5rem;
-    --plyr-video-control-color: var(--white);
-    --plyr-range-fill-background: var(--white);
+    --plyr-video-control-color: rgb(var(--white));
+    --plyr-range-fill-background: rgb(var(--white));
+    --plyr-tooltip-background: rgb(var(--white));
     --plyr-font-family: var(--font-mono);
   }
   .plyr__control {
@@ -90,7 +91,7 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
     aspect-ratio: 16/9 !important;
   }
 
-  /* Square sliders — */
+  /* Square sliders */
   .plyr__volume input[type="range"]::-webkit-slider-runnable-track,
   .plyr__progress input[type="range"]::-webkit-slider-runnable-track,
   .plyr__volume input[type="range"]::-webkit-slider-thumb,
@@ -100,9 +101,12 @@ const { type, src, title, poster, crossorigin = 'anonymous' } = Astro.props;
   .plyr__volume input[type="range"]::-moz-range-track,
   .plyr__progress input[type="range"]::-moz-range-track,
   .plyr__volume input[type="range"]::-moz-range-thumb,
-  .plyr__progress input[type="range"]::-moz-range-thumb {
+  .plyr__progress input[type="range"]::-moz-range-thumb,
+  .plyr__volume input[type="range"]::-moz-range-progress,
+  .plyr__progress input[type="range"]::-moz-range-progress {
     border-radius: 0 !important;
   }
+
   .plyr__volume input[type="range"]::-ms-track,
   .plyr__progress input[type="range"]::-ms-track,
   .plyr__volume input[type="range"]::-ms-thumb,

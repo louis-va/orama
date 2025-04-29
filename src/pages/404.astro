@@ -1,0 +1,24 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Orama Production" description="" theme="light">
+   <div class="error-404">
+      <h1>404</h1>
+      <p>Cette page n'existe pas</p>
+   </div>
+</Layout>
+
+<style>
+  .error-404 {
+    margin-top: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: 400;
+  }
+</style>
