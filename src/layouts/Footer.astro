@@ -1,17 +1,42 @@
 <footer>
-	Copyright © Orama, 2025 /
-	<a href="/conditions" data-cursor="focus">CGV</a>
+	<div class="legal">
+		<span>Copyright © Orama, 2025</span>
+		<span class="separator">/</span>
+		<a href="/conditions" data-cursor="focus">CGV</a>
+	</div>
+	<div class="contact">
+		<a href="https://www.instagram.com/orama_prod/" target="_blank" data-cursor="focus">IG</a>
+		<span class="separator">/</span>
+		<a href="https://www.facebook.com/profile.php?id=100090062064406" target="_blank" data-cursor="focus">FB</a>
+		<span class="separator">/</span>
+		<a href="https://www.linkedin.com/company/orama-production/" target="_blank" data-cursor="focus">IN</a>
+		<span class="separator">/</span>
+		<a href="mailto:info@oramaprod.be" data-cursor="focus">EMAIL</a>
+	</div>
 </footer>
 
 <style>
 	footer {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: space-between;
 		position: relative;
 		margin-top: 8rem;
 		width: 100%;
 		padding-top: 0.25rem;
 		padding-bottom: 3rem;
-		font-size: var(--text-base);
+		font-size: var(--text-small);
 		text-transform: uppercase;
-		color: var(--foreground-40);
+		color: var(--foreground-60);
 	}
+	.legal, .contact {
+		display: flex;
+		align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+	}
+	.separator {
+    font-size: var(--text-xs);
+  }
 </style>

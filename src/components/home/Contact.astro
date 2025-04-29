@@ -1,6 +1,6 @@
 ---
 import TwoCols from "@layouts/TwoCols.astro";
-import Arrow from "@components/common/Arrow.astro";
+import Button from "@components/common/Button.astro";
 ---
 
 <TwoCols title="Contact" id="contact" num="04">
@@ -12,26 +12,34 @@ import Arrow from "@components/common/Arrow.astro";
 	</p>
 
 	<div class="links">
-		<div>
-			<h3 class="heading">Réseaux</h3>
-			<a href="https://www.instagram.com/orama_prod/" target="_blank" data-cursor="focus"
-				><span class="icon"><Arrow variant="up-right" /></span> Instagram</a
-			>
-			<br />
-			<a href="https://www.facebook.com/profile.php?id=100090062064406" target="_blank" data-cursor="focus"
-				><span class="icon"><Arrow variant="up-right" /></span> Facebook</a
-			>
-			<br />
-			<a href="https://www.linkedin.com/company/orama-production/" target="_blank" data-cursor="focus"
-				><span class="icon"><Arrow variant="up-right" /></span> Linkedin</a
-			>
-		</div>
-		<div>
-			<h3 class="heading">Email</h3>
-			<a href="mailto:info@oramaprod.be" target="_blank" data-cursor="focus"
-				>info@oramaprod.be</a
-			>
-		</div>
+		<Button
+			href="https://www.instagram.com/orama_prod/"
+			textTop="Instagram"
+			textBottom="@orama_prod"
+			icon="arrow-up-right"
+			target="_blank"
+		/>
+		<Button
+			href="https://www.facebook.com/profile.php?id=100090062064406"
+			textTop="Facebook"
+			textBottom="Orama-Production"
+			icon="arrow-up-right"
+			target="_blank"
+		/>
+		<Button
+			href="https://www.linkedin.com/company/orama-production/"
+			textTop="Linkedin"
+			textBottom="Orama-Production"
+			icon="arrow-up-right"
+			target="_blank"
+		/>
+		<Button
+			href="mailto:info@oramaprod.be"
+			textTop="Email"
+			textBottom="info@oramaprod.be"
+			icon="arrow-right"
+			target="_blank"
+		/>
 	</div>
 </TwoCols>
 
@@ -40,16 +48,12 @@ import Arrow from "@components/common/Arrow.astro";
 		margin-top: 2rem;
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.25rem;
 	}
-	.links .icon {
-		display: inline-block;
-		width: 0.75rem;
-		height: auto;
-	}
-	@media screen and (max-width: 480) {
+	@media screen and (max-width: 480px) {
 		.links {
 			grid-template-columns: repeat(1, minmax(0, 1fr));
-			gap: 2rem;
+			gap: 1rem;
 		}
 	}
 </style>

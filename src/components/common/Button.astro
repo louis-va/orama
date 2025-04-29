@@ -8,9 +8,10 @@ interface Props {
   textTop: string;
   textBottom: string;
   icon: "arrow-left" | "arrow-right" | "arrow-up-right";
+  target?: string;
 }
 
-const { href, textTop, textBottom, icon } = Astro.props;
+const { href, textTop, textBottom, icon, target } = Astro.props;
 
 let Icon;
 switch (icon) {
@@ -26,7 +27,7 @@ switch (icon) {
 }
 ---
 
-<a class="previous" href={href} data-cursor="focus">
+<a href={href} data-cursor="focus" target={target}>
   <div class="icon">
     <Icon className="size-small" />
   </div>
@@ -64,18 +65,6 @@ switch (icon) {
   }
   a .text .info {
     color: var(--foreground-60);
-  }
-  a.previous {
-    grid-column-start: 4;
-    grid-column-end: 7;
-    grid-row-start: 1;
-    grid-row-end: 1;
-  }
-  a.next {
-    grid-column-start: 7;
-    grid-column-end: 10;
-    grid-row-start: 1;
-    grid-row-end: 1;
   }
 
   .corners {
@@ -133,5 +122,24 @@ switch (icon) {
 	a:hover .corners .corner.bottom-right {
 		bottom: 0.25rem;
 		right: 0.25rem;
+	}
+</style>
+
+<style is:global>
+	.touch-device a:hover .corners .corner.top-left {
+		top: 0 !important;
+		left: 0 !important;
+	}
+	.touch-device a:hover .corners .corner.top-right {
+		top: 0 !important;
+		right: 0 !important;
+	}
+	.touch-device a:hover .corners .corner.bottom-left {
+		bottom: 0 !important;
+		left: 0 !important;
+	}
+	.touch-device a:hover .corners .corner.bottom-right {
+		bottom: 0 !important;
+		right: 0 !important;
 	}
 </style>
