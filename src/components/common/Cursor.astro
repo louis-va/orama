@@ -108,14 +108,18 @@
         icon.style.transform = `scale(${sx}, ${sy})`;
       }
     }
-    updateCursorPosition(mouseRef.x, mouseRef.y);
+		setTimeout(() => {
+			updateCursorPosition(mouseRef.x, mouseRef.y);
+		}, 200);
   };
 
   const handleMouseUp = () => {
     for (let icon of ICONS) {
       icon.style.transform = "";
     }
-    updateCursorPosition(mouseRef.x, mouseRef.y);
+    setTimeout(() => {
+			updateCursorPosition(mouseRef.x, mouseRef.y);
+		}, 200);
   };
 
 	// if not on a touch device
